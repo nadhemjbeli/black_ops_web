@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}- Categorie index{% endblock %}
+{#{% block top_contact %}#}
+{#    {% include 'skeleton/top.html.twig' %}#}
+{#{% endblock %}#}
+
+{% block content %}
+    <h1>Categorie index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdCat</th>
+                <th>NomCat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.idCat }}</td>
+                <td>{{ categorie.nomCat }}</td>
+                <td>
+                    <a href="{{ path('app_admin_categorie_show', {'idCat': categorie.idCat}) }}">show</a>
+                    <a href="{{ path('app_admin_categorie_edit', {'idCat': categorie.idCat}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_categorie_new') }}">Create new</a>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

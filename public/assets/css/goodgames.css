@@ -43,7 +43,7 @@
  -------------------------------------------------------------------*/
 /*------------------------------------------------------------------
   [Table of contents]
-  
+
   1. Base
   2. Typography
   3. Bootstrap
@@ -107,7 +107,7 @@ body.nk-page-boxed {
 }
 
 a {
-    color: #dd163b;
+    color: #09a195;
     -webkit-transition: .15s color;
     -o-transition: .15s color;
     transition: .15s color;
@@ -115,7 +115,7 @@ a {
 
 a:focus,
 a:hover {
-    color: #dd163b;
+    color: #0f1316;
 }
 
 ::-moz-selection {
@@ -380,7 +380,8 @@ a:hover {
     font-weight: 600;
     line-height: 17px;
     text-align: center;
-    background-color: #dd163b;
+    color: #e0e4e7;
+    background-color: #09a195;
     border-radius: 8.5px;
 }
 
@@ -525,7 +526,7 @@ h6,
     margin-bottom: 1.5rem;
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    color: #fff;
+    color: #0f1316;
     text-transform: uppercase;
 }
 
@@ -651,7 +652,7 @@ h6,
     -webkit-box-flex: 100;
         -ms-flex: 100;
             flex: 100;
-    border-bottom: 4px solid #dd163b;
+    border-bottom: 4px solid #09a195;
     -webkit-transform: translateY(-4px);
         -ms-transform: translateY(-4px);
             transform: translateY(-4px);
@@ -670,7 +671,7 @@ h6,
     font-size: 1.1rem;
     font-style: italic;
     font-weight: 400;
-    color: #dd163b;
+    color: #09a195;
     z-index: 1;
 }
 
@@ -842,7 +843,7 @@ h6,
 }
 
 .modal-content {
-    background-color: #171e22;
+    background-color: #e0e4e7;
 }
 
 .modal-content .close {
@@ -874,7 +875,7 @@ h6,
  * Text Color Helper
  */
 .text-main-1 {
-    color: #dd163b !important;
+    color: #09a195 !important;
 }
 
 .text-main-2 {
@@ -945,7 +946,7 @@ h6,
  * Bg Color Helper
  */
 .bg-main-1 {
-    background-color: #dd163b !important;
+    background-color: #09a195 !important;
 }
 
 .bg-main-2 {
@@ -3096,7 +3097,7 @@ img.rounded {
 .nk-contacts-top {
     padding: 8px 0;
     font-size: .85rem;
-    color: #fff;
+    color: #0f1316;
 }
 
 .nk-contacts-top::after {
@@ -3304,11 +3305,11 @@ img.rounded {
 }
 
 .nk-navbar .nk-nav li > a:hover, .nk-navbar .nk-nav li > a.hover {
-    color: #dd163b;
+    color: #0f1316;
 }
 
 .nk-navbar .nk-nav li.active > a {
-    color: #dd163b;
+    color: #0f1316;
 }
 
 .nk-navbar .nk-nav > li {
@@ -3347,7 +3348,7 @@ img.rounded {
     margin-top: 12px;
     margin-left: 9px;
     background-color: rgba(0, 0, 0, 0.85);
-    border-bottom: 4px solid #dd163b;
+    border-bottom: 4px solid #09a195;
     opacity: 0;
     z-index: 1;
 }
@@ -3854,7 +3855,7 @@ img.rounded {
 
 .nk-breadcrumbs > li a:hover,
 .nk-breadcrumbs > li a.hover {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-breadcrumbs > li:last-of-type {
@@ -3881,7 +3882,7 @@ img.rounded {
     -webkit-box-flex: 100;
         -ms-flex: 100;
             flex: 100;
-    border-bottom: 4px solid #dd163b;
+    border-bottom: 4px solid #09a195;
     -webkit-transform: translateY(-12px);
         -ms-transform: translateY(-12px);
             transform: translateY(-12px);
@@ -3895,8 +3896,8 @@ img.rounded {
 .nk-footer {
     position: relative;
     overflow: hidden;
-    color: #eee;
-    background-color: rgba(17, 22, 25, 0.8);
+    color: #09a195;
+    background-color: #e0e4e7;
     z-index: 1;
 }
 
@@ -4170,7 +4171,7 @@ img.rounded {
 }
 
 .nk-widget-categories li a:hover, .nk-widget-categories li a.hover, .nk-widget-categories li a:focus, .nk-widget-categories li a:active {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-widget-categories li .nk-widget-categories-count {
@@ -4252,7 +4253,7 @@ img.rounded {
 .nk-twitter .nk-twitter-name a:hover,
 .nk-twitter .nk-twitter-name a.hover,
 .nk-twitter .nk-twitter-name a:focus {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-twitter .nk-twitter-icon {
@@ -4369,7 +4370,7 @@ img.rounded {
 }
 
 .nk-widget-match > a:hover {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-widget-match .nk-widget-match-right {
@@ -4497,7 +4498,7 @@ img.rounded {
 .nk-social-links-3 > li > *:hover,
 .nk-social-links-3 > li > *.hover {
     color: #fff;
-    background-color: #dd163b;
+    background-color: #09a195;
 }
 
 .nk-social-links > li > *.nk-social-rss:hover, .nk-social-links > li > *.nk-social-rss.hover, .nk-social-links.nk-social-links-3 > li > *.nk-social-rss:hover, .nk-social-links.nk-social-links-3 > li > *.nk-social-rss.hover,
@@ -5077,7 +5078,7 @@ img.rounded {
 }
 
 .nk-contacts-icons > li > a {
-    color: inherit;
+    color: #0f1316;
     text-decoration: none;
     -webkit-transition: .15s color;
     -o-transition: .15s color;
@@ -5088,7 +5089,7 @@ img.rounded {
 .nk-contacts-icons > li > a:hover,
 .nk-contacts-icons > li > a:focus,
 .nk-contacts-icons > li > a:active {
-    color: #dd163b;
+    color: #09a195;
 }
 
 /*------------------------------------------------------------------
@@ -5498,18 +5499,18 @@ img.rounded {
 }
 
 .nk-btn-color-white {
-    background-color: #fff;
-    border-color: #e0e0e0;
+    background-color: #09a195;
+    border-color: #0f1316;
     border-style: solid;
 }
 
 .nk-btn-color-white, .nk-btn-color-white:hover, .nk-btn-color-white.hover, .nk-btn-color-white:active, .nk-btn-color-white.active, .nk-btn-color-white:focus {
-    color: #171e22;
+    color: #e0e4e7;
 }
 
 .nk-btn-color-white:hover, .nk-btn-color-white.hover {
-    background-color: #e0e0e0;
-    border-color: #d1d1d1;
+    background-color: #09857a;
+    border-color: #0f1316;
 }
 
 .nk-btn-color-white:active, .nk-btn-color-white.active {
@@ -6120,7 +6121,7 @@ img.rounded {
 }
 
 .nk-tabs .nav-tabs .nav-link.active, .nk-tabs .nav-tabs .nav-link.active:focus, .nk-tabs .nav-tabs .nav-link.active:hover {
-    background-color: #dd163b;
+    background-color: #09a195;
 }
 
 .nk-tabs .nav-tabs.nav-tabs-fill {
@@ -6167,7 +6168,7 @@ img.rounded {
 }
 
 .nk-accordion .panel-heading a:not(.collapsed), .nk-accordion .panel-heading a:not(.collapsed):focus, .nk-accordion .panel-heading a:not(.collapsed):hover {
-    background-color: #dd163b;
+    background-color: #09a195;
 }
 
 .nk-accordion .panel-heading a:not(.collapsed) .panel-heading-arrow {
@@ -6371,14 +6372,14 @@ img.rounded {
 .nk-counter-2 .nk-count {
     font-size: 4rem;
     line-height: 1;
-    color: #dd163b;
+    color: #09a195;
 }
 
 /* Style 3 */
 .nk-counter-3 .nk-counter-icon {
     font-size: 3rem;
     line-height: 1;
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-counter-3 .nk-count {
@@ -6459,7 +6460,7 @@ img.rounded {
 }
 
 .nk-pagination a:hover {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-pagination nav {
@@ -6481,7 +6482,7 @@ img.rounded {
     height: 42px;
     padding: 3px;
     line-height: 28px;
-    color: #dd163b;
+    color: #09a195;
     border: 4px solid;
     border-radius: 21px;
 }
@@ -6541,7 +6542,7 @@ img.rounded {
     display: table-cell;
     width: 100%;
     vertical-align: top;
-    border-bottom: 2px solid #dd163b;
+    border-bottom: 2px solid #09a195;
     -webkit-transform: translateY(-18px);
         -ms-transform: translateY(-18px);
             transform: translateY(-18px);
@@ -6571,7 +6572,7 @@ img.rounded {
     content: "";
     display: table-cell;
     width: 100%;
-    border-bottom: 2px solid #dd163b;
+    border-bottom: 2px solid #09a195;
     -webkit-transform: translateY(-10px);
         -ms-transform: translateY(-10px);
             transform: translateY(-10px);
@@ -6775,7 +6776,7 @@ img.rounded {
 }
 
 .nk-flickity-arrow:hover, .nk-flickity-arrow.hover, .nk-flickity-arrow:active, .nk-flickity-arrow:focus {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-flickity-arrow.nk-flickity-arrow-prev {
@@ -6816,7 +6817,7 @@ img.rounded {
   Element Modal
  ----------------------------*/
 .nk-modal .modal-content {
-    background-color: #232930;
+    background-color: #e0e4e7;
     border: none;
     border-radius: 0;
 }
@@ -7100,7 +7101,7 @@ button:focus {
     display: inline-block;
     overflow: hidden;
     font-size: 1.2rem;
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-rating input {
@@ -7155,9 +7156,9 @@ button:focus {
     padding: 6.5px 10px;
     font-size: 1em;
     font-weight: 400;
-    color: #fff;
+    color: #0f1316;
     background-color: transparent;
-    border: 1px solid #303e47;
+    border: 1px solid #0f1316;
     border-radius: 0;
     -webkit-transition: .15s border-color;
     -o-transition: .15s border-color;
@@ -7165,9 +7166,9 @@ button:focus {
 }
 
 .form-control:focus, .form-control.focus {
-    color: #fff;
+    color: #0f1316;
     background-color: transparent;
-    border-color: #dd163b;
+    border-color: #09a195;
     -webkit-box-shadow: none;
             box-shadow: none;
 }
@@ -7204,7 +7205,7 @@ select.form-control {
 
 .nk-form-style-1 .form-control:focus, .nk-form-style-1 .form-control.focus {
     background-color: #fff;
-    border-color: #dd163b;
+    border-color: #09a195;
 }
 
 /* Validation */
@@ -7443,8 +7444,8 @@ div.nk-error {
     right: 0;
     bottom: 0;
     left: 0;
-    border-right: solid 4px #dd163b;
-    border-left: solid 4px #dd163b;
+    border-right: solid 4px #09a195;
+    border-left: solid 4px #09a195;
 }
 
 .nk-countdown .nk-hexagon .nk-hexagon-inner::before, .nk-countdown .nk-hexagon .nk-hexagon-inner::after {
@@ -7462,14 +7463,14 @@ div.nk-error {
 
 .nk-countdown .nk-hexagon .nk-hexagon-inner::before {
     top: -31.8198px;
-    border-top: solid 5.6569px #dd163b;
-    border-right: solid 5.6569px #dd163b;
+    border-top: solid 5.6569px #09a195;
+    border-right: solid 5.6569px #09a195;
 }
 
 .nk-countdown .nk-hexagon .nk-hexagon-inner::after {
     bottom: -31.8198px;
-    border-bottom: solid 5.6569px #dd163b;
-    border-left: solid 5.6569px #dd163b;
+    border-bottom: solid 5.6569px #09a195;
+    border-left: solid 5.6569px #09a195;
 }
 
 /*---------------------------
@@ -7488,7 +7489,7 @@ div.nk-error {
 
 .nk-table thead {
     font-size: 1.32rem;
-    background-color: #dd163b;
+    background-color: #09a195;
 }
 
 .nk-table thead th,
@@ -7825,7 +7826,7 @@ div.nk-error {
     height: 360px;
     overflow: hidden;
     background-color: #232930;
-    border-bottom: 3px solid #dd163b;
+    border-bottom: 3px solid #09a195;
     z-index: 0;
 }
 
@@ -7905,7 +7906,7 @@ div.nk-error {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #dd163b;
+    background-color: #09a195;
     opacity: .5;
     -webkit-transition: .15s opacity;
     -o-transition: .15s opacity;
@@ -7964,7 +7965,7 @@ div.nk-error {
 }
 
 .nk-post-title > a:hover, .nk-post-title > a.hover {
-    color: #dd163b;
+    color: #0f1316;
 }
 
 .nk-post-img {
@@ -8112,7 +8113,7 @@ div.nk-error {
 }
 
 .nk-post-date a:hover, .nk-post-date a.hover, .nk-post-date a:focus, .nk-post-date a:active {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-blog-post-border-bottom {
@@ -8268,7 +8269,7 @@ div.nk-error {
 
 .nk-news-box .nk-news-box-item.nk-news-box-item-active {
     color: #fff;
-    background-color: #dd163b;
+    background-color: #09a195;
 }
 
 .nk-news-box .nk-news-box-item .nk-news-box-item-img {
@@ -8549,7 +8550,7 @@ div.nk-error {
 }
 
 .nk-product-title a:hover, .nk-product-title a.hover, .nk-product-title a:active, .nk-product-title a:focus {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-product-price {
@@ -8575,7 +8576,7 @@ div.nk-error {
 .nk-product-rating:hover,
 .nk-product-rating:active,
 .nk-product-rating:focus {
-    color: #dd163b;
+    color: #09a195;
     text-decoration: none;
 }
 
@@ -8583,7 +8584,7 @@ div.nk-error {
     display: inline-block;
     margin-left: 5px;
     font-size: .8rem;
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-comment .nk-review-rating {
@@ -8814,7 +8815,7 @@ div.nk-error {
     visibility: hidden;
     background-color: #232930;
     border: 1px solid #293139;
-    border-bottom: 4px solid #dd163b;
+    border-bottom: 4px solid #09a195;
     opacity: 0;
     -webkit-transition: .3s opacity, .3s visibility;
     -o-transition: .3s opacity, .3s visibility;
@@ -8966,7 +8967,7 @@ div.nk-error {
 .nk-match .nk-match-team-left > a:hover,
 .nk-match .nk-match-team-right > a:hover,
 .nk-match .nk-match-status > a:hover {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-match .nk-match-team-left > *,
@@ -9085,7 +9086,7 @@ div.nk-error {
 }
 
 .nk-team .nk-team-cont a:hover, .nk-team .nk-team-cont a.hover, .nk-team .nk-team-cont a:focus, .nk-team .nk-team-cont a:active {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-team .nk-team-cont .nk-team-photo {
@@ -9188,7 +9189,7 @@ div.nk-error {
 .nk-forum > li .nk-forum-title > h3 > a.hover,
 .nk-forum > li .nk-forum-title > h4 > a:hover,
 .nk-forum > li .nk-forum-title > h4 > a.hover {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-forum > li .nk-forum-title .nk-forum-title-sub {
@@ -9312,7 +9313,7 @@ div.nk-error {
 
 .nk-forum-topic > li .nk-forum-topic-author-name > a:hover,
 .nk-forum-topic > li .nk-forum-topic-author-name > a.hover {
-    color: #dd163b;
+    color: #09a195;
 }
 
 .nk-forum-topic > li .nk-forum-topic-author-since {
@@ -9604,7 +9605,7 @@ div.nk-error {
 
 .nk-input-slider .slider-selection,
 .nk-input-slider .slider-handle {
-    background-color: #dd163b;
+    background-color: #09a195;
 }
 
 .nk-input-slider .slider-handle {
