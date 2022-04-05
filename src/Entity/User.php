@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -25,6 +26,8 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @Assert\NotBlank()
+     * @Assert\Email()
      * @ORM\Column(name="mail", type="string", length=255, nullable=false)
      */
     private $mail;
@@ -157,5 +160,9 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function __toString():string {
+        return $this->getUsername();
     }
 }

@@ -48,6 +48,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
     }
 
+
+    /**
+     * @return User[]
+     */
+    public function findAllEmailAlphabetical()
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.email', 'ASC')
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
@@ -60,6 +73,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
+    }
+
+    public function findAllMatching(string $query, int $limit = 5)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.mail LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

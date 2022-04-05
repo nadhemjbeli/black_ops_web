@@ -1,0 +1,46 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}VideoUploade{% endblock %}
+
+{% block content %}
+    <h1>VideoUploade</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdVdeo</th>
+                <td>{{ video_uploade.idVdeo }}</td>
+            </tr>
+            <tr>
+                <th>NomVideo</th>
+                <td>{{ video_uploade.nomVideo }}</td>
+            </tr>
+            <tr>
+                <th>DateVideo</th>
+                <td>{{ video_uploade.dateVideo ? video_uploade.dateVideo|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionVideo</th>
+                <td>{{ video_uploade.descriptionVideo }}</td>
+            </tr>
+            <tr>
+                <th>UrlVideo</th>
+                <td>{{ video_uploade.urlVideo }}</td>
+            </tr>
+            <tr>
+                <th>IdSouscat</th>
+                <td>{{ video_uploade.idSouscat }}</td>
+            </tr>
+            <tr>
+                <th>IdCl</th>
+                <td>{{ video_uploade.idCl }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_video_uploade_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_video_uploade_edit', {'idVdeo': video_uploade.idVdeo}) }}">edit</a>
+
+    {{ include('admin_video_uploade/_delete_form.html.twig') }}
+{% endblock %}

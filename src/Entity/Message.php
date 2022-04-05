@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Message
@@ -24,13 +25,13 @@ class Message
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_message", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="date_message", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $dateMessage = 'CURRENT_TIMESTAMP';
+    private $dateMessage;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="Contenu_message", type="text", length=0, nullable=false)
      */
     private $contenuMessage;
@@ -38,6 +39,7 @@ class Message
     /**
      * @var \User
      *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_cl", referencedColumnName="id_user")
@@ -48,6 +50,7 @@ class Message
     /**
      * @var \SousCategorie
      *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="SousCategorie")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_souscat", referencedColumnName="id_SousCat")
@@ -65,12 +68,12 @@ class Message
         return $this->dateMessage;
     }
 
-    public function setDateMessage(\DateTimeInterface $dateMessage): self
-    {
-        $this->dateMessage = $dateMessage;
-
-        return $this;
-    }
+//    public function setDateMessage(\DateTimeInterface $dateMessage): self
+//    {
+//        $this->dateMessage = $dateMessage;
+//
+//        return $this;
+//    }
 
     public function getContenuMessage(): ?string
     {

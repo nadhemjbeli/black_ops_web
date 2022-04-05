@@ -33,7 +33,7 @@ class VideoUploade
      *
      * @ORM\Column(name="date_Video", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $dateVideo = 'CURRENT_TIMESTAMP';
+    private $dateVideo;
 
     /**
      * @var string
@@ -85,12 +85,12 @@ class VideoUploade
         return $this->dateVideo;
     }
 
-    public function setDateVideo(\DateTimeInterface $dateVideo): self
-    {
-        $this->dateVideo = $dateVideo;
-
-        return $this;
-    }
+//    public function setDateVideo(\DateTimeInterface $dateVideo): self
+//    {
+//        $this->dateVideo = $dateVideo;
+//
+//        return $this;
+//    }
 
     public function getDescriptionVideo(): ?string
     {
