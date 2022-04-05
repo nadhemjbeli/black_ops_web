@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * VideoUploade
@@ -23,7 +24,7 @@ class VideoUploade
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="nom_Video", type="string", length=75, nullable=false)
      */
     private $nomVideo;
@@ -31,7 +32,7 @@ class VideoUploade
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_Video", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="date_Video", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $dateVideo;
 
@@ -50,16 +51,24 @@ class VideoUploade
     private $urlVideo;
 
     /**
-     * @var int
+     * @var \SousCategorie
      *
-     * @ORM\Column(name="id_souscat", type="integer", nullable=false)
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="SousCategorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_souscat", referencedColumnName="id_SousCat")
+     * })
      */
     private $idSouscat;
 
     /**
-     * @var int
+     * @var \User
      *
-     * @ORM\Column(name="id_cl", type="integer", nullable=false)
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_cl", referencedColumnName="id_user")
+     * })
      */
     private $idCl;
 
@@ -116,7 +125,7 @@ class VideoUploade
         return $this;
     }
 
-    public function getIdSouscat(): ?int
+    public function getIdSouscat(): ?SousCategorie
     {
         return $this->idSouscat;
     }
@@ -128,7 +137,7 @@ class VideoUploade
         return $this;
     }
 
-    public function getIdCl(): ?int
+    public function getIdCl(): ?User
     {
         return $this->idCl;
     }

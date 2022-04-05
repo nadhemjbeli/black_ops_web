@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SousCategorie
@@ -29,9 +30,13 @@ class SousCategorie
     private $nomSouscat;
 
     /**
-     * @var int|null
+     * @var \Categorie
      *
-     * @ORM\Column(name="id_cat", type="integer", nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_cat", referencedColumnName="id_cat")
+     * })
      */
     private $idCat;
 
@@ -52,12 +57,12 @@ class SousCategorie
         return $this;
     }
 
-    public function getIdCat(): ?int
+    public function getIdCat(): ?Categorie
     {
         return $this->idCat;
     }
 
-    public function setIdCat(?int $idCat): self
+    public function setIdCat(?Categorie $idCat): self
     {
         $this->idCat = $idCat;
 
@@ -67,6 +72,7 @@ class SousCategorie
     public function __toString():string {
         return $this->getNomSouscat();
     }
+
 
 
 }
