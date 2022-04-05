@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -36,8 +37,7 @@ class User
     private $username;
 
     /**
-     * @var string
-     *
+     * @var string The hashed password
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
@@ -47,21 +47,19 @@ class User
      *
      * @ORM\Column(name="statut", type="string", length=255, nullable=false)
      */
-    private $statut;
+    private $statut = 0;
 
     /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
      */
-    private $image;
+    private $image = 'default.png';
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="roles", type="json", nullable=false)
+     * @ORM\Column(type="json")
      */
-    private $roles;
+    private $roles = [];
 
     public function getIdUser(): ?int
     {
@@ -141,4 +139,23 @@ class User
     }
 
 
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
 }
