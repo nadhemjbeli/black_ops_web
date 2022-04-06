@@ -1,0 +1,11 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}New VideoUploade{% endblock %}
+
+{% block content %}
+    <h1>Create new VideoUploade</h1>
+
+    {{ include('admin_video_uploade/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_video_uploade_index') }}">back to list</a>
+{% endblock %}

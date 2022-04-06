@@ -1,0 +1,30 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}Image{% endblock %}
+
+{% block content %}
+    <h1>Image</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdImage</th>
+                <td>{{ image.idImage }}</td>
+            </tr>
+            <tr>
+                <th>UrlImage</th>
+                <td>{{ image.urlImage }}</td>
+            </tr>
+        <tr>
+                <th> idJeu</th>
+            <td>{{ image.idJeu }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_image_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_image_edit', {'idImage': image.idImage}) }}">edit</a>
+
+    {{ include('admin_image/_delete_form.html.twig') }}
+{% endblock %}

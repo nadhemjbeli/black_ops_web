@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    {{ form_widget(form.nomCat, {
+        attr: {
+            placeholder: 'Categorie',
+            class: 'form-control'
+        }
+    }) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
