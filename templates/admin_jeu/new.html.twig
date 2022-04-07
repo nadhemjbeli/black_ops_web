@@ -1,0 +1,11 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}New Jeu{% endblock %}
+
+{% block content %}
+    <h1>Create new Jeu</h1>
+
+    {{ include('admin_jeu/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_jeu_index') }}">back to list</a>
+{% endblock %}

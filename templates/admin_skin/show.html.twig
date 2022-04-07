@@ -1,0 +1,31 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}Skin{% endblock %}
+
+{% block content %}
+    <h1>Skin</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdSkin</th>
+                <td>{{ skin.idSkin }}</td>
+            </tr>
+            <tr>
+                <th>ImageSkin</th>
+                <td> <img class="show-img" src="{{ asset(skin.imagePath) }}" width="460" height="345" alt=""></td>
+
+            </tr>
+            <tr>
+                <th>IdChamp</th>
+                <td>{{ skin.idChamp }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_skin_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_skin_edit', {'idSkin': skin.idSkin}) }}">edit</a>
+
+    {{ include('admin_skin/_delete_form.html.twig') }}
+{% endblock %}
