@@ -25,7 +25,7 @@ class Message
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_message", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="date_message", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $dateMessage;
 
@@ -68,12 +68,14 @@ class Message
         return $this->dateMessage;
     }
 
-//    public function setDateMessage(\DateTimeInterface $dateMessage): self
-//    {
-//        $this->dateMessage = $dateMessage;
-//
-//        return $this;
-//    }
+    public function setDateMessage(): self
+    {
+        $current = new \DateTime();
+        $current->modify('- 1 Hour');
+        $this->dateMessage = $current;
+
+        return $this;
+    }
 
     public function getContenuMessage(): ?string
     {

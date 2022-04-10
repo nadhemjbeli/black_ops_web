@@ -49,6 +49,16 @@ class Equipe
      */
     private $nbrJoueurEquipe;
 
+    /**
+     * @var \Jeu
+     *
+     * @ORM\ManyToOne(targetEntity="Jeu")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="JeuV", referencedColumnName="Id_Jeu")
+     * })
+     */
+    private $JeuV;
+
     public function getIdEquipe(): ?int
     {
         return $this->idEquipe;

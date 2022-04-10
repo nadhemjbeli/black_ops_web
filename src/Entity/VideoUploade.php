@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\SousCategorie;
 
 /**
  * VideoUploade
@@ -13,6 +14,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class VideoUploade
 {
+    function __construct() {
+        $this->dateVideo = new \DateTime();
+    }
+
     /**
      * @var int
      *
@@ -25,6 +30,12 @@ class VideoUploade
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 50,
+     *      minMessage = "The video name must be at least {{ limit }} characters long",
+     *      maxMessage = "The video name cannot be longer than {{ limit }} characters"
+     * )
      * @ORM\Column(name="nom_Video", type="string", length=75, nullable=false)
      */
     private $nomVideo;
@@ -39,6 +50,7 @@ class VideoUploade
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="description_Video", type="text", length=0, nullable=false)
      */
     private $descriptionVideo;
@@ -46,7 +58,7 @@ class VideoUploade
     /**
      * @var string
      *
-     * @ORM\Column(name="url_Video", type="string", length=255, nullable=false)
+     * @ORM\Column(name="url_Video", type="string", length=255, nullable=true)
      */
     private $urlVideo;
 
@@ -130,7 +142,7 @@ class VideoUploade
         return $this->idSouscat;
     }
 
-    public function setIdSouscat(int $idSouscat): self
+    public function setIdSouscat(SousCategorie $idSouscat): self
     {
         $this->idSouscat = $idSouscat;
 
@@ -142,7 +154,7 @@ class VideoUploade
         return $this->idCl;
     }
 
-    public function setIdCl(int $idCl): self
+    public function setIdCl(User $idCl): self
     {
         $this->idCl = $idCl;
 

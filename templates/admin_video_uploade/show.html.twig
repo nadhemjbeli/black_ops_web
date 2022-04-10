@@ -23,10 +23,10 @@
                 <th>DescriptionVideo</th>
                 <td>{{ video_uploade.descriptionVideo }}</td>
             </tr>
-            <tr>
-                <th>UrlVideo</th>
-                <td>{{ video_uploade.urlVideo }}</td>
-            </tr>
+{#            <tr>#}
+{#                <th>UrlVideo</th>#}
+{#                <td>{{ video_uploade.urlVideo }}</td>#}
+{#            </tr>#}
             <tr>
                 <th>IdSouscat</th>
                 <td>{{ video_uploade.idSouscat }}</td>
@@ -37,7 +37,14 @@
             </tr>
         </tbody>
     </table>
+    {% if video_uploade.urlVideo is defined %}
+        <video width="400" controls>
+            <source src="{{ asset('uploads/video_uploads/' ~ video_uploade.urlVideo) }}" type="video/mp4">
 
+        </video>
+        {% else %}
+
+    {% endif %}
     <a href="{{ path('app_admin_video_uploade_index') }}">back to list</a>
 
     <a href="{{ path('app_admin_video_uploade_edit', {'idVdeo': video_uploade.idVdeo}) }}">edit</a>

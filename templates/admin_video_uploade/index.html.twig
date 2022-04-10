@@ -25,7 +25,11 @@
                 <td>{{ video_uploade.nomVideo }}</td>
                 <td>{{ video_uploade.dateVideo ? video_uploade.dateVideo|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ video_uploade.descriptionVideo }}</td>
-                <td>{{ video_uploade.urlVideo }}</td>
+                {% if video_uploade.urlVideo %}
+                    <td>{{ video_uploade.urlVideo }}</td>
+                {% else %}
+                    <td><button class="btn-sm btn-success">upload</button></td>
+                {% endif %}
                 <td>{{ video_uploade.idSouscat }}</td>
                 <td>{{ video_uploade.idCl }}</td>
                 <td>

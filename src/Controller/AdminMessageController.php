@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Form\MessageType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,21 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdminMessageController extends AbstractController
 {
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(UserRepository $userRepository,
+                                EntityManagerInterface $entityManager)
+    {
+        $this->userRepository = $userRepository;
+        $this->entityManager = $entityManager;
+    }
     /**
      * @Route("/", name="app_admin_message_index", methods={"GET"})
      */
@@ -39,6 +55,7 @@ class AdminMessageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $message->setDateMessage();
             $entityManager->persist($message);
             $entityManager->flush();
 
@@ -70,6 +87,7 @@ class AdminMessageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $message->setDateMessage();
             $entityManager->flush();
 
             return $this->redirectToRoute('app_admin_message_index', [], Response::HTTP_SEE_OTHER);
