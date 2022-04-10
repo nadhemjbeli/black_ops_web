@@ -1,12 +1,11 @@
 {# <body class="nav-md"> #}
-<div class="container body">
-	<div class="main_container">
+
 		<div class="col-md-3 left_col">
 			<div class="left_col scroll-view">
 				<div class="navbar nav_title" style="border: 0;">
 					<a href="index.html" class="site_title">
 						<i class="fa fa-paw"></i>
-						<span>Gentelella Alela!</span>
+						<span>Black ops!</span>
 					</a>
 				</div>
 
@@ -33,44 +32,44 @@
 						<ul class="nav side-menu">
 							<li>
 								<a>
-									<i class="fa fa-home"></i>
+									<i class="fa fa-trophy"></i>
 									Gestion Competition
 									<span class="fa fa-chevron-down"></span>
 								</a>
 								<ul class="nav child_menu">
 									<li>
-										<a href="index.html">Gestion Defi</a>
+										<a href="{{ path('app_admin_defi_index') }}">Gestion Defi</a>
 									</li>
 									<li>
-										<a href="index2.html">Gestion Match</a>
+										<a href="{{  path('app_admin_match_index') }}">Gestion Match</a>
 									</li>
 									<li>
-										<a href="index3.html">Gestion Equipe</a>
+										<a href="{{ path('app_admin_equipe_index') }}">Gestion Equipe</a>
 									</li>
 									<li>
-										<a href="index3.html">Gestion Joueur</a>
+										<a href="{{ path('app_admin_joueur_index') }}">Gestion Joueur</a>
 									</li>
 								</ul>
 							</li>
 							<li>
 								<a>
-									<i class="fa fa-edit"></i>
+									<i class="fa fa-comments-o"></i>
 									Gestion Communaute
 									<span class="fa fa-chevron-down"></span>
 								</a>
 								<ul class="nav child_menu">
 									<li>
-										<a href="form.html">Gestion Message</a>
+										<a href="{{ path('app_admin_message_index') }}">Gestion Message</a>
 									</li>
 									<li>
-										<a href="form_advanced.html">Gestion Video</a>
+										<a href="{{ path('app_admin_video_uploade_index') }}">Gestion Video</a>
 									</li>
 
 								</ul>
 							</li>
 							<li>
 								<a>
-									<i class="fa fa-desktop"></i>
+									<i class="fa fa-gamepad"></i>
 									Gestion Jeu video
 									<span class="fa fa-chevron-down"></span>
 								</a>
@@ -99,16 +98,16 @@
 								</a>
 								<ul class="nav child_menu">
 									<li>
-										<a href="tables.html">Gestion Categorie</a>
+										<a href="{{ path('app_admin_categorie_index') }}">Gestion Categorie</a>
 									</li>
 									<li>
-										<a href="tables_dynamic.html">Gestion Sous_Categorie</a>
+										<a href="{{ path('app_admin_sous_categorie_index') }}">Gestion Sous_Categorie</a>
 									</li>
 								</ul>
 							</li>
 							<li>
 								<a>
-									<i class="fa fa-bar-chart-o"></i>
+									<i class="fa fa-television"></i>
 									Gestion Stream
 									<span class="fa fa-chevron-down"></span>
 								</a>
@@ -124,7 +123,7 @@
 							</li>
 							<li>
 								<a>
-									<i class="fa fa-clone"></i>Gestion Commande
+									<i class="fa fa-dollar"></i>Gestion Commande
 									<span class="fa fa-chevron-down"></span>
 								</a>
 								<ul class="nav child_menu">
@@ -139,7 +138,7 @@
 
 						<li>
 						<a>
-							<i class="fa fa-clone"></i>Gestion Utilisateur
+							<i class="fa fa-user"></i>Gestion Utilisateur
 							<span class="fa fa-chevron-down"></span>
 						</a>
 						<ul class="nav child_menu">
@@ -367,26 +366,6 @@
 			</div>
 		</div>
 		<!-- /top navigation -->
-		<div class="right_col" role="main">
-		<div class="">
-			<div class="page-title">
-				<div class="title_left">
-					<h3>Calendar <small>Click to add/edit events</small></h3>
-				</div>
 
-				<div class="title_right">
-					<div class="col-md-5 col-sm-5   form-group pull-right top_search">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for...">
-							<span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-</div>
 
 {# </body> #}

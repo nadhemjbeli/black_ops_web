@@ -1,0 +1,11 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}New DetailsDefi{% endblock %}
+
+{% block content %}
+    <h1>Create new DetailsDefi</h1>
+
+    {{ include('admin_match/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_match_index') }}">back to list</a>
+{% endblock %}

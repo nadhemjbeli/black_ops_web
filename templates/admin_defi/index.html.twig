@@ -1,0 +1,110 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}Defi index{% endblock %}
+
+{% block content  %}
+    <div class="title_right" style="margin-right: 0">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+                <form id="search-form" class="example-wrapper" role="search" method="get" action="{{ path('search') }}">
+                <input type="text" class="form-control" placeholder="Search for..." name="search">
+                <span class="input-group-btn">
+						  				<button class="btn btn-default" type="submit"  name="sub">Go!</button>
+            </span>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="search-results" class="example-wrapper"></div>
+
+    <script type="text/javascript"><!--
+
+        jQuery(document).ready(function($){
+
+            $('#search-form').submit(function(e){
+
+                e.preventDefault();
+                $('#search-results').html("");
+
+                $.get("{{ path('search') }}/" + input, function(data, textStatus, xhr){
+
+                    if ("object" !== typeof data || null === data) {
+                        alert("Unexpected response from server.");
+                        return;
+                    }
+
+                    if (!data.hasOwnProperty("html") || typeof data.html != "string" || (data.html = data.html.trim()).length < 1) {
+                        alert("Empty response from server.");
+                        return;
+                    }
+
+                    $('#search-results').html(data.html);
+
+                }).fail(function(xhr, textStatus, errorThrown){
+
+                    var error = "Unknown error occurred.";
+                    if ("object" === typeof xhr && null !== xhr && xhr.hasOwnProperty("responseJSON") && "object" === typeof xhr.responseJSON && xhr.responseJSON.hasOwnProperty("error") && "string" === typeof xhr.responseJSON.error && xhr.responseJSON.error.trim().length >= 1) {
+                        error = xhr.responseJSON.error.trim();
+                    } else if ("string" === typeof errorThrown && errorThrown.trim().length >= 1) {
+                        error = errorThrown.trim();
+                    }
+
+                    alert(error);
+
+                });
+
+            });
+
+        });
+
+        --></script>
+    <br>
+ <br>
+    <h1>Gestion Defi</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdDefi</th>
+                <th>NomDefi</th>
+                <th>DescriptionDefi</th>
+                <th>ImgDefi</th>
+                <th>PrixDefi</th>
+                <th>DateDefi</th>
+                <th>NbrEquipeDefi</th>
+                <th>RegleDefi</th>
+                <th>RecompenseDefi</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if defis is defined and defis is iterable and defis|length >= 1 %}
+        {% for defi in defis %}
+            <tr>
+                <td>{{ defi.idDefi }}</td>
+                <td>{{ defi.nomDefi }}</td>
+                <td>{{ defi.descriptionDefi }}</td>
+                <td><img src="{{asset('/uploads/defi/')~defi.imgDefi}}" height="100px" width="100px"></td>
+                <td>{{ defi.prixDefi }}</td>
+                <td>{{ defi.dateDefi|date('Y-m-d H:i:s')}}</td>
+                <td>{{ defi.nbrEquipeDefi }}</td>
+                <td>{{ defi.regleDefi }}</td>
+                <td>{{ defi.recompenseDefi }}</td>
+                <td>
+                    <a href="{{ path('app_admin_defi_show', {'idDefi': defi.idDefi}) }}" class="btn btn-outline-info">show</a>
+                    <a href="{{ path('app_admin_defi_edit', {'idDefi': defi.idDefi}) }}" class="btn btn-outline-dark">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_defi_new') }}" class="btn btn-outline-success">Ajouter</a>
+{% endblock %}

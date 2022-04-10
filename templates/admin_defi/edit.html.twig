@@ -1,0 +1,13 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}Edit Defi{% endblock %}
+
+{% block content %}
+    <h1>Edit Defi</h1>
+
+    {{ include('admin_defi/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_admin_defi_index') }}">Retourner a la  list</a>
+
+    {{ include('admin_defi/_delete_form.html.twig') }}
+{% endblock %}
