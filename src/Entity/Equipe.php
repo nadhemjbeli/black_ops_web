@@ -48,6 +48,15 @@ class Equipe
      * @ORM\Column(name="nbr_joueur_Equipe", type="integer", nullable=false)
      */
     private $nbrJoueurEquipe;
+    /**
+     * @var \Jeu
+     *
+     * @ORM\ManyToOne(targetEntity="Jeu")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="JeuV", referencedColumnName="Id_Jeu")
+     * })
+     */
+    private $JeuV;
 
     public function getIdEquipe(): ?int
     {

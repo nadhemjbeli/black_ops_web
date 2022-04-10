@@ -64,6 +64,10 @@ class DetailsDefi
      * })
      */
     private $idDefi;
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $date;
 
     public function getIdStatistique(): ?int
     {

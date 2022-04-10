@@ -84,18 +84,18 @@
 {#<header class="nk-header nk-header-opaque">#}
 
 
-    <header class="nk-header nk-header-opaque">
-        {% block top_contact %}
+<header class="nk-header nk-header-opaque">
+    {% block top_contact %}
 
-        {% endblock %}
-        {% block header %}
-            {% include 'skeleton/client_nav.html.twig' %}
-        {% endblock %}
-    </header>
-    {% block content %}{% endblock %}
-    {% block footer %}
-{#        {% include 'skeleton/footer.html.twig' %}#}
     {% endblock %}
+    {% block header %}
+        {% include 'skeleton/client_nav.html.twig' %}
+    {% endblock %}
+</header>
+{% block content %}{% endblock %}
+{% block footer %}
+    {#        {% include 'skeleton/footer.html.twig' %}#}
+{% endblock %}
 
 
 
@@ -123,32 +123,32 @@
     <script src="{{ asset('assets/vendor/sticky-kit/dist/sticky-kit.min.js') }}"></script>
 
     <!-- Jarallax -->
-{#    <script src="assets/vendor/jarallax/dist/jarallax.min.js"></script>#}
-{#    <script src="assets/vendor/jarallax/dist/jarallax-video.min.js"></script>#}
+    {#    <script src="assets/vendor/jarallax/dist/jarallax.min.js"></script>#}
+    {#    <script src="assets/vendor/jarallax/dist/jarallax-video.min.js"></script>#}
 
     <!-- imagesLoaded -->
-{#    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>#}
+    {#    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>#}
 
-{#    <!-- Flickity -->#}
-{#    <script src="assets/vendor/flickity/dist/flickity.pkgd.min.js"></script>#}
+    {#    <!-- Flickity -->#}
+    {#    <script src="assets/vendor/flickity/dist/flickity.pkgd.min.js"></script>#}
 
-{#    <!-- Photoswipe -->#}
-{#    <script src="assets/vendor/photoswipe/dist/photoswipe.min.js"></script>#}
-{#    <script src="assets/vendor/photoswipe/dist/photoswipe-ui-default.min.js"></script>#}
+    {#    <!-- Photoswipe -->#}
+    {#    <script src="assets/vendor/photoswipe/dist/photoswipe.min.js"></script>#}
+    {#    <script src="assets/vendor/photoswipe/dist/photoswipe-ui-default.min.js"></script>#}
 
-{#    <!-- Jquery Validation -->#}
-{#    <script src="assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>#}
+    {#    <!-- Jquery Validation -->#}
+    {#    <script src="assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>#}
 
-{#    <!-- Jquery Countdown + Moment -->#}
-{#    <script src="assets/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>#}
-{#    <script src="assets/vendor/moment/min/moment.min.js"></script>#}
-{#    <script src="assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>#}
+    {#    <!-- Jquery Countdown + Moment -->#}
+    {#    <script src="assets/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>#}
+    {#    <script src="assets/vendor/moment/min/moment.min.js"></script>#}
+    {#    <script src="assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>#}
 
     <!-- Hammer.js -->
     <script src="{{ asset('assets/vendor/hammerjs/hammer.min.js') }}"></script>
 
     <!-- NanoSroller -->
-{#    <script src="assets/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>#}
+    {#    <script src="assets/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>#}
 
     <!-- SoundManager2 -->
     <script src="{{ asset('assets/vendor/soundmanager2/script/soundmanager2-nodebug-jsmin.js') }}"></script>
@@ -165,6 +165,15 @@
     <!-- GoodGames -->
     <script src="{{ asset('assets/js/goodgames.min.js') }}"></script>
     <script src="{{ asset('assets/js/goodgames-init.js') }}"></script>
+    <script>
+        $('.dropdown-toggle').dropdown();
+        $('.custom-file-input').on('change', function(event) {
+            var inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
+    </script>
     <!-- END: Scripts -->
 {% endblock %}
 

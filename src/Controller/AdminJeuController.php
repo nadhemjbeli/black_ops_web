@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Jeu;
 use App\Form\JeuType;
 use Doctrine\ORM\EntityManagerInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +33,7 @@ class AdminJeuController extends AbstractController
     /**
      * @Route("/new", name="app_admin_jeu_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
     {
         $jeu = new Jeu();
         $form = $this->createForm(JeuType::class, $jeu);
@@ -41,7 +42,7 @@ class AdminJeuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($jeu);
             $entityManager->flush();
-
+            $flashy->success('Jeu ajouté avec succès', 'http://your-awesome-link.com');
             return $this->redirectToRoute('app_admin_jeu_index', [], Response::HTTP_SEE_OTHER);
         }
 

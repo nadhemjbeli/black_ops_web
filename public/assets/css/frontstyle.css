@@ -1,0 +1,61 @@
+.btn-circle {
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    padding: 0px 0;
+    font-size: 11px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+    position : relative ;
+    top:-10px;
+    right:5px;
+}
+.fa{
+    color :#212529;
+
+}
+.fa:hover{
+    color : #424444;
+
+}
+#info h6{
+
+    font-family:'Orkney';
+}
+
+#info p {
+    display: none;
+    text-align: justify;
+    font-family:'Orkney'
+}
+#info:hover p {
+
+    display: block;
+}
+
+h2 {
+
+    font-family: "Gordita Black";
+}
+
+#headerinfo {
+    font-family: Orkney;
+
+}
+#headerinfo h4{
+    font-weight: bold;
+    color : #09a195;
+}
+
+#logstream {
+
+    font-weight: bold;
+    color : #09a195;
+}
+.fa-solid{
+
+    color: #09a195;
+}

@@ -7,6 +7,7 @@ use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -44,6 +45,33 @@ class ImageRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+    /**
+     * @return Image[]
+     */
+    public function firstimgbyjeu()
+
+    {
+       return $this->addimage()->groupBy('a.idJeu')
+        ->orderBy('a.idImage', 'ASC')
+        ->getQuery()
+        ->getResult()
+    ;
+
+
+//        $image=$this->createQueryBuilder('a')->groupBy('a.idJeu')->having('a.idImage=min(a.idImage)');
+//        dd($image);
+
+    }
+
+    private function addimage(QueryBuilder $qb = null)
+    {
+        return $this->getOrCreateQueryBuilder($qb)
+            ->andWhere('a.urlImage IS NOT NULL');
+    }
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
+    {
+        return $qb ?: $this->createQueryBuilder('a');
     }
 
 }

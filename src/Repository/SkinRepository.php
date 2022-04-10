@@ -7,6 +7,7 @@ use App\Entity\Skin;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -44,6 +45,24 @@ class SkinRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+    public function toprecent()
+
+    { return $this->addskin()
+        ->orderBy('a.idSkin', 'DESC')->setMaxResults(6)
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+
+    private function addskin(QueryBuilder $qb = null)
+    {
+        return $this->getOrCreateQueryBuilder($qb)
+            ->andWhere('a.imageSkin IS NOT NULL');
+    }
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
+    {
+        return $qb ?: $this->createQueryBuilder('a');
     }
 
 }
