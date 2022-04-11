@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Message
+ *
+ * @ApiResource()
+ *
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
  * @ORM\Table(name="message", indexes={@ORM\Index(name="id_cl", columns={"id_cl"}), @ORM\Index(name="id_souscat", columns={"id_souscat"})})
  * @ORM\Entity

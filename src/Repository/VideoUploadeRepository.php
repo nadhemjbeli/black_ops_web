@@ -7,6 +7,7 @@ use App\Entity\VideoUploade;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -44,6 +45,11 @@ class VideoUploadeRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+    public function findAllWithUser(){
+        $qb = $this->getEntityManager()->createQuery('SELECT v FROM App\Entity\VideoUploade v INNER JOIN App\Entity\ ');
+        dd($qb->getResult());
+        return $qb->getResult();
     }
 
 }

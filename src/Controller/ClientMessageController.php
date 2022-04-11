@@ -15,6 +15,7 @@ class ClientMessageController extends AbstractController
      */
     public function index(): Response
     {
+
         return $this->render('client_message/index.html.twig', [
             'controller_name' => 'ClientMessageController',
         ]);
