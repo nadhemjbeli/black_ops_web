@@ -39,7 +39,7 @@ class Defi
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank
      * @ORM\Column(name="img_Defi", type="text", length=0, nullable=false)
      */
     private $imgDefi;
@@ -81,7 +81,7 @@ class Defi
 
     /**
      * @var \Jeu
-     *
+     *@Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="Jeu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="jeu_Defi", referencedColumnName="Id_Jeu")

@@ -40,6 +40,7 @@ class DetailsDefi
     /**
      * @var \Equipe
      *@Assert\NotBlank
+     *
      * @ORM\ManyToOne(targetEntity="Equipe")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="EquipeB", referencedColumnName="id_Equipe")
@@ -50,6 +51,7 @@ class DetailsDefi
     /**
      * @var \Equipe
      *@Assert\NotBlank
+     *
      * @ORM\ManyToOne(targetEntity="Equipe")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="EquipeA", referencedColumnName="id_Equipe")
@@ -110,6 +112,7 @@ class DetailsDefi
 
     public function setEquipeb(?Equipe $equipeb): self
     {
+
         $this->equipeb = $equipeb;
 
         return $this;
@@ -162,5 +165,6 @@ class DetailsDefi
 
         return $this;
     }
+
 
 }

@@ -27,14 +27,14 @@ class Equipe
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank
      * @ORM\Column(name="nom_Equipe", type="string", length=100, nullable=false)
      */
     private $nomEquipe;
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank
      * @ORM\Column(name="logo_Equipe", type="text", length=0, nullable=false)
      */
     private $logoEquipe;
@@ -48,7 +48,12 @@ class Equipe
 
     /**
      * @var int
-     *@Assert\NotBlank
+     *
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 5,
+     *      notInRangeMessage = "Entrez le nombre de joueurs entre {{ min }}et {{ max }}",
+     * )
      * @ORM\Column(name="nbr_joueur_Equipe", type="integer", nullable=false)
      */
     private $nbrJoueurEquipe;
@@ -57,7 +62,7 @@ class Equipe
 
     /**
      * @var \Jeu
-     *
+     *@Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="Jeu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="JeuV", referencedColumnName="Id_Jeu")

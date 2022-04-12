@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Joueur
@@ -23,28 +24,28 @@ class Joueur
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank
      * @ORM\Column(name="nom_Joueur", type="string", length=50, nullable=false)
      */
     private $nomJoueur;
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank
      * @ORM\Column(name="rang_Joueur", type="string", length=50, nullable=false)
      */
     private $rangJoueur;
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank
      * @ORM\Column(name="Pseaudo_Joueur", type="string", length=25, nullable=false)
      */
     private $pseaudoJoueur;
 
     /**
      * @var \User
-     *
+     *@Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
@@ -54,7 +55,7 @@ class Joueur
 
     /**
      * @var \Equipe
-     *
+     *@Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="Equipe")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_equipe", referencedColumnName="id_Equipe")

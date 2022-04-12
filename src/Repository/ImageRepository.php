@@ -3,30 +3,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Equipe;
+use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Equipe|null find($id, $lockMode = null, $lockVersion = null)
- * @method Equipe|null findOneBy(array $criteria, array $orderBy = null)
- * @method Equipe[]    findAll()
- * @method Equipe[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Image|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Image|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Image[]    findAll()
+ * @method Image[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EquipeRepository extends ServiceEntityRepository
+class ImageRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Equipe::class);
+        parent::__construct($registry, Image::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Equipe $entity, bool $flush = true): void
+    public function add(Image$entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -38,7 +38,7 @@ class EquipeRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Equipe $entity, bool $flush = true): void
+    public function remove(Image$entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -49,9 +49,8 @@ class EquipeRepository extends ServiceEntityRepository
 
         $qb = $this->createQueryBuilder('n');
 
-        $qb->select('n.JeuV');
+        $qb->select('n.idJeu');
         return $qb->getQuery()
             ->getResult();
     }
-
 }

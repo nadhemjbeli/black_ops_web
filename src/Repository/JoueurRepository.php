@@ -46,4 +46,23 @@ class JoueurRepository extends ServiceEntityRepository
         }
     }
 
+    public  function Verify($user){
+
+        $qb = $this->createQueryBuilder('n');
+
+        $qb->where('n.idUser = :user')->setParameter('user',$user);
+
+        return $qb->getQuery()
+            ->getResult();
+    }
+    public  function EquipeJoueur($joueur){
+
+        $qb = $this->createQueryBuilder('n');
+
+        $qb->where('n.idEquipe = :user')->setParameter('user',$joueur);
+
+        return $qb->getQuery()
+            ->getResult();
+    }
+
 }

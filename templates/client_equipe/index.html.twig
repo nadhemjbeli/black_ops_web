@@ -21,11 +21,13 @@
                 <br>
                 <br>
                 <br>
-                <span style="color:#0f1316;"> Add Equipe</span>
+                <span style="color:#0f1316;"> Add Team</span>
                 <br>
                 <br>
                 <br>
-                <a class="nk-btn nk-btn-rounded nk-btn-color-main-1" style="color: #e0e4e7"> Add equipe </a>
+                <a href="{{ path('app_client_equipe_add') }}" class="nk-btn nk-btn-rounded nk-btn-color-main-1" style="color: #e0e4e7"> Add Team </a>
+                <a href="{{ path('app_client_joueur_new') }}" class="nk-btn nk-btn-rounded nk-btn-color-main-1" style="color: #e0e4e7 ; margin-left: 50px" > become a membre </a>
+
                 <div class="nk-gap-1"></div>
                {% for eq in equipes %} <!-- START: Teams -->
                 <div class="nk-team">
@@ -35,22 +37,27 @@
                     <div class="nk-team-cont">
                         <h3 class="h5 mb-20"><span class="text-main-1">Team:</span> {{ eq.nomEquipe }}</h3>
                         <h4 class="h6 mb-5">Members:</h4>
-                        <a href="tournaments-teammate.html">Duke</a>, <a href="tournaments-teammate.html">Bangi</a>, <a href="tournaments-teammate.html">Faker</a>, <a href="tournaments-teammate.html">Bang</a>, <a href="tournaments-teammate.html">Wolf</a>
+                        {% for j in js %}
+                        {% if eq.idEquipe == j.idEquipe.idEquipe %}
+                        <a href="{{ path('app_client_joueur_show', {'idJoueur': j.idJoueur})  }}">{{ j.nomJoueur }}</a>,
+                        {% endif %}
+                        {% endfor %}
 
-                        <div class="nk-team-photo" style="background-image: url('{{ asset('assets/images/team-photo.png') }}');"></div>
+                        {% for i in im %}
+                        {% if eq.jeuV == i.idJeu %}
+                        <div class="nk-team-photo" style="background-image: url('{{ asset('uploads/jeux/')~i.urlImage}}') ;">
+                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
+
                 </div>
+
        <!-- END: Teams -->
    {% endfor %}
             </div>
             <div class="col-lg-4">
-                <!--
-                    START: Sidebar
 
-                    Additional Classes:
-                        .nk-sidebar-left
-                        .nk-sidebar-right
-                        .nk-sidebar-sticky
                 -->
                 <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
                     <div class="nk-widget">
@@ -114,171 +121,75 @@
                     <div class="nk-widget nk-widget-highlighted">
                         <h4 class="nk-widget-title"><span><span class="text-main-1">Next</span> Matches</span></h4>
                         <div class="nk-widget-content">
-                            <div class="nk-widget-match">
-                                <a href="#">
+                            {%  for i in ups %}
+                                <div class="nk-widget-match">
+                                    <a href="#">
                 <span class="nk-widget-match-left">
                     <span class="nk-widget-match-teams">
                         <span class="nk-widget-match-team-logo">
-                            <img src="assets/images/team-1.jpg" alt="">
+                            <img src="{{ asset('/uploads/equipe/')~i.equipea.logoEquipe}}" alt="">
                         </span>
                         <span class="nk-widget-match-vs">VS</span>
                         <span class="nk-widget-match-team-logo">
-                            <img src="assets/images/team-2.jpg" alt="">
+                            <img src="{{ asset('/uploads/equipe/')~i.equipeb.logoEquipe}}" alt="">
                         </span>
                     </span>
-                    <span class="nk-widget-match-date">CS:GO - Apr 28, 2018 8:00 pm</span>
+                    <span class="nk-widget-match-date">{{ i.idDefi }} - {{ i.date|date('d-m-Y H:i:s') }}</span>
+
                 </span>
-                                    <span class="nk-widget-match-right">
+                                        <span class="nk-widget-match-right">
                     <span class="nk-match-score">
                         Upcoming
                     </span>
                 </span>
-                                </a>
-                            </div>
-
-                            <div class="nk-widget-match">
-                                <a href="#">
+                                    </a>
+                                    <div class="nk-countdown nk-countdown-center" data-end="{{ i.date |date('Y-m-d H:i')}}" data-timezone="WEST"></div>
+                                </div>
+                            {% endfor %}
+                            {% for l in live %}
+                                <div class="nk-widget-match">
+                                    <a href="#">
                 <span class="nk-widget-match-left">
                     <span class="nk-widget-match-teams">
                         <span class="nk-widget-match-team-logo">
-                            <img src="assets/images/team-3.jpg" alt="">
+                            <img src="{{ asset('/uploads/equipe/')~l.equipea.logoEquipe }}" alt="">
                         </span>
                         <span class="nk-widget-match-vs">VS</span>
                         <span class="nk-widget-match-team-logo">
-                            <img src="assets/images/team-2.jpg" alt="">
+                            <img src="{{ asset('/uploads/equipe/')~l.equipeb.logoEquipe }}" alt="">
                         </span>
                     </span>
-                    <span class="nk-widget-match-date">LoL - Apr 24, 2018 7:20 pm</span>
+                    <span class="nk-widget-match-date">{{ l.idDefi}} - {{ l.date|date('d-m-Y H:i:s') }}</span>
                 </span>
-                                    <span class="nk-widget-match-right">
-                    <span class="nk-match-score">
-                        Upcoming
-                    </span>
-                </span>
-                                </a>
-                            </div>
-
-                            <div class="nk-widget-match">
-                                <a href="#">
-                <span class="nk-widget-match-left">
-                    <span class="nk-widget-match-teams">
-                        <span class="nk-widget-match-team-logo">
-                            <img src="assets/images/team-1.jpg" alt="">
-                        </span>
-                        <span class="nk-widget-match-vs">VS</span>
-                        <span class="nk-widget-match-team-logo">
-                            <img src="assets/images/team-4.jpg" alt="">
-                        </span>
-                    </span>
-                    <span class="nk-widget-match-date">Dota 2 - Apr 12, 2018 6:40 pm</span>
-                </span>
-                                    <span class="nk-widget-match-right">
+                                        <span class="nk-widget-match-right">
                     <span class="nk-match-score bg-dark-1">
-                        0 : 0
+                        {{ l.scoreFinale }}
                     </span>
                 </span>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="nk-widget nk-widget-highlighted">
                         <h4 class="nk-widget-title"><span><span class="text-main-1">Top 3</span> Recent</span></h4>
                         <div class="nk-widget-content">
-
-                            <div class="nk-widget-post">
-                                <a href="blog-article.html" class="nk-post-image">
-                                    <img src="assets/images/post-1-sm.jpg" alt="">
-                                </a>
-                                <h3 class="nk-post-title"><a href="blog-article.html">Smell magic in the air. Or maybe barbecue</a></h3>
-                                <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
-                            </div>
-
-                            <div class="nk-widget-post">
-                                <a href="blog-article.html" class="nk-post-image">
-                                    <img src="assets/images/post-2-sm.jpg" alt="">
-                                </a>
-                                <h3 class="nk-post-title"><a href="blog-article.html">Grab your sword and fight the Horde</a></h3>
-                                <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 5, 2018</div>
-                            </div>
-
-                            <div class="nk-widget-post">
-                                <a href="blog-article.html" class="nk-post-image">
-                                    <img src="assets/images/post-3-sm.jpg" alt="">
-                                </a>
-                                <h3 class="nk-post-title"><a href="blog-article.html">We found a witch! May we burn her?</a></h3>
-                                <div class="nk-post-date"><span class="fa fa-calendar"></span> Aug 27, 2018</div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="nk-widget nk-widget-highlighted">
-                        <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Screenshots</span></h4>
-                        <div class="nk-widget-content">
-                            <div class="nk-popup-gallery">
-                                <div class="row sm-gap vertical-gap">
-                                    <div class="col-sm-6">
-                                        <div class="nk-gallery-item-box">
-                                            <a href="assets/images/gallery-1.jpg" class="nk-gallery-item" data-size="1016x572">
-                                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                                <img src="assets/images/gallery-1-thumb.jpg" alt="">
-                                            </a>
-                                            <div class="nk-gallery-item-description">
-                                                <h4>Called Let</h4>
-                                                Divided thing, land it evening earth winged whose great after. Were grass night. To Air itself saw bring fly fowl. Fly years behold spirit day greater of wherein winged and form. Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="nk-gallery-item-box">
-                                            <a href="assets/images/gallery-2.jpg" class="nk-gallery-item" data-size="1188x594">
-                                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                                <img src="assets/images/gallery-2-thumb.jpg" alt="">
-                                            </a>
-                                            <div class="nk-gallery-item-description">
-                                                Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="nk-gallery-item-box">
-                                            <a href="assets/images/gallery-3.jpg" class="nk-gallery-item" data-size="625x350">
-                                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                                <img src="assets/images/gallery-3-thumb.jpg" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="nk-gallery-item-box">
-                                            <a href="assets/images/gallery-4.jpg" class="nk-gallery-item" data-size="873x567">
-                                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                                <img src="assets/images/gallery-4-thumb.jpg" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="nk-gallery-item-box">
-                                            <a href="assets/images/gallery-5.jpg" class="nk-gallery-item" data-size="471x269">
-                                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                                <img src="assets/images/gallery-5-thumb.jpg" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="nk-gallery-item-box">
-                                            <a href="assets/images/gallery-6.jpg" class="nk-gallery-item" data-size="472x438">
-                                                <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-                                                <img src="assets/images/gallery-6-thumb.jpg" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
+                            {% for defi in defis %}
+                                <div class="nk-widget-post">
+                                    <a href="{{ path('app_client_defi_detail',{'idDefi': defi.idDefi}) }}" class="nk-post-image">
+                                        <img src="{{ asset('/uploads/defi/')~defi.imgDefi }}" alt="{{ defi.nomDefi }}" height="100px" width="100px">
+                                    </a>
+                                    <h3 class="nk-post-title"><a href="{{ path('app_client_defi_detail',{'idDefi': defi.idDefi}) }}">{{ defi.nomDefi }}</a></h3>
+                                    <div class="nk-post-date"><span class="fa fa-calendar"></span> {{ defi.dateDefi|date('Y-m-d H:i:s') }}</div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
+
                     <div class="nk-widget nk-widget-highlighted">
                         <h4 class="nk-widget-title"><span>Facebook</span></h4>
                         <div class="nk-widget-content">
-                            <div class="fb-page" data-href="http://www.facebook.com/templatespoint.net" data-width="700" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"></div>
+                            <div class="fb-page" data-href="https://www.facebook.com/Black-Ops-Gaming-103860542214358/?notif_id=1649529986913401&notif_t=page_user_activity&ref=notif" data-width="700" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"></div>
                         </div>
                     </div>
 
