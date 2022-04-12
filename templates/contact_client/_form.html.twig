@@ -1,0 +1,14 @@
+{{ form_start(form , {
+    attr:{
+        'novalidate':'novalidate'
+    }
+}) }}
+    {{ form_row(form.npContact) }}
+{{ form_row(form.mailContact) }}
+    {{ form_row(form.message ,{
+        attr:{
+            'maxlength':'10000'
+        }
+    }) }}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

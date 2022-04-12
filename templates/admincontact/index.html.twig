@@ -1,0 +1,39 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}Contact index{% endblock %}
+
+{% block content %}
+    <h1>Contact index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdContact</th>
+                <th>NpContact</th>
+                <th>MailContact</th>
+                <th>Message</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.idContact }}</td>
+                <td>{{ contact.npContact }}</td>
+                <td>{{ contact.mailContact }}</td>
+                <td>{{ contact.message }}</td>
+                <td>
+                    <a href="{{ path('app_admincontact_show', {'idContact': contact.idContact}) }}">show</a>
+                    <a href="{{ path('app_admincontact_edit', {'idContact': contact.idContact}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admincontact_new') }}">Create new</a>
+{% endblock %}

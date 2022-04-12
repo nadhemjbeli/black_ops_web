@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Contact
@@ -23,31 +24,31 @@ class Contact
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="np_contact", type="string", length=75, nullable=false)
      */
     private $npContact;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="mail_contact", type="string", length=100, nullable=false)
      */
     private $mailContact;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="message", type="text", length=0, nullable=false)
      */
     private $message;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @Assert\NotBlank()
+     * @ORM\Column(name="date", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $date = 'CURRENT_TIMESTAMP';
+    private $date ;
 
     public function getIdContact(): ?int
     {
@@ -95,12 +96,13 @@ class Contact
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
 
-        return $this;
-    }
+//    public function setDate(\DateTimeInterface $date): self
+//    {
+//        $this->date = $date;
+//
+//        return $this;
+//    }
 
 
 }
