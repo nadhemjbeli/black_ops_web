@@ -39,15 +39,20 @@ class ContactClientController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $contact->setDate();
+//            dd($contact);
             $entityManager->persist($contact);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_contact_client_index', [], Response::HTTP_SEE_OTHER);
+            return $this->render('contact_client/new.html.twig', [
+                'form' => $form->createView(),
+                'message'=>'contact est ajouté!!'
+            ]);
         }
 
-        return $this->render('skeleton/footer.html.twig', [
+        return $this->render('contact_client/new.html.twig', [
             'contact' => $contact,
-            'formA' => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 

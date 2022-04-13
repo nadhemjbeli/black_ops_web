@@ -45,7 +45,6 @@ class Contact
 
     /**
      * @var \DateTime
-     * @Assert\NotBlank()
      * @ORM\Column(name="date", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $date ;
@@ -97,12 +96,14 @@ class Contact
     }
 
 
-//    public function setDate(\DateTimeInterface $date): self
-//    {
-//        $this->date = $date;
-//
-//        return $this;
-//    }
+    public function setDate(): self
+    {
+        $current = new \DateTime();
+        $current->modify('+ 1 Hour');
+        $this->date = $current;
+
+        return $this;
+    }
 
 
 }
