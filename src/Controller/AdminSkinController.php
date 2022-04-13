@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Skin;
 use App\Form\SkinType;
+use App\Repository\SkinRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -33,7 +34,7 @@ class AdminSkinController extends AbstractController
     /**
      * @Route("/new", name="app_admin_skin_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,SkinRepository $repskin): Response
     {
         $skin = new Skin();
         $form = $this->createForm(SkinType::class, $skin);
@@ -41,11 +42,11 @@ class AdminSkinController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $file=$skin->getImageSkin();
-
+            $idskinmax=$repskin->maxidskin();
             // On boucle sur les images
 
             // On génère un nouveau nom de fichier
-            $fichier = md5(uniqid()).'.'.$file->guessExtension();
+            $fichier = $idskinmax.'.'.$file->guessExtension();
 
             // On copie le fichier dans le dossier uploads
             try {
@@ -81,14 +82,14 @@ class AdminSkinController extends AbstractController
     /**
      * @Route("/{idSkin}/edit", name="app_admin_skin_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Skin $skin, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Skin $skin, EntityManagerInterface $entityManager,SkinRepository $repskin): Response
     {
         $form = $this->createForm(SkinType::class, $skin);
         $form->handleRequest($request);
         $file=$skin->getImageSkin();
-
+        $idskinmax=$repskin->maxidskin2();
         if ($form->isSubmitted() && $form->isValid()) {
-            $fichier = md5(uniqid()).'.'.$file->guessExtension();
+            $fichier = $idskinmax.'.'.$file->guessExtension();
 
             // On copie le fichier dans le dossier uploads
             try {
@@ -124,4 +125,5 @@ class AdminSkinController extends AbstractController
 
         return $this->redirectToRoute('app_admin_skin_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

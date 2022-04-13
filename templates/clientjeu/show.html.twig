@@ -97,6 +97,36 @@
                     {% endfor %}
                             </div>
 
+                    <!-- START: Related Products -->
+
+                    <div class="nk-gap-3"></div>
+                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Related</span> Champions skins </span></h3>
+                    <div class="nk-gap"></div>
+                    <div class="row vertical-gap">
+
+                        {% for cc in skins %}
+                            {% for c in cc %}
+                            <div class="col-md-6">
+
+                                <div class="nk-product-cat">
+
+                                    <a class="nk-product-image" href="">
+{#                                        <a href="{{ path('showchamps', {idchamp: c.idChamp}) }}" class="nk-post-img">#}
+                                            <img src="{{ asset(c.imagePath) }}"  alt="">
+                                        </a>
+                                        <div class="nk-product-cont">
+                                            <h3 class="nk-product-title h5"><a href="store-product.html">{{ c.idChamp.nomChamp }}</a></h3>
+
+{#                                            <div class="nk-product-rating">{{ c.roleChamp }}</div>#}
+                                        </div>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                        {% endfor %}
+
+                    </div>
+
                          </div>
 
 
@@ -105,6 +135,22 @@
 
                 <!-- END: Related Products -->
             </div>
+        <!-- START: Pagination -->
+        <div class="nk-pagination nk-pagination-center">
+            <a href="#" class="nk-pagination-prev">
+                <span class="ion-ios-arrow-back"></span>
+            </a>
+            <nav>
+
+                {{ knp_pagination_render( Relatedchampions ) }}
+            </nav>
+            <a href="#" class="nk-pagination-next">
+                <span class="ion-ios-arrow-forward"></span>
+            </a>
+        </div>
+        <!-- END: Pagination -->
+
+    </div>
 
 
     </div>
@@ -113,6 +159,8 @@
 
 </div>
     </div>
+
+
 
     <!-- START: Footer -->
     <footer class="nk-footer">

@@ -31,8 +31,8 @@
 
                 <td>{{ champion.idJeu }}</td>
                 <td>
-                    <a href="{{ path('app_admin_champion_show', {'idChamp': champion.idChamp}) }}">show</a>
-                    <a href="{{ path('app_admin_champion_edit', {'idChamp': champion.idChamp}) }}">edit</a>
+                    <a href="{{ path('app_admin_champion_show', {'idChamp': champion.idChamp}) }}"class="btn btn-outline-info">show</a>
+                    <a href="{{ path('app_admin_champion_edit', {'idChamp': champion.idChamp}) }}"class="btn btn-outline-dark">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_champion_new') }}">Create new</a>
+    <a href="{{ path('app_admin_champion_new') }}"class="btn btn-outline-success">Create new</a>
 {% endblock %}

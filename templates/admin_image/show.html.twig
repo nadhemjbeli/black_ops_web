@@ -30,10 +30,9 @@
         </tr>
         </tbody>
     </table>
+    <a href="{{ path('app_admin_image_index') }}"class="btn btn-outline-info">back to list</a>
 
-    <a href="{{ path('app_admin_image_index') }}">back to list</a>
-
-    <a href="{{ path('app_admin_image_edit', {'idImage': image.idImage}) }}">edit</a>
+    <a href="{{ path('app_admin_image_edit', {'idImage': image.idImage}) }}" class="btn btn-outline-dark">edit</a>
 
     {{ include('admin_image/_delete_form.html.twig') }}
 

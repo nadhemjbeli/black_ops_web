@@ -25,6 +25,10 @@ class Jeu
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un nom au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="Nom", type="string", length=100, nullable=false)
      */
     private $nom;
@@ -32,6 +36,10 @@ class Jeu
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un description du jeu au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="description", type="text", length=0, nullable=false)
      */
     private $description;
@@ -39,6 +47,10 @@ class Jeu
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un url au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="Url", type="string", length=255, nullable=false)
      */
     private $url;

@@ -64,5 +64,33 @@ class SkinRepository extends ServiceEntityRepository
     {
         return $qb ?: $this->createQueryBuilder('a');
     }
+    public function maxidskin():int
+
+    {   $entitymanager=$this->getEntityManager();
+        $query=$entitymanager->createQuery('SELECT max(p.idSkin)+1 from App\Entity\Skin p ');
+//        dd($query->getResult()[0][1]);
+        return $query->getResult()[0][1];
+
+    }
+    public function maxidskin2():int
+
+    {   $entitymanager=$this->getEntityManager();
+        $query=$entitymanager->createQuery('SELECT max(p.idSkin) from App\Entity\Skin p ');
+//        dd($query->getResult()[0][1]);
+        return $query->getResult()[0][1];
+
+    }
+    public function Relatedskins ($id)
+    {
+        return $this->addskin()->where('a.idChamp=:id')->setParameter('id',$id)
+            ->orderBy('a.idSkin', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+
+
+    }
+
+
 
 }

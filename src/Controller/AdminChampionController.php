@@ -41,11 +41,11 @@ class AdminChampionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $file=$champion->getImageChamp();
-
+            $nomchamp=$champion->getNomChamp();
             // On boucle sur les images
 
             // On génère un nouveau nom de fichier
-            $fichier = md5(uniqid()).'.'.$file->guessExtension();
+            $fichier = $nomchamp.'.'.$file->guessExtension();
 
             // On copie le fichier dans le dossier uploads
             try {
@@ -88,13 +88,13 @@ class AdminChampionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $nomchamp=$champion->getNomChamp();
             $file=$champion->getImageChamp();
 
             // On boucle sur les images
 
             // On génère un nouveau nom de fichier
-            $fichier = md5(uniqid()).'.'.$file->guessExtension();
+            $fichier = $nomchamp.'.'.$file->guessExtension();
 
             // On copie le fichier dans le dossier uploads
             try {

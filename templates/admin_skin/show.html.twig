@@ -23,9 +23,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_skin_index') }}">back to list</a>
+    <a href="{{ path('app_admin_skin_index') }}" class="btn btn-outline-info">back to list</a>
 
-    <a href="{{ path('app_admin_skin_edit', {'idSkin': skin.idSkin}) }}">edit</a>
+    <a href="{{ path('app_admin_skin_edit', {'idSkin': skin.idSkin}) }}"class="btn btn-outline-dark">edit</a>
 
     {{ include('admin_skin/_delete_form.html.twig') }}
 {% endblock %}

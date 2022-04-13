@@ -63,18 +63,15 @@
                     <!-- END: Post -->
                     {% endfor %}
 
+
                     <!-- START: Pagination -->
                     <div class="nk-pagination nk-pagination-center">
                         <a href="#" class="nk-pagination-prev">
                             <span class="ion-ios-arrow-back"></span>
                         </a>
                         <nav>
-                            <a class="nk-pagination-current" href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <span>...</span>
-                            <a href="#">14</a>
+
+                            {{ knp_pagination_render( images ) }}
                         </nav>
                         <a href="#" class="nk-pagination-next">
                             <span class="ion-ios-arrow-forward"></span>
@@ -144,7 +141,7 @@ board-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></i
 
                             {% for c in champions3 %}
                             <div class="nk-widget-post">
-                                <a href="blog-article.html" class="nk-post-image">
+                                <a href="{{ path('showchamps' , {idchamp: c.idChamp}) }}" class="nk-post-image">
                                     <img src="{{ asset(c.imagePath) }}" alt="">
                                 </a>
                                 <h3 class="nk-post-title"><a href="blog-article.html">check {{ c.nomChamp }}</a></h3>
@@ -184,12 +181,7 @@ board-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></i
                         <div class="nk-widget nk-widget-highlighted">
                             <h4 class="nk-widget-title"><span><span class="text-main-1">Check</span> Stream</span></h4>
                             <div class="nk-widget-content">
-                                <iframe src="https://www.youtube.com/watch?v=7_MjM-jJvy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clip
-board-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nk-widget nk-widget-highlighted">
+                                <iframe src="https://www.youtube.com/embed/m-XryxpXTYs?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                    <div class="nk-widget nk-widget-highlighted">
                         <h4 class="nk-widget-title"><span>Facebook</span></h4>
                         <div class="nk-widget-content">
                             <div class="fb-page" data-href="https://www.facebook.com/Black-Ops-Gaming-103860542214358/?notif_id=1649529986913401&notif_t=page_user_activity&ref=notif" data-width="700" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"></div>

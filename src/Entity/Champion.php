@@ -24,6 +24,10 @@ class Champion
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un nom au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="Nom_Champ", type="string", length=75, nullable=false)
      */
     private $nomChamp;
@@ -31,6 +35,10 @@ class Champion
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un description du champion au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="description_Champ", type="text", length=0, nullable=false)
      */
     private $descriptionChamp;
@@ -38,6 +46,10 @@ class Champion
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un role au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="Role_Champ", type="string", length=75, nullable=false)
      */
     private $roleChamp;
@@ -45,6 +57,10 @@ class Champion
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un niveau de difficulte au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="Difficulte_Champ", type="string", length=25, nullable=false)
      */
     private $difficulteChamp;

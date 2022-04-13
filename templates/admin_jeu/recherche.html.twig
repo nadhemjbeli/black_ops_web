@@ -6,18 +6,22 @@
 {% endblock %}
 {% block content %}
     <h1>Jeu index</h1>
+<form method="POST">
+    <input type="text" name="nom">
+    <input type="submit" value="recherche">
 
+</form>
     <table class="table">
         <thead>
-            <tr>
-                <th>IdJeu</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Url</th>
-                <th>idSouscat</th>
-                <th>actions</th>
+        <tr>
+            <th>IdJeu</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Url</th>
+            <th>idSouscat</th>
+            <th>actions</th>
 
-            </tr>
+        </tr>
         </thead>
         <tbody>
         {% for jeu in jeus %}
@@ -29,10 +33,8 @@
                 <td>{{ jeu.idSouscat }}</td>
 
                 <td>
-
-                    <a href="{{ path('app_admin_jeu_show', {'idJeu': jeu.idJeu}) }}" class="btn btn-outline-info">show</a>
-
-                    <a href="{{ path('app_admin_jeu_edit', {'idJeu': jeu.idJeu}) }}"class="btn btn-outline-dark">edit</a>
+                    <a href="{{ path('app_admin_jeu_show', {'idJeu': jeu.idJeu}) }}">show</a>
+                    <a href="{{ path('app_admin_jeu_edit', {'idJeu': jeu.idJeu}) }}">edit</a>
                 </td>
 
             </tr>
@@ -43,5 +45,6 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('app_admin_jeu_new') }}" class="btn btn-outline-success">Create new</a>
+
+    <a href="{{ path('app_admin_jeu_new') }}">Create new</a>
 {% endblock %}

@@ -29,8 +29,8 @@
                 </td>
                 <td>   {{ image.idJeu }}</td>
                 <td>
-                    <a href="{{ path('app_admin_image_show', {'idImage': image.idImage}) }}">show</a>
-                    <a href="{{ path('app_admin_image_edit', {'idImage': image.idImage}) }}">edit</a>
+                     <a href="{{ path('app_admin_image_show', {'idImage': image.idImage}) }}"class="btn btn-outline-info">show</a>
+                    <a href="{{ path('app_admin_image_edit', {'idImage': image.idImage}) }}" class="btn btn-outline-dark">edit</a>
 
                 </td>
 
@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_image_new') }}">Create new</a>
+    <a href="{{ path('app_admin_image_new') }}"class="btn btn-outline-success">Create new</a>
 {% endblock %}

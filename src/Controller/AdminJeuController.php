@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Jeu;
 use App\Form\JeuType;
+use App\Repository\JeuRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -87,11 +88,38 @@ class AdminJeuController extends AbstractController
      */
     public function delete(Request $request, Jeu $jeu, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$jeu->getIdJeu(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $jeu->getIdJeu(), $request->request->get('_token'))) {
             $entityManager->remove($jeu);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_admin_jeu_index', [], Response::HTTP_SEE_OTHER);
     }
-}
+
+    /**
+     * @param JeuRepository $repjeu
+     * @param Request $request
+     * return Response
+     * @Route("/recherche", name="")
+     */
+
+    public function search(Request $request , JeuRepository $repjeu)
+    {
+        $nom=$request->get('search');
+        $jeu=$repjeu->search($nom);
+        return $this->render('admin_jeu/recherche.html.twig', [
+            'jeus' => $jeu,
+        ]);
+//        $em=$this->getDoctrine()->getManager();
+//        $jeu=$em->getRepository(Jeu::class)->findAll();
+//        if ($request->isMethod("POST")) {
+//            $nom = $request->get('nom');
+//            $jeu = $em->getRepository(Jeu::class)->findBy(['nom' => $nom]);
+//        }
+//            return $this->render('admin_jeu/recherche.html.twig', [
+//            'jeus' => $jeu,
+//       ]);
+
+
+
+}}

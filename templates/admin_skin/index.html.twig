@@ -23,8 +23,8 @@
                 <td>{{ skin.idChamp }}</td>
 
                 <td>
-                    <a href="{{ path('app_admin_skin_show', {'idSkin': skin.idSkin}) }}">show</a>
-                    <a href="{{ path('app_admin_skin_edit', {'idSkin': skin.idSkin}) }}">edit</a>
+                    <a href="{{ path('app_admin_skin_show', {'idSkin': skin.idSkin}) }}"class="btn btn-outline-info">show</a>
+                    <a href="{{ path('app_admin_skin_edit', {'idSkin': skin.idSkin}) }}"class="btn btn-outline-dark">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_skin_new') }}">Create new</a>
+    <a href="{{ path('app_admin_skin_new') }}"class="btn btn-outline-success">Create new</a>
 {% endblock %}

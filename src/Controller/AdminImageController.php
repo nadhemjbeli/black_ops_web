@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Image;
 use App\Form\ImageType;
+use App\Repository\ImageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -33,7 +34,7 @@ class AdminImageController extends AbstractController
     /**
      * @Route("/new", name="app_admin_image_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,ImageRepository $repimg): Response
     {
         $image = new Image();
         $form = $this->createForm(ImageType::class, $image);
@@ -41,11 +42,10 @@ class AdminImageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $file=$image->getUrlImage();
-
+            $idimg=$repimg->maxidimg();
             // On boucle sur les images
-
             // On génère un nouveau nom de fichier
-            $fichier = md5(uniqid()).'.'.$file->guessExtension();
+            $fichier = $idimg.'.'.$file->guessExtension();
 
             // On copie le fichier dans le dossier uploads
             try {
@@ -84,18 +84,18 @@ class AdminImageController extends AbstractController
     /**
      * @Route("/{idImage}/edit", name="app_admin_image_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Image $image, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Image $image, EntityManagerInterface $entityManager,ImageRepository $repimg): Response
     {
         $form = $this->createForm(ImageType::class, $image);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $file=$image->getUrlImage();
-
+            $idimg=$repimg->maxidimg2();
             // On boucle sur les images
 
             // On génère un nouveau nom de fichier
-            $fichier = md5(uniqid()).'.'.$file->guessExtension();
+            $fichier = $idimg.'.'.$file->guessExtension();
 
             // On copie le fichier dans le dossier uploads
             try {

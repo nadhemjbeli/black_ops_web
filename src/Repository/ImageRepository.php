@@ -73,5 +73,20 @@ class ImageRepository extends ServiceEntityRepository
     {
         return $qb ?: $this->createQueryBuilder('a');
     }
+    public function maxidimg():int
 
+    {   $entitymanager=$this->getEntityManager();
+        $query=$entitymanager->createQuery('SELECT max(p.idImage)+1 from App\Entity\Image p ');
+//        dd($query->getResult()[0][1]);
+        return $query->getResult()[0][1];
+
+    }
+    public function maxidimg2():int
+
+    {   $entitymanager=$this->getEntityManager();
+        $query=$entitymanager->createQuery('SELECT max(p.idImage) from App\Entity\Image p ');
+//        dd($query->getResult()[0][1]);
+        return $query->getResult()[0][1];
+
+    }
 }

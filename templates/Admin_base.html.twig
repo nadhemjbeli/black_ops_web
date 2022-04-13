@@ -12,6 +12,7 @@
 		{% block stylesheets %}
 		<link
 		href="{{ asset('AdminAssets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+			<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<!-- Font Awesome -->
 		<link
 		href="{{ asset('AdminAssets/vendors/font-awesome/css/font-awesome.min.css')  }}" rel="stylesheet">
@@ -71,6 +72,15 @@
 		<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
 		<!-- Custom Theme Scripts -->
 		<script src="{{ asset('AdminAssets/js/custom.min.js') }}"></script>
+		<script>
+			$('.dropdown-toggle').dropdown();
+			$('.custom-file-input').on('change', function(event) {
+				var inputFile = event.currentTarget;
+				$(inputFile).parent()
+						.find('.custom-file-label')
+						.html(inputFile.files[0].name);
+			});
+		</script>
 		<!-- Include Flashy default partial -->
 		{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 	{% endblock %}
