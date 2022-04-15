@@ -127,7 +127,7 @@ define(function(require) {
 
                 // If exists, share axisProxy with other dataZoomModels.
                 var axisProxy = axisModel.__dzAxisProxy || (
-                    // Use the first dataZoomModel as the main model of axisProxy.
+                    // Use the first dataZoomModel as the mail model of axisProxy.
                     axisModel.__dzAxisProxy = new AxisProxy(
                         dimNames.name, axisIndex, this, ecModel
                     )

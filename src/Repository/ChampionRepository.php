@@ -112,5 +112,11 @@ class ChampionRepository extends ServiceEntityRepository
         return $this->getOrCreateQueryBuilder($qb)
             ->andWhere('a.difficulteChamp IS NOT NULL');
     }
+    public function findgame($idchamp)
+    { $qb=$this->createQueryBuilder('n');
+        $qb->where('n.idChamp = :idchamp')->setParameter('idchamp',$idchamp);
 
+        return $qb->getQuery()->getResult();
+
+    }
 }

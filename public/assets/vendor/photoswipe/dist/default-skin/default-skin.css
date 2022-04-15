@@ -445,7 +445,7 @@ a.pswp__share--download:hover {
 .pswp__caption {
   background-color: rgba(0, 0, 0, 0.5); }
 
-/* pswp__ui--fit class is added when main image "fits" between top bar and bottom bar (caption) */
+/* pswp__ui--fit class is added when mail image "fits" between top bar and bottom bar (caption) */
 .pswp__ui--fit .pswp__top-bar,
 .pswp__ui--fit .pswp__caption {
   background-color: rgba(0, 0, 0, 0.3); }

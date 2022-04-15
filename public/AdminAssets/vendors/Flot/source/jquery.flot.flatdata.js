@@ -1,7 +1,7 @@
 /* Support for flat 1D data series.
 
 A 1D flat data series is a data series in the form of a regular 1D array. The
-main reason for using a flat data series is that it performs better, consumes
+mail reason for using a flat data series is that it performs better, consumes
 less memory and generates less garbage collection than the regular flot format.
 
 Example:

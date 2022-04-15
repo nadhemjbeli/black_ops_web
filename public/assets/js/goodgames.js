@@ -2589,7 +2589,7 @@ function initAudioPlayer() {
                 // end
                 if (e.isFinal || e.type === 'pressup') {
                     if (!curApi) {
-                        curApi = $curProgressCont.parents('.nk-audio-player-main, .nk-audio-plain')[0].audioAPI;
+                        curApi = $curProgressCont.parents('.nk-audio-player-mail, .nk-audio-plain')[0].audioAPI;
                     }
                     if (curApi) {
                         curApi.seek(progressCurW);

@@ -34,9 +34,9 @@ childProcess.exec('java -version', (error, stdout, stderr) => {
     // Documentation does not rely on them being usable.
     'The “date” input type is not supported in all browsers.*',
     'The “time” input type is not supported in all browsers.*',
-    // IE11 doesn't recognise <main> / give the element an implicit "main" landmark.
-    // Explicit role="main" is redundant for other modern browsers, but still valid.
-    'The “main” role is unnecessary for element “main”.',
+    // IE11 doesn't recognise <mail> / give the element an implicit "mail" landmark.
+    // Explicit role="mail" is redundant for other modern browsers, but still valid.
+    'The “mail” role is unnecessary for element “mail”.',
     // Ignore the wrong lanuage code warnings for now; they happen randomly.
     'This document appears to be written in.*'
   ].join('|')

@@ -16,16 +16,28 @@
     <div class="container">
 
         <div class="row vertical-gap">
+
             <div class="col-lg-8">
+
                 <div class="nk-store-product">
+
                     <div class="row vertical-gap">
+
                         <div class="col-md-6">
+                            {{ include('mail/deleteAbonn_form.htm.twig') }}
                             <!-- START: Product Photos -->
                             <div class="nk-popup-gallery">
+
+
                                 <div class="nk-gallery-item-box">
+
                                     <a href="" class="nk-gallery-item" data-size="1200x554">
+
                                         <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
+
+
                                         <img src="{{ asset(championDetails.imagePath) }}" width="400" height="350" alt="">
+
                                     </a>
                                 </div>
 
@@ -57,7 +69,10 @@
                         </div>
                         <div class="col-md-6">
 
-                            <h2 class="nk-product-title h3">{{ championDetails.nomChamp }} </h2>
+                            <h2 class="nk-product-title h3">{{ championDetails.nomChamp }}
+                                </h2>
+
+
 
 
                             <div class="nk-product-description">
@@ -137,6 +152,7 @@
 
                                     </div>
 
+
                             </div>
 
 
@@ -155,6 +171,7 @@
                             <span class="ion-ios-arrow-forward"></span>
                         </a>
                     </div>
+
                     <!-- END: Pagination -->
                 </div>
 
@@ -166,6 +183,7 @@
 
 
         <!-- END: Related Products -->
+
         </div>
 
 
@@ -174,10 +192,14 @@
 
 
     </div>
+
+
     </div>
+
 
     <!-- START: Footer -->
     <footer class="nk-footer">
+
 
         <div class="container">
             <div class="nk-gap-3"></div>

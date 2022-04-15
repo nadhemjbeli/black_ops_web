@@ -73,7 +73,7 @@ class SecurityController extends AbstractController
                 $user,
                 $request,
                 $formAuthenticator,
-                'main'
+                'mail'
             );
         }
 

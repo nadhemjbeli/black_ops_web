@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220406151442 extends AbstractMigration
+final class Version20220414232115 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,14 +20,14 @@ final class Version20220406151442 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE skin CHANGE Id_champ Id_Champ INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE skin ADD CONSTRAINT FK_279681EF953ECCF FOREIGN KEY (Id_Champ) REFERENCES champion (Id_Champ)');
+        $this->addSql('ALTER TABLE abonnement ADD CONSTRAINT FK_351268BB6B3CA4B FOREIGN KEY (id_user) REFERENCES user (id_user)');
+        $this->addSql('ALTER TABLE abonnement ADD CONSTRAINT FK_351268BB1C4065EF FOREIGN KEY (id_jeu) REFERENCES jeu (Id_Jeu)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE skin DROP FOREIGN KEY FK_279681EF953ECCF');
-        $this->addSql('ALTER TABLE skin CHANGE Id_Champ Id_champ INT NOT NULL');
+        $this->addSql('ALTER TABLE abonnement DROP FOREIGN KEY FK_351268BB6B3CA4B');
+        $this->addSql('ALTER TABLE abonnement DROP FOREIGN KEY FK_351268BB1C4065EF');
     }
 }

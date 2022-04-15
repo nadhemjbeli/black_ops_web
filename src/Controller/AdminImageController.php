@@ -6,6 +6,7 @@ use App\Entity\Image;
 use App\Form\ImageType;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,7 +35,7 @@ class AdminImageController extends AbstractController
     /**
      * @Route("/new", name="app_admin_image_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager,ImageRepository $repimg): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,ImageRepository $repimg, FlashyNotifier $flashy): Response
     {
         $image = new Image();
         $form = $this->createForm(ImageType::class, $image);
@@ -61,6 +62,7 @@ class AdminImageController extends AbstractController
             $image->setUrlImage($fichier);
             $entityManager->persist($image);
             $entityManager->flush();
+            $flashy->success('Image a été ajoutée avec succès', 'http://your-awesome-link.com');
 
             return $this->redirectToRoute('app_admin_image_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -84,7 +86,7 @@ class AdminImageController extends AbstractController
     /**
      * @Route("/{idImage}/edit", name="app_admin_image_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Image $image, EntityManagerInterface $entityManager,ImageRepository $repimg): Response
+    public function edit(Request $request, Image $image, EntityManagerInterface $entityManager,ImageRepository $repimg, FlashyNotifier $flashy): Response
     {
         $form = $this->createForm(ImageType::class, $image);
         $form->handleRequest($request);
@@ -107,6 +109,7 @@ class AdminImageController extends AbstractController
             $entityManager=$this->getDoctrine()->getManager();
             $image->setUrlImage($fichier);
             $entityManager->flush();
+            $flashy->success('Image a été modifiée avec succès', 'http://your-awesome-link.com');
 
             return $this->redirectToRoute('app_admin_image_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -120,7 +123,7 @@ class AdminImageController extends AbstractController
     /**
      * @Route("/{idImage}", name="app_admin_image_delete", methods={"POST"})
      */
-    public function delete(Request $request, Image $image, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Image $image, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
     {
 
         if ($this->isCsrfTokenValid('delete'.$image->getIdImage(), $request->request->get('_token'))) {
@@ -128,6 +131,8 @@ class AdminImageController extends AbstractController
             unlink($this->getParameter('images_directory').'/'.$file);
             $entityManager->remove($image);
             $entityManager->flush();
+            $flashy->success('Image a été supprimée avec succès', 'http://your-awesome-link.com');
+
         }
 
         return $this->redirectToRoute('app_admin_image_index', [], Response::HTTP_SEE_OTHER);

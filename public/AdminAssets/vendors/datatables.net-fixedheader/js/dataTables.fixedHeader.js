@@ -295,7 +295,7 @@ $.extend( FixedHeader.prototype, {
 
 	/**
 	 * Copy widths from the cells in one element to another. This is required
-	 * for the footer as the footer in the main table takes its sizes from the
+	 * for the footer as the footer in the mail table takes its sizes from the
 	 * header columns. That isn't present in the footer so to have it still
 	 * align correctly, the sizes need to be copied over. It is also required
 	 * for the header when auto width is not enabled
@@ -330,7 +330,7 @@ $.extend( FixedHeader.prototype, {
 
 	/**
 	 * Remove assigned widths from the cells in an element. This is required
-	 * when inserting the footer back into the main table so the size is defined
+	 * when inserting the footer back into the mail table so the size is defined
 	 * by the header columns and also when auto width is disabled in the
 	 * DataTable.
 	 *
@@ -376,7 +376,7 @@ $.extend( FixedHeader.prototype, {
 	 * Change from one display mode to another. Each fixed item can be in one
 	 * of:
 	 *
-	 * * `in-place` - In the main DataTable
+	 * * `in-place` - In the mail DataTable
 	 * * `in` - Floating over the DataTable
 	 * * `below` - (Header only) Fixed to the bottom of the table body
 	 * * `above` - (Footer only) Fixed to the top of the table body
@@ -481,7 +481,7 @@ $.extend( FixedHeader.prototype, {
 		var dom = this.dom;
 		var tableNode = $(table.node());
 
-		// Need to use the header and footer that are in the main table,
+		// Need to use the header and footer that are in the mail table,
 		// regardless of if they are clones, since they hold the positions we
 		// want to measure from
 		var thead = tableNode.children('thead');

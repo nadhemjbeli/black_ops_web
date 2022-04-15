@@ -82,6 +82,21 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+    "egyg33k/csv-bundle": {
+        "version": "1.0.1"
+    },
+    "expertcoder/swiftmailer-send-grid-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "43e519108f52c3e84f8215bfff19727911bd6e1d"
+        },
+        "files": [
+            "./config/packages/expert_coder_swiftmailer_send_grid.yaml"
+        ]
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.7"
     },
@@ -93,6 +108,9 @@
     },
     "laminas/laminas-code": {
         "version": "4.5.1"
+    },
+    "league/csv": {
+        "version": "9.8.0"
     },
     "mercuryseries/flashy-bundle": {
         "version": "v3.0.0"
@@ -213,6 +231,12 @@
     "sebastian/version": {
         "version": "3.0.2"
     },
+    "sendgrid/php-http-client": {
+        "version": "3.9.6"
+    },
+    "sendgrid/sendgrid": {
+        "version": "7.3.0"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.6",
         "recipe": {
@@ -224,6 +248,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "swiftmailer/swiftmailer": {
+        "version": "v6.3.0"
     },
     "symfony/asset": {
         "version": "v4.4.40"
@@ -500,6 +527,20 @@
     },
     "symfony/stopwatch": {
         "version": "v4.4.38"
+    },
+    "symfony/swiftmailer-bundle": {
+        "version": "3.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "f0b2fccdca2dfd97dc2fd5ad216d5e27c4f895ac"
+        },
+        "files": [
+            "./config/packages/dev/swiftmailer.yaml",
+            "./config/packages/swiftmailer.yaml",
+            "./config/packages/test/swiftmailer.yaml"
+        ]
     },
     "symfony/translation": {
         "version": "4.4",

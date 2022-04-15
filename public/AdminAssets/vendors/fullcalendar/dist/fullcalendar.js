@@ -12837,7 +12837,7 @@ var BasicView = FC.BasicView = View.extend({
 	scroller: null,
 
 	dayGridClass: DayGrid, // class the dayGrid will be instantiated from (overridable by subclasses)
-	dayGrid: null, // the main subcomponent that does most of the heavy lifting
+	dayGrid: null, // the mail subcomponent that does most of the heavy lifting
 
 	dayNumbersVisible: false, // display day numbers on each day cell?
 	colWeekNumbersVisible: false, // display week numbers along the side?
@@ -13323,7 +13323,7 @@ var AgendaView = FC.AgendaView = View.extend({
 	scroller: null,
 
 	timeGridClass: TimeGrid, // class used to instantiate the timeGrid. subclasses can override
-	timeGrid: null, // the main time-grid subcomponent of this view
+	timeGrid: null, // the mail time-grid subcomponent of this view
 
 	dayGridClass: DayGrid, // class used to instantiate the dayGrid. subclasses can override
 	dayGrid: null, // the "all-day" subcomponent. if all-day is turned off, this will be null
@@ -14088,7 +14088,7 @@ var ListViewGrid = Grid.extend({
 				(mainFormat ?
 					view.buildGotoAnchorHtml(
 						dayDate,
-						{ 'class': 'fc-list-heading-main' },
+						{ 'class': 'fc-list-heading-mail' },
 						htmlEscape(dayDate.format(mainFormat)) // inner HTML
 					) :
 					'') +

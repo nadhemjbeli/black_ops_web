@@ -56,8 +56,21 @@
                             <!-- END: Product Photos -->
                         </div>
                         <div class="col-md-6">
+                            {{ form_start(form) }}
+                            {{ form_widget(form.id_user,{
+                                'attr':{'hidden':true}
 
-                            <h2 class="nk-product-title h3">{{ jeuDetails.nom }} </h2>
+                            }) }}
+                            {{ form_widget(form.id_jeu,
+                                {   'attr':{'hidden':true}
+
+                                }) }}
+                            <h2 class="nk-product-title h3">{{ jeuDetails.nom }}  <button  class="btn btn-outline-info">{{ button_label|default('follow') }}</button>
+                                {{ form_end(form) }}
+
+                            </h2>
+
+
 
 
                             <div class="nk-product-description">
@@ -83,7 +96,7 @@
                             <div class="nk-product-cat">
 
                             <a class="nk-product-image" href="">
-                                <a href="{{ path('showchamps', {idchamp: c.idChamp}) }}" class="nk-post-img">
+                                <a href="{{ path('showchamps', {idchamp:c.idChamp}) }}" class="nk-post-img">
                                 <img src="{{ asset(c.imagePath) }}"  alt="">
                             </a>
                             <div class="nk-product-cont">

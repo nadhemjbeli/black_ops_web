@@ -346,7 +346,7 @@ var requirejs, require, define;
             }
 
             // If the name points to a package's name, use
-            // the package main instead.
+            // the package mail instead.
             pkgMain = getOwn(config.pkgs, name);
 
             return pkgMain ? pkgMain : name;
@@ -1350,8 +1350,8 @@ var requirejs, require, define;
                             config.paths[name] = pkgObj.location;
                         }
 
-                        //Save pointer to main module ID for pkg name.
-                        //Remove leading dot in main, so main paths are normalized,
+                        //Save pointer to mail module ID for pkg name.
+                        //Remove leading dot in mail, so mail paths are normalized,
                         //and remove any trailing .js, since different package
                         //envs have different conventions: some use a module name,
                         //some use a file name.
@@ -1989,7 +1989,7 @@ var requirejs, require, define;
         return interactiveScript;
     }
 
-    //Look for a data-main script attribute, which could also adjust the baseUrl.
+    //Look for a data-mail script attribute, which could also adjust the baseUrl.
     if (isBrowser && !cfg.skipDataMain) {
         //Figure out baseUrl. Get it from the script tag with require.js in it.
         eachReverse(scripts(), function (script) {
@@ -1999,17 +1999,17 @@ var requirejs, require, define;
                 head = script.parentNode;
             }
 
-            //Look for a data-main attribute to set main script for the page
-            //to load. If it is there, the path to data main becomes the
+            //Look for a data-mail attribute to set mail script for the page
+            //to load. If it is there, the path to data mail becomes the
             //baseUrl, if it is not already set.
-            dataMain = script.getAttribute('data-main');
+            dataMain = script.getAttribute('data-mail');
             if (dataMain) {
                 //Preserve dataMain in case it is a path (i.e. contains '?')
                 mainScript = dataMain;
 
                 //Set final baseUrl if there is not already an explicit one.
                 if (!cfg.baseUrl) {
-                    //Pull off the directory of data-main for use as the
+                    //Pull off the directory of data-mail for use as the
                     //baseUrl.
                     src = mainScript.split('/');
                     mainScript = src.pop();
@@ -2027,7 +2027,7 @@ var requirejs, require, define;
                     mainScript = dataMain;
                 }
 
-                //Put the data-main script in the files to load.
+                //Put the data-mail script in the files to load.
                 cfg.deps = cfg.deps ? cfg.deps.concat(mainScript) : [mainScript];
 
                 return true;

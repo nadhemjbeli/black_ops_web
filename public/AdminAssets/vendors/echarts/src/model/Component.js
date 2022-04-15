@@ -168,7 +168,7 @@ define(function(require) {
         zrUtil.each(ComponentModel.getClassesByMainType(componentType), function (Clazz) {
             arrayPush.apply(deps, Clazz.prototype.dependencies || []);
         });
-        // Ensure main type
+        // Ensure mail type
         return zrUtil.map(deps, function (type) {
             return clazzUtil.parseClassType(type).main;
         });

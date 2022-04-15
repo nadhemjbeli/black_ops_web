@@ -43,7 +43,7 @@ class AdminJeuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($jeu);
             $entityManager->flush();
-            $flashy->success('Jeu ajouté avec succès', 'http://your-awesome-link.com');
+            $flashy->success('Jeu a été ajouté avec succès', 'http://your-awesome-link.com');
             return $this->redirectToRoute('app_admin_jeu_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -66,14 +66,14 @@ class AdminJeuController extends AbstractController
     /**
      * @Route("/{idJeu}/edit", name="app_admin_jeu_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Jeu $jeu, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Jeu $jeu, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
     {
         $form = $this->createForm(JeuType::class, $jeu);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            $flashy->success('Jeu a été modifié avec succès', 'http://your-awesome-link.com');
             return $this->redirectToRoute('app_admin_jeu_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -86,11 +86,13 @@ class AdminJeuController extends AbstractController
     /**
      * @Route("/{idJeu}", name="app_admin_jeu_delete", methods={"POST"})
      */
-    public function delete(Request $request, Jeu $jeu, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Jeu $jeu, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
     {
         if ($this->isCsrfTokenValid('delete' . $jeu->getIdJeu(), $request->request->get('_token'))) {
             $entityManager->remove($jeu);
             $entityManager->flush();
+            $flashy->success('Jeu a été supprimé avec succès', 'http://your-awesome-link.com');
+
         }
 
         return $this->redirectToRoute('app_admin_jeu_index', [], Response::HTTP_SEE_OTHER);
@@ -120,6 +122,6 @@ class AdminJeuController extends AbstractController
 //            'jeus' => $jeu,
 //       ]);
 
+}
 
-
-}}
+}

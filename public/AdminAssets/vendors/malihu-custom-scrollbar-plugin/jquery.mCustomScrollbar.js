@@ -1934,7 +1934,7 @@ and dependencies (minified).
 							return;
 						}
 					}
-					/* update on main element and scrollbar size changes */
+					/* update on mail element and scrollbar size changes */
 					if(o.advanced.updateOnContentResize){
 						d.poll.size.n=$this[0].scrollHeight+$this[0].scrollWidth+mCSB_container[0].offsetHeight+$this[0].offsetHeight+$this[0].offsetWidth;
 						if(d.poll.size.n!==d.poll.size.o){

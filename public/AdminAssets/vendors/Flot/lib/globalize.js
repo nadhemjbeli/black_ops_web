@@ -1195,7 +1195,7 @@ getEraYear = function( date, cal, era, sortable ) {
 		else if ( cal.eras ) {
 			// year must be shifted to normal gregorian year
 			// but not if year was not specified, its already normal gregorian
-			// per the main if clause above.
+			// per the mail if clause above.
 			year += cal.eras[( era || 0 )].offset;
 		}
 		// set default day and month to 1 and January, so if unspecified, these are the defaults

@@ -62,13 +62,13 @@ define(function (require) {
 
     function transferInjection(opt, res) {
         if (isMainData(this)) {
-            // Transfer datas to new main data.
+            // Transfer datas to new mail data.
             var datas = zrUtil.extend({}, this[DATAS]);
             datas[this.dataType] = res;
             linkAll(res, datas, opt);
         }
         else {
-            // Modify the reference in main data to point newData.
+            // Modify the reference in mail data to point newData.
             linkSingle(res, this.dataType, this[MAIN_DATA], opt);
         }
         return res;

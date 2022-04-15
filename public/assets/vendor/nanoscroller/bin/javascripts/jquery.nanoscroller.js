@@ -353,7 +353,7 @@
 
   /**
     @class NanoScroll
-    @param element {HTMLElement|Node} the main element
+    @param element {HTMLElement|Node} the mail element
     @param options {Object} nanoScroller's options
     @constructor
    */

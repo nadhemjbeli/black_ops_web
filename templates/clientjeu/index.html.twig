@@ -48,7 +48,18 @@
 
                                 <a href="{{ path('showgame', {id: i.idJeu.idJeu,idimg: i.idImage}) }}" class="nk-post-img">
                                     <img src="{{ asset(i.imagePath) }}"  width="100" height="100" alt="He made his passenger captain of one">
-                                </a>
+{#                                    {{ form_start(form) }}#}
+{#                                    {{ form_widget(form.id_user,{#}
+{#                                        'attr':{'hidden':true}#}
+
+{#                                    }) }}#}
+{#                                    {{ form_widget(form.id_jeu,#}
+{#                                        {   'attr':{'hidden':true}#}
+
+{#                                        }) }}#}
+{#                                    <button  class="btn btn-outline-info">{{ button_label|default('follow') }}</button>#}
+{#                                    {{ form_end(form) }}#}
+
                             </div>
                             <div class="col-md-7 col-lg-6">
                                 <h2 class="nk-post-title h4"><a href="blog-article.html">{{ i.idJeu.nom }}</a></h2>
@@ -57,9 +68,12 @@
                                 </div>
 
                             </div>
+
                         </div>
 
                     </div>
+
+
                     <!-- END: Post -->
                     {% endfor %}
 
@@ -92,16 +106,7 @@
                         .nk-sidebar-sticky
                 -->
                 <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
-                    <div class="nk-widget">
-                        <div class="nk-widget-content">
-                            <form action="#" class="nk-form nk-form-style-1" novalidate="novalidate">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Type something...">
-                                    <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+
                     <div class="nk-widget nk-widget-highlighted">
                         <h4 class="nk-widget-title"><span><span class="text-main-1">We</span> Are Social</span></h4>
                         <div class="nk-widget-content">
@@ -141,7 +146,7 @@ board-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></i
 
                             {% for c in champions3 %}
                             <div class="nk-widget-post">
-                                <a href="{{ path('showchamps' , {idchamp: c.idChamp}) }}" class="nk-post-image">
+                                <a href="{{ path('showchamps' , {idchamp: c.idChamp,id:c.idJeu}) }}" class="nk-post-image">
                                     <img src="{{ asset(c.imagePath) }}" alt="">
                                 </a>
                                 <h3 class="nk-post-title"><a href="blog-article.html">check {{ c.nomChamp }}</a></h3>

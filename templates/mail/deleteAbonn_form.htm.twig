@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('desabonner', {idchamp:championDetails.idChamp} )}}" onsubmit="
+return confirm('Are you sure you want to unfollow this game?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('unfollow') }}">
+    <button class="btn btn-outline-danger">Unfollow the game</button>
+</form>

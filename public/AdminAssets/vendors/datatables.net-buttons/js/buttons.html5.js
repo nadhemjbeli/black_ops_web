@@ -649,7 +649,7 @@ var excelStrings = {
 			'<Default Extension="xml" ContentType="application/xml" />'+
 			'<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml" />'+
 			'<Default Extension="jpeg" ContentType="image/jpeg" />'+
-			'<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml" />'+
+			'<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.mail+xml" />'+
 			'<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml" />'+
 			'<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml" />'+
 		'</Types>',

@@ -13,7 +13,7 @@ module.exports = function(Chart) {
 	// Controllers available for dataset visualization eg. bar, line, slice, etc.
 	Chart.controllers = {};
 
-	// The main controller of a chart
+	// The mail controller of a chart
 	Chart.Controller = function(instance) {
 
 		this.chart = instance;
