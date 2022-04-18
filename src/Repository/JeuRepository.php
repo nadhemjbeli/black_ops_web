@@ -45,12 +45,12 @@ class JeuRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-//    public function search($nom)
-//    {   return $this->createQueryBuilder('a')
-//        ->where('a.nom LIKE :nom')
-//        ->setParameter('nom','%'.$nom.'%')
-//        ->getQuery()->getResult();
-//
-//    }
+    public function search($nom)
+    {   return $this->createQueryBuilder('a')
+        ->where('a.nom LIKE :nom')
+        ->setParameter('nom','%'.$nom.'%')
+        ->getQuery()->getResult();
+
+    }
 
 }

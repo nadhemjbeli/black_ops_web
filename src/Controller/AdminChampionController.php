@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Champion;
 use App\Form\ChampionType;
+use App\Repository\ChampionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -134,5 +135,21 @@ class AdminChampionController extends AbstractController
         }
 
         return $this->redirectToRoute('app_admin_champion_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @Route("/", name="app_admin_champion_index", methods={"GET", "POST"})
+     */
+    public function search(Request $request , ChampionRepository $repchamp)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $champion=$em->getRepository(Champion::class)->findAll();
+        if ($request->isMethod("POST")) {
+            $nom = $request->get('nom');
+            $champion = $repchamp->search2($nom);
+        }
+        return $this->render('admin_champion/index.html.twig', [
+            'champions' => $champion,
+        ]);
+
     }
 }

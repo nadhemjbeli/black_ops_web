@@ -60,13 +60,16 @@
                                             </div>
 
                                         </div>
+
                                     {% endfor %}
                                 </div>
+
 
                             </div>
 
                             <!-- END: Product Photos -->
                         </div>
+
                         <div class="col-md-6">
 
                             <h2 class="nk-product-title h3">{{ championDetails.nomChamp }}
@@ -85,17 +88,47 @@
 
 
 
-                                {#                            </div>#}
+                                                            </div>
+
+
+
+
+
+
+
+
 
                         </div>
                     </div>
 
+
                     <!-- START: Related Products -->
 
+
                     <div class="nk-gap-3"></div>
-                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Related</span> Champions by role</span></h3>
-                    <div class="nk-gap"></div>
+                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Related</span> Champions by role </span></h3>
+
+
+                        <div class="nk-widget">
+                            <div class="nk-widget-content">
+                                <form method="POST" class="nk-form nk-form-style-1" novalidate="novalidate">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Type something..." name="role">
+                                        <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+                    <div class="nk-gap">
+
+
+
+                    </div>
                     <div class="row vertical-gap">
+
 
                         {% for r in Relatedrole %}
                             <div class="col-md-6">
@@ -104,11 +137,11 @@
 
 
                                     <a class="nk-product-image" >
-                                        <a href="" class="nk-post-img">
+                                        <a href="{{ path('showchamps' , {idchamp: r.idChamp,id:r.idJeu}) }}" class="nk-post-img">
                                         <img src="{{ asset(r.ImagePath) }}" alt="She gave my mother">
                                     </a>
                                     <div class="nk-product-cont">
-                                        <h3 class="nk-product-title h5"><a href="store-product.html">{{ r.nomChamp }}</a></h3>
+                                        <h3 class="nk-product-title h5"><a href="{{ path('showchamps' , {idchamp: r.idChamp,id:r.idJeu}) }}">{{ r.nomChamp }}</a></h3>
                                         <div class="nk-gap-1"></div>
                                         <div class="nk-product-rating" > {{ r.roleChamp }}</div>
                                         <div class="nk-gap-1"></div>
@@ -116,20 +149,36 @@
 
                                     </div>
 
+
                                 </div>
+
 
 
                             </div>
                         {% endfor %}
-                    </div>
+
 
                 </div>
+
 
 
 
             </div>
                 <div class="nk-gap-3"></div>
                 <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Related</span> Champions by difficulty</span></h3>
+
+                <div class="nk-widget">
+                    <div class="nk-widget-content">
+                        <form method="POST" class="nk-form nk-form-style-1" novalidate="novalidate">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Type something..." name="diff">
+                                <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
                 <div class="nk-gap"></div>
                 <div class="row vertical-gap">
 
@@ -140,11 +189,11 @@
 
 
                                 <a class="nk-product-image" >
-                                    <a href="" class="nk-post-img">
+                                    <a href="{{ path('showchamps' , {idchamp: d.idChamp,id:d.idJeu}) }}" class="nk-post-img">
                                         <img src="{{ asset(d.ImagePath) }}" alt="She gave my mother">
                                     </a>
                                     <div class="nk-product-cont">
-                                        <h3 class="nk-product-title h5"><a href="store-product.html">{{ d.nomChamp }}</a></h3>
+                                        <h3 class="nk-product-title h5"><a href="{{ path('showchamps' , {idchamp: d.idChamp,id:d.idJeu}) }}">{{ d.nomChamp }}</a></h3>
                                         <div class="nk-gap-1"></div>
                                         <div class="nk-product-rating" > {{ d.difficulteChamp }}</div>
                                         <div class="nk-gap-1"></div>
@@ -157,7 +206,10 @@
 
 
                         </div>
+
                     {% endfor %}
+
+
                     <!-- START: Pagination -->
                     <div class="nk-pagination nk-pagination-center">
                         <a href="#" class="nk-pagination-prev">

@@ -89,4 +89,25 @@ class ImageRepository extends ServiceEntityRepository
         return $query->getResult()[0][1];
 
     }
+    public function search($nom)
+    {   return $this->createQueryBuilder('a')
+        ->where('a.urlImage LIKE :nom')
+        ->setParameter('nom','%'.$nom.'%')
+        ->getQuery()->getResult();
+
+    }
+
+    public function searchGame($nom)
+    {   return $this->createQueryBuilder('a')
+        ->innerJoin('a.idJeu','c')
+        ->addSelect('c')
+        ->groupBy('a.idJeu')
+        ->orderBy('a.idImage', 'ASC')
+
+        ->where('c.nom LIKE :nom')
+        ->setParameter('nom','%'.$nom.'%')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
 }

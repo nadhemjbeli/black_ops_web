@@ -131,4 +131,21 @@ class AdminSkinController extends AbstractController
         return $this->redirectToRoute('app_admin_skin_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * @Route("/", name="app_admin_skin_index", methods={"GET", "POST"})
+     */
+    public function search(Request $request , SkinRepository $repskin)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $skins=$em->getRepository(Skin::class)->findAll();
+        if ($request->isMethod("POST")) {
+            $nom = $request->get('nom');
+            $skins = $repskin->search($nom);
+        }
+        return $this->render('admin_skin/index.html.twig', [
+            'skins' => $skins,
+        ]);
+
+    }
+
 }

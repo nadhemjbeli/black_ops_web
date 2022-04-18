@@ -99,28 +99,20 @@ class AdminJeuController extends AbstractController
     }
 
     /**
-     * @param JeuRepository $repjeu
-     * @param Request $request
-     * return Response
-     * @Route("/recherche", name="")
+     * @Route("/", name="app_admin_jeu_index", methods={"GET", "POST"})
      */
 
     public function search(Request $request , JeuRepository $repjeu)
     {
-        $nom=$request->get('search');
-        $jeu=$repjeu->search($nom);
-        return $this->render('admin_jeu/recherche.html.twig', [
+        $em=$this->getDoctrine()->getManager();
+        $jeu=$em->getRepository(Jeu::class)->findAll();
+        if ($request->isMethod("POST")) {
+            $nom = $request->get('nom');
+            $jeu = $repjeu->search($nom);
+        }
+            return $this->render('admin_jeu/index.html.twig', [
             'jeus' => $jeu,
-        ]);
-//        $em=$this->getDoctrine()->getManager();
-//        $jeu=$em->getRepository(Jeu::class)->findAll();
-//        if ($request->isMethod("POST")) {
-//            $nom = $request->get('nom');
-//            $jeu = $em->getRepository(Jeu::class)->findBy(['nom' => $nom]);
-//        }
-//            return $this->render('admin_jeu/recherche.html.twig', [
-//            'jeus' => $jeu,
-//       ]);
+       ]);
 
 }
 

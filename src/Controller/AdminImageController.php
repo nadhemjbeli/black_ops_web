@@ -137,4 +137,20 @@ class AdminImageController extends AbstractController
 
         return $this->redirectToRoute('app_admin_image_index', [], Response::HTTP_SEE_OTHER);
     }
+    /**
+     * @Route("/", name="app_admin_image_index", methods={"GET", "POST"})
+     */
+    public function search(Request $request , ImageRepository $repimage)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $image=$em->getRepository(Image::class)->findAll();
+        if ($request->isMethod("POST")) {
+            $nom = $request->get('nom');
+            $image = $repimage->search($nom);
+        }
+        return $this->render('admin_image/index.html.twig', [
+            'images' => $image,
+        ]);
+
+    }
 }

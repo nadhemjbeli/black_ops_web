@@ -119,4 +119,49 @@ class ChampionRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
 
     }
+    public function search2($nom)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.nomChamp LIKE :nom')
+            ->setParameter('nom','%'.$nom.'%')
+            ->getQuery()->getResult();
+
+    }
+    public function search($nom,$idjeu)
+    {   return $this->createQueryBuilder('a')
+        ->where('a.nomChamp LIKE :nom')
+        ->setParameter('nom','%'.$nom.'%')
+        ->andWhere('a.idJeu=:idjeu')
+        ->setParameter('idjeu',$idjeu)
+        ->getQuery()->getResult();
+
+    }
+    public function searchbyrole($role,$idjeu,$nom)
+    {
+        return $this->addchamp2()->where('a.roleChamp=:role')->setParameter('role',$role)
+
+            ->andWhere('a.idJeu=:idjeu')
+            ->setParameter('idjeu',$idjeu)
+            ->orderBy('a.idChamp', 'ASC')
+            ->andWhere('a.nomChamp LIKE :nom')
+            ->setParameter('nom','%'.$nom.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
+    public function searchbydiff($difficulte,$idjeu,$nom)
+    {
+        return $this->addchamp3()->where('a.difficulteChamp=:difficulte')->setParameter('difficulte',$difficulte)
+            ->andWhere('a.idJeu=:idjeu')
+            ->setParameter('idjeu',$idjeu)
+            ->orderBy('a.idChamp', 'ASC')
+            ->andWhere('a.nomChamp LIKE :nom')
+            ->setParameter('nom','%'.$nom.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
+
 }

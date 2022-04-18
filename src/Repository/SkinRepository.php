@@ -90,7 +90,45 @@ class SkinRepository extends ServiceEntityRepository
 
 
     }
+    public function search($nom)
+    {   return $this->createQueryBuilder('a')
+        ->where('a.imageSkin LIKE :nom')
+        ->setParameter('nom','%'.$nom.'%')
+        ->getQuery()->getResult();
+
+    }
+    public function allskins($idjeu)
+    { return $this->createQueryBuilder('a')
+        ->innerJoin('a.idChamp','c')
+        ->addSelect('c')
+        ->innerJoin('c.idJeu','j')
+
+        ->addSelect('j')
+        ->where('c.idJeu=:idjeu')->setParameter('idjeu',$idjeu)
+        ->getQuery()->getResult();
 
 
+    }
+
+    public function searchSkin($nom,$idjeu)
+
+    {
+    { return $this->createQueryBuilder('a')
+        ->innerJoin('a.idChamp','c')
+        ->addSelect('c')
+        ->innerJoin('c.idJeu','j')
+
+        ->addSelect('j')
+        ->where('c.idJeu=:idjeu')->setParameter('idjeu',$idjeu)
+
+        ->andwhere('c.nomChamp LIKE :nom')
+        ->setParameter('nom','%'.$nom.'%')
+
+        ->getQuery()->getResult();
+
+
+    }
+
+    }
 
 }

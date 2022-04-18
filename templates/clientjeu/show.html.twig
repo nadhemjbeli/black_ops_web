@@ -87,8 +87,20 @@
 
                 <div class="nk-gap-3"></div>
                 <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Related</span> Champions</span></h3>
+                    <div class="nk-widget">
+                        <div class="nk-widget-content">
+                            <form method="POST" class="nk-form nk-form-style-1" novalidate="novalidate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Type something..." name="champion">
+                                    <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 <div class="nk-gap"></div>
                 <div class="row vertical-gap">
+
+
 
                     {% for c in Relatedchampions %}
                     <div class="col-md-6">
@@ -100,7 +112,7 @@
                                 <img src="{{ asset(c.imagePath) }}"  alt="">
                             </a>
                             <div class="nk-product-cont">
-                                <h3 class="nk-product-title h5"><a href="store-product.html">{{ c.nomChamp }}</a></h3>
+                                <h3 class="nk-product-title h5"><a href="{{ path('showchamps', {idchamp:c.idChamp}) }}">{{ c.nomChamp }}</a></h3>
 
                                 <div class="nk-product-rating">{{ c.roleChamp }}</div>
                             </div>
@@ -114,28 +126,42 @@
 
                     <div class="nk-gap-3"></div>
                     <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Related</span> Champions skins </span></h3>
+
+                    <div class="nk-widget">
+                        <div class="nk-widget-content">
+                            <form method="POST" class="nk-form nk-form-style-1" novalidate="novalidate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Type something..." name="skin">
+                                    <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="nk-gap"></div>
                     <div class="row vertical-gap">
 
-                        {% for cc in skins %}
-                            {% for c in cc %}
+
+
+
+                            {% for c in skins %}
                             <div class="col-md-6">
 
                                 <div class="nk-product-cat">
 
                                     <a class="nk-product-image" href="">
-{#                                        <a href="{{ path('showchamps', {idchamp: c.idChamp}) }}" class="nk-post-img">#}
+                                        <a href="{{ path('showchamps', {idchamp:c.idChamp.idChamp}) }}" class="nk-post-img">
                                             <img src="{{ asset(c.imagePath) }}"  alt="">
                                         </a>
                                         <div class="nk-product-cont">
-                                            <h3 class="nk-product-title h5"><a href="store-product.html">{{ c.idChamp.nomChamp }}</a></h3>
+                                            <h3 class="nk-product-title h5"><a href="{{ path('showchamps', {idchamp:c.idChamp.idChamp}) }}">{{ c.idChamp.nomChamp }}</a></h3>
 
-{#                                            <div class="nk-product-rating">{{ c.roleChamp }}</div>#}
+{#                                            <div class="nk-product-rating">{{ c.idChamp.roleChamp }}</div>#}
                                         </div>
                                 </div>
 
                             </div>
-                        {% endfor %}
+
                         {% endfor %}
 
                     </div>
@@ -155,7 +181,7 @@
             </a>
             <nav>
 
-                {{ knp_pagination_render( Relatedchampions ) }}
+                {{ knp_pagination_render( skins ) }}
             </nav>
             <a href="#" class="nk-pagination-next">
                 <span class="ion-ios-arrow-forward"></span>

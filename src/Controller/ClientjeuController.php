@@ -35,6 +35,10 @@ class ClientjeuController extends AbstractController
     public function index(ChampionRepository $repository,SkinRepository $repskin,ImageRepository $repimg, PaginatorInterface $page,Request $request ): Response
     {
         $images1 =$repimg->firstimgbyjeu();
+        if ($request->isMethod("POST")) {
+            $nom = $request->get('jeu');
+            $images1=$repimg->searchGame($nom);
+        }
         $article =$page->paginate(
             $images1,
             $request->query->getInt('page',1),1
@@ -59,7 +63,7 @@ class ClientjeuController extends AbstractController
     /**
      * @Route("/product/{id}/{idimg}", name="showgame")
      */
-public function show($id,$idimg,SkinRepository $repskin ,Request $request , PaginatorInterface $page , UserRepository $repuser,Jeu $jeux,EntityManagerInterface $entityManager)
+public function show($id,$idimg,SkinRepository $repskin ,Request $request , PaginatorInterface $page , UserRepository $repuser,Jeu $jeux,EntityManagerInterface $entityManager,ChampionRepository $repchamp)
 {//prepare the manager
     $skins= array();
 
@@ -68,6 +72,10 @@ public function show($id,$idimg,SkinRepository $repskin ,Request $request , Pagi
         $jeudetails=$this->getDoctrine()->getRepository(Jeu::class)->find($id);
         $imagedetails=$this->getDoctrine()->getRepository(Image::class)->find($idimg);
         $champions=$this->getDoctrine()->getRepository(Champion::class)->findBy(['idJeu'=>$id]);
+    if ($request->isMethod("POST")) {
+        $nom = $request->get('champion');
+        $champions=$repchamp->search($nom,$id);
+    }
 
     $article =$page->paginate(
         $champions,
@@ -75,22 +83,31 @@ public function show($id,$idimg,SkinRepository $repskin ,Request $request , Pagi
 
 
     );
-        foreach($champions as $champion) {
+        $skins=$repskin->allskins($id);
+
+    if ($request->isMethod("POST")) {
+        $nom = $request->get('skin');
+        $skins=$repskin->searchSkin($nom,$id);
+    }
 
 
-            $ab = $repskin->Relatedskins($champion->getIdChamp());
+//        foreach($champions as $champion) {
+//
+//
+//            $ab = $repskin->Relatedskins($champion->getIdChamp());
+//
+//            if ($ab) {
+//                array_push($skins, $ab);
+////
+//
+//            }
+//
+//
+//        }
 
-            if ($ab) {
-                array_push($skins, $ab);
-
-
-            }
-
-
-        }
     $article2 =$page->paginate(
         $skins,
-        $request->query->getInt('page',1),1
+        $request->query->getInt('page',1),6
 
 
     );
@@ -115,8 +132,6 @@ public function show($id,$idimg,SkinRepository $repskin ,Request $request , Pagi
         $entityManager->persist($abonnement);
         $entityManager->flush();
 
-
-
     }
 
         return $this->render('clientjeu/show.html.twig', [
@@ -137,13 +152,26 @@ public function showChamp($idchamp ,ChampionRepository $repchamp,Request $reques
 {   $champion=$this->getDoctrine()->getRepository(Champion::class)->find($idchamp);
     $allimg2=$this->getDoctrine()->getRepository(Skin::class)->findBy(['idChamp'=>$idchamp]);
     $relatedrole=$repchamp->championSameRole($champion->getRoleChamp(),$champion->getIdJeu());
+    if ($request->isMethod("POST")) {
+
+        $nom = $request->get('role');
+
+        $relatedrole=$repchamp->searchbyrole($champion->getRoleChamp(),$champion->getIdJeu(),$nom);
+    }
     $article =$page->paginate(
         $relatedrole,
         $request->query->getInt('page',1),2
 
 
     );
+
     $relateddiffuculty=$repchamp->championSameDifficulty($champion->getDifficulteChamp(),$champion->getIdJeu());
+    if ($request->isMethod("POST")) {
+
+        $nom = $request->get('diff');
+
+        $relateddiffuculty=$repchamp->searchbydiff($champion->getDifficulteChamp(),$champion->getIdJeu(),$nom);
+    }
     $article2 =$page->paginate(
         $relateddiffuculty,
         $request->query->getInt('page',1),2
@@ -267,4 +295,24 @@ public function showChamp($idchamp ,ChampionRepository $repchamp,Request $reques
 
             ]);
 
-}}
+}
+//    /**
+//     * @Route("/product/{id}/{idimg}", name="showgame", methods={"GET", "POST"})
+//     */
+//
+//    public function search(Request $request , JeuRepository $repjeu)
+//    {
+//        $em=$this->getDoctrine()->getManager();
+//        $jeu=$em->getRepository(Jeu::class)->findAll();
+//        if ($request->isMethod("POST")) {
+//            $nom = $request->get('nom');
+//            $jeu = $repjeu->search($nom);
+//        }
+//        return $this->render('admin_jeu/index.html.twig', [
+//            'jeus' => $jeu,
+//        ]);
+//
+//    }
+
+
+}
