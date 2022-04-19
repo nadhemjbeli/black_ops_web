@@ -13,6 +13,9 @@
             "./src/Entity/.gitignore"
         ]
     },
+    "babdev/pagerfanta-bundle": {
+        "version": "v3.6.1"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -113,6 +116,15 @@
     },
     "nikic/php-parser": {
         "version": "v4.13.2"
+    },
+    "pagerfanta/core": {
+        "version": "v3.6.1"
+    },
+    "pagerfanta/doctrine-orm-adapter": {
+        "version": "v3.6.1"
+    },
+    "pagerfanta/twig": {
+        "version": "v3.6.1"
     },
     "phar-io/manifest": {
         "version": "2.0.3"
@@ -587,11 +599,42 @@
             "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
         }
     },
+    "symfony/webpack-encore-bundle": {
+        "version": "1.14",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.9",
+            "ref": "f466b6384e592cfda11ca2361bbf7c7287b58f55"
+        },
+        "files": [
+            "./assets/app.js",
+            "./assets/bootstrap.js",
+            "./assets/controllers.json",
+            "./assets/controllers/hello_controller.js",
+            "./assets/styles/app.css",
+            "./config/packages/webpack_encore.yaml",
+            "./package.json",
+            "./webpack.config.js"
+        ]
+    },
     "symfony/yaml": {
         "version": "v4.4.37"
     },
     "theseer/tokenizer": {
         "version": "1.2.1"
+    },
+    "twig/extensions": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "a86723ee8d8b2f9437c8ce60a5546a1c267da5ed"
+        },
+        "files": [
+            "./config/packages/twig_extensions.yaml"
+        ]
     },
     "twig/extra-bundle": {
         "version": "v3.3.8"

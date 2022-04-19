@@ -46,4 +46,14 @@ class MessageRepository extends ServiceEntityRepository
         }
     }
 
+    public function getMessagesByUsers()
+    {
+        return $this->createQueryBuilder('m')
+            ->join('m.idCl', 'u')
+            ->addSelect('u')
+            ->orderBy('m.dateMessage', 'DESC');
+
+    }
+
+
 }

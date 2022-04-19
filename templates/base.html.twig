@@ -84,6 +84,7 @@
 {#<header class="nk-header nk-header-opaque">#}
 
 
+
     <header class="nk-header nk-header-opaque">
         {% block top_contact %}
 
@@ -93,10 +94,13 @@
         {% endblock %}
 
     </header>
-    {% block content %}{% endblock %}
-    {% block footer %}
-        {% include 'skeleton/footer.html.twig' %}
-    {% endblock %}
+    <div class="nk-main">
+        {% block content %}{% endblock %}
+        {% block footer %}
+{#            {% include 'skeleton/footer.html.twig' %}#}
+        {% endblock %}
+
+    </div>
 
 
 
@@ -167,6 +171,15 @@
     <script src="{{ asset('assets/js/goodgames.min.js') }}"></script>
     <script src="{{ asset('assets/js/goodgames-init.js') }}"></script>
     <!-- END: Scripts -->
+    <script>
+        $('.dropdown-toggle').dropdown();
+        $('.custom-file-input').on('change', function(event) {
+            var inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
+    </script>
 {% endblock %}
 
 

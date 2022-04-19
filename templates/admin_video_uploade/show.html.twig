@@ -4,7 +4,14 @@
 
 {% block content %}
     <h1>VideoUploade</h1>
+    {% if video_uploade.urlVideo is defined %}
+        <video width="100%" controls>
+            <source src="{{ asset('uploads/video_uploads/' ~ video_uploade.urlVideo) }}" type="video/mp4">
 
+        </video>
+    {% else %}
+
+    {% endif %}
     <table class="table">
         <tbody>
             <tr>
@@ -37,14 +44,7 @@
             </tr>
         </tbody>
     </table>
-    {% if video_uploade.urlVideo is defined %}
-        <video width="400" controls>
-            <source src="{{ asset('uploads/video_uploads/' ~ video_uploade.urlVideo) }}" type="video/mp4">
 
-        </video>
-        {% else %}
-
-    {% endif %}
     <a href="{{ path('app_admin_video_uploade_index') }}">back to list</a>
 
     <a href="{{ path('app_admin_video_uploade_edit', {'idVdeo': video_uploade.idVdeo}) }}">edit</a>

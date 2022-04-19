@@ -65,7 +65,6 @@ class VideoUploade
     /**
      * @var \SousCategorie
      *
-     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="SousCategorie")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_souscat", referencedColumnName="id_SousCat")
@@ -76,7 +75,6 @@ class VideoUploade
     /**
      * @var \User
      *
-     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_cl", referencedColumnName="id_user")

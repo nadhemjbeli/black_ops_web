@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\VideoUploade;
+use App\Form\UploadType;
 use App\Form\VideoUploadeType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/video/uploade")
+ * @Route("/admin/video_uploade")
  */
 class AdminVideoUploadeController extends AbstractController
 {
@@ -141,6 +142,63 @@ class AdminVideoUploadeController extends AbstractController
         }
 
         return $this->render('admin_video_uploade/edit.html.twig', [
+            'video_uploade' => $videoUploade,
+            'form' => $form->createView(),
+            'error' => $error
+        ]);
+    }
+/**
+     * @Route("/{idVdeo}/upload", name="app_admin_video_uploade_video", methods={"GET", "POST"})
+     */
+    public function upload(Request $request, VideoUploade $videoUploade, EntityManagerInterface $entityManager): Response
+    {
+        $error = null;
+        $form = $this->createForm(UploadType::class, $videoUploade);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $uploadedFile = $form['urlVideo']->getData();
+
+            if($uploadedFile) {
+                if ($uploadedFile->guessExtension() == 'mp4') {
+
+                    $file_name = $uploadedFile->getClientOriginalName();
+//                    dd($file_name);
+                    try {
+                        $uploadedFile->move(
+                            $this->getParameter('video_uploade_directory'),
+                            $file_name
+                        );
+                    } catch (FileException $e) {
+                        throw new \Exception('could not move your file');
+                    }
+                    $videoUploade->setUrlVideo($file_name);
+                    $entityManager->persist($videoUploade);
+                    $entityManager->flush();
+                    return $this->redirectToRoute('app_admin_video_uploade_index', [], Response::HTTP_SEE_OTHER);
+                } else {
+                    $error = 'Video must be of type mp4';
+                    return $this->render('admin_video_uploade/edit_hidden.html.twig', [
+                        'video_uploade' => $videoUploade,
+                        'form' => $form->createView(),
+                        'error' => $error
+                    ]);
+                }
+            }
+            else {
+                $error = 'upload a video';
+                return $this->render('admin_video_uploade/edit_hidden.html.twig', [
+                    'video_uploade' => $videoUploade,
+                    'form' => $form->createView(),
+                    'error' => $error
+                ]);
+            }
+
+
+
+        }
+        $entityManager->flush();
+        return $this->render('admin_video_uploade/edit_hidden.html.twig', [
             'video_uploade' => $videoUploade,
             'form' => $form->createView(),
             'error' => $error

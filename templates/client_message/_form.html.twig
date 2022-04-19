@@ -1,0 +1,18 @@
+{{ form_start(form,{
+    'attr':{
+        'id': 'post-form',
+        'style': 'width:100%'
+    }
+}) }}
+{{ form_widget(form.contenuMessage,{
+    'attr':{
+        'class': 'form-control',
+        'maxlength':'500'
+    }
+}) }}
+{{ form_end(form,{
+    'attr':{
+        'class': 'float-right'
+    }
+}) }}
+

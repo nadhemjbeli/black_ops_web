@@ -1,0 +1,32 @@
+{
+    "browserslist": [
+        "defaults"
+    ],
+    "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.1",
+        "@symfony/webpack-encore": "^0.30.0",
+        "axios": "^0.19.2",
+        "bootstrap": "^4.4.1",
+        "core-js": "^3.0.0",
+        "eslint": "^6.7.2",
+        "eslint-config-airbnb-base": "^14.0.0",
+        "eslint-plugin-import": "^2.19.1",
+        "eslint-plugin-vue": "^6.0.1",
+        "regenerator-runtime": "^0.13.2",
+        "sass": "^1.29.0",
+        "sass-loader": "^8.0.0",
+        "vue": "^2.6.11",
+        "vue-loader": "^15.9.1",
+        "vue-template-compiler": "^2.6.11",
+        "webpack-notifier": "^1.6.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress",
+        "lint": "node_modules/.bin/eslint assets/** --ignore-pattern *.scss --ignore-pattern *.gif --ignore-pattern *.png"
+    }
+}

@@ -19,6 +19,9 @@
     .dropdown{
         background-color: #e0e4e7;
     }
+    .padded{
+        margin-left: -30px;
+    }
 </style>
 <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide" style="background-color: #e0e4e7;">
     <div class="container">
@@ -27,7 +30,7 @@
             <a href="{{ path('app_home') }}" class="nk-nav-logo">
                 <img src="{{ asset('img/Logo.png') }}" alt="GoodGames" width="199">
             </a>
-
+            {% if app.user.username is defined %}
             <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
 
                 <li class=" nk-drop-item">
@@ -38,7 +41,7 @@
                     <ul class="dropdown" style="background-color: #e0e4e7; border-bottom-color: #09a195;">
 
                         <li>
-                            <a href="#">
+                            <a href="{{ path('app_client_message') }}">
                                 Chat
 
                             </a>
@@ -71,23 +74,23 @@
 {#                        </li>#}
                         <li>
 
-                            </a>
+
                         </li>
 
                         <li class=" nk-drop-item">
-                            <a href="#">
+                            <a href="{{ path('app_client_video_uploade') }}">
                                 Videos
 
                             </a><ul class="dropdown" style="background-color: #e0e4e7;">
 
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ path('app_client_video_uploade') }}">
                                         Liste Videos
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ path('app_client_video_uploade_new') }}">
                                         Ajouter video
 
                                     </a>
@@ -186,51 +189,90 @@
                         </li>
                     </ul>
                 </li>
+{#                <li class=" nk-drop-item">#}
+{#                    <a href="store.html">#}
+{#                        Store#}
+
+{#                    </a><ul class="dropdown" style="background-color: #e0e4e7;">#}
+
+{#                        <li>#}
+{#                            <a href="store.html">#}
+{#                                Store#}
+
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="store-product.html">#}
+{#                                Product#}
+
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="store-catalog.html">#}
+{#                                Catalog#}
+
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="store-catalog-alt.html">#}
+{#                                Catalog Alt#}
+
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="store-checkout.html">#}
+{#                                Checkout#}
+
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="store-cart.html">#}
+{#                                Cart#}
+
+{#                            </a>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </li>#}
+            </ul>
+            <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
+
                 <li class=" nk-drop-item">
-                    <a href="store.html">
-                        Store
-
-                    </a><ul class="dropdown" style="background-color: #e0e4e7;">
+                    <a href="">
+                        <img src="{{ asset('uploads/user_image/'~app.user.image) }}" alt="" class="rounded-circle" width="30">
+                        <br>
+                        <span class="padded">
+                            {{ app.user.username }}
+                        </span>
+                    </a>
+                    <ul class="dropdown" style="background-color: #e0e4e7; border-bottom-color: #09a195;">
 
                         <li>
-                            <a href="store.html">
-                                Store
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-product.html">
-                                Product
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-catalog.html">
-                                Catalog
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-catalog-alt.html">
-                                Catalog Alt
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-checkout.html">
-                                Checkout
-
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store-cart.html">
-                                Cart
+                            <a href="{{ path('app_logout') }}">
+                                logout
 
                             </a>
                         </li>
                     </ul>
                 </li>
             </ul>
+            {% else %}
+                <ul class="nk-nav nk-nav-right d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
+
+                    <li class="nk-drop-item">
+                        <a href="{{ path('app_login') }}" class="item">
+                            login
+
+                        </a>
+                    </li>
+
+                    <li class="nk-drop-item">
+                        <a href="{{ path('app_register') }}" class="item">
+                            register
+
+                        </a>
+                    </li>
+                </ul>
+            {% endif %}
             <ul class="nk-nav nk-nav-right nk-nav-icons">
 
                 <li class="single-icon d-lg-none">
@@ -247,10 +289,11 @@
             </ul>
         </div>
     </div>
+
 </nav>
 <!-- END: Navbar -->
 
-</header>
+{#</header>#}
 
 
 

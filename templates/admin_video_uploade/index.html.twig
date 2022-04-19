@@ -28,7 +28,7 @@
                 {% if video_uploade.urlVideo %}
                     <td>{{ video_uploade.urlVideo }}</td>
                 {% else %}
-                    <td><button class="btn-sm btn-success">upload</button></td>
+                    <td><a href="{{ path('app_admin_video_uploade_video', {'idVdeo': video_uploade.idVdeo}) }}" class="btn-sm btn-success">upload</a></td>
                 {% endif %}
                 <td>{{ video_uploade.idSouscat }}</td>
                 <td>{{ video_uploade.idCl }}</td>

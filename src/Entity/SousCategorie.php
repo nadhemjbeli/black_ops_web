@@ -24,7 +24,7 @@ class SousCategorie
 
     /**
      * @var string|null
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="nom_SousCat", type="string", length=255, nullable=true)
      */
     private $nomSouscat;

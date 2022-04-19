@@ -47,9 +47,12 @@ class VideoUploadeRepository extends ServiceEntityRepository
         }
     }
     public function findAllWithUser(){
-        $qb = $this->getEntityManager()->createQuery('SELECT v FROM App\Entity\VideoUploade v INNER JOIN App\Entity\ ');
-        dd($qb->getResult());
-        return $qb->getResult();
+        return $qb = $this->createQueryBuilder('vd')
+            ->join('vd.idCl', 'u')
+            ->addSelect('u')
+            ->orderBy('vd.dateVideo', 'DESC');
+//        dd($qb->getQuery()->getResult());
+//        return $qb->getQuery()->getResult();
     }
 
 }
