@@ -3375,7 +3375,7 @@ function initPluginFlickity() {
     }
 
     // prevent click event fire when drag carousel
-    function noClickEventOnDrag($carousel) {
+        function noClickEventOnDrag($carousel) {
         $carousel.on('dragStart.flickity', function () {
             (0, _utility.$)(this).find('.flickity-viewport').addClass('is-dragging');
         });

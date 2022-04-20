@@ -37,7 +37,7 @@ class ClientJoueurController extends AbstractController
 
         /** @var User $user */
         $user = $rep->findOneBy(['username'=>$username]);
-        $us =$res->Verify($user->getIdUser());
+        $us = $res->Verify($user->getIdUser());
 
 //        if($us){
 //            $jr = $res->findOneBy(['idUser'=>$user]);

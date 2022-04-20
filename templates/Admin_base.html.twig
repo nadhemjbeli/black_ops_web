@@ -10,6 +10,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('assets/css/sweetalert2.min.css') }}">
 			<link
 					href="{{ asset('AdminAssets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 		<!-- Font Awesome -->
@@ -22,7 +23,7 @@
 		<link href=" {{ asset('AdminAssets/vendors/fullcalendar/dist/fullcalendar.min.css') }}" rel="stylesheet">
 		<link
 		href="{{ asset('AdminAssets/vendors/fullcalendar/dist/fullcalendar.print.css') }}" rel="stylesheet" media="print">
-
+			{{ encore_entry_link_tags('app') }}
 		<!-- Custom styling plus plugins -->
 		<link href="{{ asset('AdminAssets/css/custom.min.css') }}" rel="stylesheet">
 			<link href="{{ asset('AdminAssets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
@@ -60,6 +61,7 @@
 		{% endblock %}
 
 	{% block javascripts %}
+		{{ encore_entry_script_tags('app') }}
 		<!-- jQuery -->
 		<script src=" {{ asset('AdminAssets/vendors/jquery/dist/jquery.min.js') }}"></script>
 		<!-- Bootstrap -->
@@ -84,6 +86,8 @@
 						.html(inputFile.files[0].name);
 			});
 		</script>
+		<script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
+		<script src="{{ asset('assets/js/sweetalert2.min.js') }}" ></script>
 	{% endblock %}
 	</body>
 

@@ -3,9 +3,23 @@
 {% block title %}New DetailsDefi{% endblock %}
 
 {% block content %}
-    <h1>Create new DetailsDefi</h1>
+    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert2.min.js') }}" ></script>
+    <h1>Create new Details Defi</h1>
 
     {{ include('admin_match/_form.html.twig') }}
 
     <a href="{{ path('app_admin_match_index') }}">back to list</a>
+
+    {% for flash_message in app.session.flashBag.get('info') %}
+
+        <div class="flash-notice">
+            <script type="text/javascript">
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erreur...',
+                    text: '{{flash_message}}',})</script>
+        </div>
+
+    {% endfor %}
 {% endblock %}

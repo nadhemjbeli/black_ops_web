@@ -22,7 +22,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% block stylesheets %}
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
         <!-- START: Styles -->
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7cOpen+Sans:400,700" rel="stylesheet" type="text/css">
@@ -55,11 +56,13 @@
 
         <!-- Custom Styles -->
         <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/sweetalert2.min.css') }}">
 
         <!-- END: Styles -->
 
         <!-- jQuery -->
         <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+
     {% endblock %}
 
 
@@ -174,6 +177,9 @@
                 .html(inputFile.files[0].name);
         });
     </script>
+    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert2.min.js') }}" ></script>
+
     <!-- END: Scripts -->
 {% endblock %}
 

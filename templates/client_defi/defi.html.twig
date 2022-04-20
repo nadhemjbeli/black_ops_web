@@ -94,7 +94,7 @@
                                 <a class="nav-link active" href="#tab-description" role="tab" data-toggle="tab">Description</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#tab-reviews" role="tab" data-toggle="tab">Reviews (3)</a>
+                                <a class="nav-link" href="#tab-reviews" role="tab" data-toggle="tab">Reviews ({{total}})</a>
                             </li>
                         </ul>
 
@@ -117,18 +117,21 @@
                                 <!-- START: Reply -->
                                 <h3 class="h4">Add a Review</h3>
                                 <div class="nk-reply">
-                                    <form action="#" class="nk-form">
+
+                                        {{ form_start(formA,  { 'attr': { 'class': 'nk-form',  'novalidate':'novalidate' } } ) }}
                                         <div class="row vertical-gap sm-gap">
+
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control required" name="name" placeholder="Name *">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control required" name="title" placeholder="Title *">
+                                                {{form_widget(formA.idDefi,{'attr':{'class':'form-control ','name':'country','id':'country-sel','hidden':true}}) }}
+                                                    <br>
+                                                {{form_widget(formA.idUser,{'attr':{'class':'form-control ','name':'country','id':'country-sel','hidden':true}}) }}
                                             </div>
                                         </div>
                                         <div class="nk-gap-1"></div>
-                                        <textarea class="form-control required" name="message" rows="5" placeholder="Your Review *" aria-required="true"></textarea>
-                                        <div class="nk-gap-1"></div>
+
+                                         {{form_widget(formA.message,{'attr':{'class':'form-control required','name':'message','placeholder':'Your Review *', 'aria-required':true}}) }}
+                                    <div class="nk-gap-1"></div>
+
                                         <div class="nk-rating">
                                             <input type="radio" id="review-rate-5" name="review-rate" value="5">
                                             <label for="review-rate-5">
@@ -158,30 +161,65 @@
                                             <label for="review-rate-1">
                                                 <span><i class="far fa-star"></i></span>
                                                 <span><i class="fa fa-star"></i></span>
-                                            </label>
+                                           </label>
+                                        <script>
+                                            $(document).ready(function() {
+                                                    $('button').click(function() {
+                                                        var value = $("input[type=radio][name=review-rate]:checked").val();
+                                                        if (value) {
+                                                            document.getElementById("review_rating").value = value
+
+                                                        }
+
+                                                    })
+                                                    });
+                                        </script>
                                         </div>
-                                        <button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Submit</button>
-                                    </form>
+                                    {{form_widget(formA.rating,{'attr':{'hidden':true}})}}
+                                        <button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right" >{{ button_label|default('Submit') }}</button>
+                                    {{ form_end(formA) }}
                                 </div>
                                 <!-- END: Reply -->
 
                                 <div class="clearfix"></div>
                                 <div class="nk-gap-2"></div>
+                                {% for rev in revList %}
                                 <div class="nk-comments">
                                     <!-- START: Review -->
                                         <div class="nk-comment">
                                         <div class="nk-comment-meta">
-                                            <img src="assets/images/avatar-2.jpg" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="#">Witch Murder</a> in 20 September, 2018
-                                            <div class="nk-review-rating" data-rating="4.5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i></div>
+
+                                            <img src="{{  asset('uploads/user/')~rev.idUser.image}}" alt="{{ rev.idUser.username }}" class="rounded-circle" width="35"> by <a href="#">{{ rev.idUser.username }}
+
+                                        </a> {{ rev.date|date('d-m-Y H:i:s') }}
+
+                                            <div class="nk-review-rating">
+
+                                                {% if rev.idUser.idUser == user.idUser %}
+
+                                                    <form method="post" action="{{ path('app_client_review_delete',{'id': rev.id })}}" onsubmit="post();return false;">
+                                                        <i class="fa fa-cog fa-spin fa-1x fa-fw" style="color:#09a195 ; "></i>
+                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rev.id) }}">
+                                                        <button class="btn" style="background-color: Transparent;" ><i class="fa fa-trash fa-1x" style="color:#EE5757 ; "></i>
+                                                        </button>
+                                                    </form>
+
+
+                                                {% endif %}
+
+                                                <br>
+                                                {% for i in 0..rev.rating-1 %}
+                                                    <div hidden>* {{i}}</div> <i class="fa fa-star" style="color:#09a195 ;"></i>
+                                                {% endfor %}
+                                            </div>
                                         </div>
                                         <div class="nk-comment-text">
-                                            <p>Upon replenish great rule. Were tree, given day him night Fruit it moveth all. First they're creature seasons and creature fill a it have fifth, their own subdue brought above divided.</p>
-
-                                            <p>Behold it set, seas seas and meat divided Moveth cattle forth evening above moveth so, signs god a fruitful his after called that whose.</p>
+                                            <p>{{ rev.message }}</p>
                                         </div>
                                     </div>
 
                                 </div>
+                                {% endfor %}
                             </div>
                             <!-- END: Tab Reviews -->
 
@@ -203,9 +241,18 @@
                                 <img src="{{ asset('/uploads/defi/')~ d.imgDefi}}" alt="{{ d.nomDefi }}">
                             </a>
                             <div class="nk-product-cont">
-                                <h3 class="nk-product-title h5"><a href="store-product.html">{{ d.nomDefi }}</a></h3>
+                                <h3 class="nk-product-title h5"><a href="store-product.html">{{ d.nomDefi }} </a></h3>
                                 <div class="nk-gap-1"></div>
-                                <div class="nk-product-rating" data-rating="3"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i></div>
+                                <div class="nk-product-rating" data-rating="3">
+                                    {% for i in  0..render(controller('App\\Controller\\ClientDefiController::Stat', {'a': d.idDefi } )) %}
+                                   {% if i in -1..0  %}
+                                       <p hidden> no rating yet </p>
+                                   {%else%}
+                                    <div hidden>* {{ i}}</div>
+                                    <i class="fa fa-star"></i>
+                                    {% endif%}
+                                   {% endfor %}
+                                </div>
                                 <div class="nk-gap-1"></div>
                                 <div class="nk-product-price">€ {{ defi.prixDefi }}</div>
                             </div>

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Defi;
+use App\Entity\Review;
 use App\Form\DefiType;
 use App\Repository\DefiRepository;
+use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -12,6 +14,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 /**
  * @Route("/admin/defi")
@@ -65,15 +69,6 @@ class AdminDefiController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{idDefi}", name="app_admin_defi_show", methods={"GET"})
-     */
-    public function show(Defi $defi): Response
-    {
-        return $this->render('admin_defi/show.html.twig', [
-            'defi' => $defi,
-        ]);
-    }
 
     /**
      * @Route("/{idDefi}/edit", name="app_admin_defi_edit", methods={"GET", "POST"})
@@ -146,4 +141,51 @@ class AdminDefiController extends AbstractController
             "html" => $this->renderView("admin_defi/index.html.twig", ["Defis" => $Defis]),
         ]);
     }
+    /**
+     * @Route("/stat", name="app_admin_defi_statbar")
+     */
+    public function Statistic(ChartBuilderInterface $chartBuilder,DefiRepository $rep,ReviewRepository $rev): Response
+    {
+        $defis = $rep->findAll();
+        foreach ($defis as $defi) {
+            $label [] = $defi->getNomDefi();
+            $datasets[] = $rev->SelectReview($defi);
+        }
+            $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
+            $chart->setData([
+                'labels' => $label,
+                'datasets' => [
+                    [
+                        'label' => 'Note Total  Par defi ',
+                        'backgroundColor' => 'rgb(9, 161, 149)',
+                        'borderColor' => 'rgb(255, 99, 132)',
+
+                        'data' => $datasets ,
+                    ],
+                ],
+            ]);
+
+
+
+        return $this->render('admin_defi/Stat.html.twig', [
+
+            'chart' => $chart,
+        ]);
+
+    }
+    /**
+     * @Route("/{idDefi}", name="app_admin_defi_show")
+     */
+    public function show(Defi $defi): Response
+    {
+        return $this->render('admin_defi/show.html.twig', [
+            'defi' => $defi,
+        ]);
+    }
+
+
+
+
+
+
 }

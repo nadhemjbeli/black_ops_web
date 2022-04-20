@@ -40,6 +40,18 @@ class AdminMatchController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($detailsDefi->getEquipea() === $detailsDefi->getEquipeb())
+            {
+                $path = 'admin_match/new.html.twig';
+                $this->addFlash('info', "Erreur Equipe A doit etre diffrent a Equipe B");
+                return  $this->render('admin_match/new.html.twig',[
+
+                    'details_defi' => $detailsDefi,
+                    'form' => $form->createView()
+                    ]);
+
+
+            }
             $file=$detailsDefi->getImgscore();
 
             $fileName =$detailsDefi->getEquipea().' vs '.$detailsDefi->getEquipeb().'.'.$file->guessExtension();
