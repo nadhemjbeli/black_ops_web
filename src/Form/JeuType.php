@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Jeu;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,6 +17,7 @@ class JeuType extends AbstractType
             ->add('description')
             ->add('url')
             ->add('idSouscat')
+            ->add('confirmed', HiddenType::class, ['mapped' => false]);
         ;
     }
 

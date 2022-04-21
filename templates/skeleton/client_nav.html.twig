@@ -228,8 +228,25 @@
 
                             </a>
                         </li>
+
                     </ul>
+
                 </li>
+
+
+
+                    {% for locale in locales %}
+                        {%  if locale != app.request.locale %}
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ path('change_locale',{'locale':locale}) }}">
+                            <img src="{{ asset('img/'~locale~'.png') }}" alt="{{ locale }}" width="40" height="40">
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+
+                </ul>
             </ul>
             <ul class="nk-nav nk-nav-right nk-nav-icons">
 

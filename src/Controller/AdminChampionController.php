@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/admin/champion")
@@ -35,7 +36,7 @@ class AdminChampionController extends AbstractController
     /**
      * @Route("/new", name="app_admin_champion_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FlashyNotifier $flashy, TranslatorInterface $translate): Response
     {
         $champion = new Champion();
         $form = $this->createForm(ChampionType::class, $champion);
@@ -60,7 +61,8 @@ class AdminChampionController extends AbstractController
             $champion->setImageChamp($fichier);
             $entityManager->persist($champion);
             $entityManager->flush();
-            $flashy->success('Champion a été ajouté avec succès', 'http://your-awesome-link.com');
+            $message=$translate->trans('Champion added successfully');
+            $flashy->success($message, 'http://your-awesome-link.com');
 
             return $this->redirectToRoute('app_admin_champion_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -84,7 +86,7 @@ class AdminChampionController extends AbstractController
     /**
      * @Route("/{idChamp}/edit", name="app_admin_champion_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Champion $champion, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
+    public function edit(Request $request, Champion $champion, EntityManagerInterface $entityManager, FlashyNotifier $flashy, TranslatorInterface $translate): Response
     {
         $form = $this->createForm(ChampionType::class, $champion);
 
@@ -109,7 +111,8 @@ class AdminChampionController extends AbstractController
             $entityManager=$this->getDoctrine()->getManager();
             $champion->setImageChamp($fichier);
             $entityManager->flush();
-            $flashy->success('Champion a été modifié avec succès', 'http://your-awesome-link.com');
+            $message=$translate->trans('Champion modified successfully');
+            $flashy->success($message, 'http://your-awesome-link.com');
 
             return $this->redirectToRoute('app_admin_champion_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -123,14 +126,15 @@ class AdminChampionController extends AbstractController
     /**
      * @Route("/{idChamp}", name="app_admin_champion_delete", methods={"POST"})
      */
-    public function delete(Request $request, Champion $champion, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
+    public function delete(Request $request, Champion $champion, EntityManagerInterface $entityManager, FlashyNotifier $flashy, TranslatorInterface $translate): Response
     {
         if ($this->isCsrfTokenValid('delete'.$champion->getIdChamp(), $request->request->get('_token'))) {
             $file=$champion->getImageChamp();
             unlink($this->getParameter('images_directory2').'/'.$file);
             $entityManager->remove($champion);
             $entityManager->flush();
-            $flashy->success('Champion a été supprimé avec succès', 'http://your-awesome-link.com');
+            $message=$translate->trans('Champion deleted successfully');
+            $flashy->success($message, 'http://your-awesome-link.com');
 
         }
 

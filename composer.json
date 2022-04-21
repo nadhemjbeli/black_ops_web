@@ -12,6 +12,7 @@
         "doctrine/orm": "^2.11",
         "egyg33k/csv-bundle": "^1.0",
         "expertcoder/swiftmailer-send-grid-bundle": "^2.2",
+        "google/apiclient": "2.0",
         "knplabs/knp-paginator-bundle": "^5.8",
         "mercuryseries/flashy-bundle": "3.0",
         "phpdocumentor/reflection-docblock": "^5.3",

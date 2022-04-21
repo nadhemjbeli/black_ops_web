@@ -23,7 +23,7 @@
                             <!-- START: Product Photos -->
                             <div class="nk-popup-gallery">
                                 <div class="nk-gallery-item-box">
-                                    <a href="" class="nk-gallery-item" >
+                                    <a href="{{ asset(imagedetails.imagePath) }}"  data-size="1200x554" class="nk-gallery-item" >
                                         <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
                                         <img  height="100" width="100" src="{{ asset(imagedetails.imagePath) }}"  alt="">
                                     </a>
@@ -37,7 +37,7 @@
 
                                         <div class="nk-gallery-item-box">
 
-                                            <a href="" class="nk-gallery-item" >
+                                            <a href="{{ asset(a.imagePath) }}" class="nk-gallery-item"  data-size="1200x554">
 
                                                 <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
 
@@ -75,7 +75,7 @@
 
                             <div class="nk-product-description">
                                 <p>{{ jeuDetails.description }}</p>
-                                <h4>To download the game click here : </h4>
+                                <h4>{% trans %}To download the game click here : {% endtrans %}</h4>
 
                                 <p><a rel="follow" href="{{ jeuDetails.url }}"> <img src="{{ asset('img/download.png') }}" height="50" width="50"></a></p>
                             </div>
@@ -86,12 +86,12 @@
                 <!-- START: Related Products -->
 
                 <div class="nk-gap-3"></div>
-                <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Related</span> Champions</span></h3>
+                <h3 class="nk-decorated-h-2"><span><span class="text-main-1">{% trans %}Related{% endtrans %}</span> {% trans %}Champions{% endtrans %}</span></h3>
                     <div class="nk-widget">
                         <div class="nk-widget-content">
                             <form method="POST" class="nk-form nk-form-style-1" novalidate="novalidate">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Type something..." name="champion">
+                                    <input type="text" class="form-control" placeholder={% trans%}"Type something..."{% endtrans%} name="champion">
                                     <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
                                 </div>
                             </form>
@@ -125,13 +125,13 @@
                     <!-- START: Related Products -->
 
                     <div class="nk-gap-3"></div>
-                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Related</span> Champions skins </span></h3>
+                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">{% trans %}Related{% endtrans %}</span> {% trans %}Champions skins {% endtrans %}</span></h3>
 
                     <div class="nk-widget">
                         <div class="nk-widget-content">
                             <form method="POST" class="nk-form nk-form-style-1" novalidate="novalidate">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Type something..." name="skin">
+                                    <input type="text" class="form-control" placeholder={% trans %}"Type something..."{% endtrans%} name="skin">
                                     <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
                                 </div>
                             </form>
@@ -209,7 +209,7 @@
             <div class="row vertical-gap">
                 <div class="col-md-6">
                     <div class="nk-widget">
-                        <h4 class="nk-widget-title"><span class="text-main-1">Contact</span> With Us</h4>
+                        <h4 class="nk-widget-title"><span class="text-main-1">{% trans %}Contact{% endtrans %}</span> {% trans %}With Us{% endtrans %}</h4>
                         <div class="nk-widget-content">
                             <form action="php/ajax-contact-form.php" class="nk-form nk-form-ajax">
                                 <div class="row vertical-gap sm-gap">

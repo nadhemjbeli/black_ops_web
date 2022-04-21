@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="es" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="iBi0t2g" resname="Champion added successfully">
+        <source>Champion added successfully</source>
+        <target>Campeón añadido con éxito</target>
+      </trans-unit>
+      <trans-unit id="N7Lpqwb" resname="Champion modified successfully">
+        <source>Champion modified successfully</source>
+        <target>Campeona modificada con éxito</target>
+      </trans-unit>
+      <trans-unit id="8.g7r6s" resname="Champion deleted successfully">
+        <source>Champion deleted successfully</source>
+        <target>Campeona eliminada con éxito</target>
+      </trans-unit>
+      <trans-unit id="Mz813UW" resname="Game added successfully">
+        <source>Game added successfully</source>
+        <target>Juego añadido con éxito</target>
+      </trans-unit>
+      <trans-unit id="ddCsa3r" resname="Game modified successfully">
+        <source>Game modified successfully</source>
+        <target>Juego modificado con éxito</target>
+      </trans-unit>
+      <trans-unit id="RI.7ZQy" resname="Game deleted successfully">
+        <source>Game deleted successfully</source>
+        <target>Juego eliminado con éxito</target>
+      </trans-unit>
+      <trans-unit id="MBZPImL" resname="Picture added successfully">
+        <source>Picture added successfully</source>
+        <target>Imagen añadida con éxito</target>
+      </trans-unit>
+      <trans-unit id="baQbIuO" resname="Picture modified successfully">
+        <source>Picture modified successfully</source>
+        <target>Imagen modificada con éxito</target>
+      </trans-unit>
+      <trans-unit id="P0Hrk1f" resname="picture deleted successfully">
+        <source>picture deleted successfully</source>
+        <target>imagen eliminada con exito</target>
+      </trans-unit>
+      <trans-unit id="xJv2lF1" resname="Skin added successfully">
+        <source>Skin added successfully</source>
+        <target>Piel añadida con éxito</target>
+      </trans-unit>
+      <trans-unit id="HUHrcuQ" resname="Skin modified successfully">
+        <source>Skin modified successfully</source>
+        <target>Piel modificada con éxito</target>
+      </trans-unit>
+      <trans-unit id="Ljrv0Rc" resname="Skin deleted successfully">
+        <source>Skin deleted successfully</source>
+        <target>Máscara eliminada con éxito</target>
+      </trans-unit>
+      <trans-unit id="50s7isc" resname="&quot;Type something...&quot;">
+        <source>"Type something..."</source>
+        <target>"Escribe algo..."</target>
+      </trans-unit>
+      <trans-unit id="8.6Ze40" resname="We">
+        <source>We</source>
+        <target>Nosotras</target>
+      </trans-unit>
+      <trans-unit id="Oyb4DKr" resname="Are Social">
+        <source>Are Social</source>
+        <target>son sociales</target>
+      </trans-unit>
+      <trans-unit id="hzDTwgI" resname="Latest">
+        <source>Latest</source>
+        <target>Más reciente</target>
+      </trans-unit>
+      <trans-unit id="1TS_gp4" resname="Video">
+        <source>Video</source>
+        <target>Video</target>
+      </trans-unit>
+      <trans-unit id="aQ2_ncC" resname="Recent">
+        <source>Recent</source>
+        <target>Reciente</target>
+      </trans-unit>
+      <trans-unit id="bfAWhss" resname="recent skins">
+        <source>recent skins</source>
+        <target>pieles recientes</target>
+      </trans-unit>
+      <trans-unit id="nWCEHgp" resname="Check">
+        <source>Check</source>
+        <target>cheque</target>
+      </trans-unit>
+      <trans-unit id="OOvYIgJ" resname="To download the game click here :">
+        <source>To download the game click here :</source>
+        <target>Para descargar el juego haz clic aquí :</target>
+      </trans-unit>
+      <trans-unit id="RcpW0Xn" resname="Related">
+        <source>Related</source>
+        <target>relacionada</target>
+      </trans-unit>
+      <trans-unit id=".D5FdsN" resname="Champions">
+        <source>Champions</source>
+        <target>Campeonas</target>
+      </trans-unit>
+      <trans-unit id="tw2_4Tx" resname="Champions skins">
+        <source>Champions skins</source>
+        <target>Pieles de campeones</target>
+      </trans-unit>
+      <trans-unit id="K1w9JnI" resname="Contact">
+        <source>Contact</source>
+        <target>Contacto</target>
+      </trans-unit>
+      <trans-unit id="v9Ag9yl" resname="With Us">
+        <source>With Us</source>
+        <target>Con nosotras</target>
+      </trans-unit>
+      <trans-unit id="Yw7wC3x" resname="Side">
+        <source>Side</source>
+        <target>lado</target>
+      </trans-unit>
+      <trans-unit id="vkQTPtV" resname="Difficulty">
+        <source>Difficulty</source>
+        <target>Dificultad</target>
+      </trans-unit>
+      <trans-unit id="0X60P.T" resname="Champions by role">
+        <source>Champions by role</source>
+        <target>Campeonas por rol</target>
+      </trans-unit>
+      <trans-unit id="busucys" resname="Champions by difficulty">
+        <source>Champions by difficulty</source>
+        <target>Campeones por dificultad</target>
+      </trans-unit>
+      <trans-unit id="NGM3EE2" resname="Top 3">
+        <source>Top 3</source>
+        <target>3 primeros</target>
+      </trans-unit>
+      <trans-unit id="Huwwcd0" resname="Stream">
+        <source>Stream</source>
+        <target>arroyo</target>
+      </trans-unit>
+      <trans-unit id="1B9bSXf" resname="Facebook">
+        <source>Facebook</source>
+        <target>Facebook</target>
+      </trans-unit>
+      <trans-unit id="1c389.9" resname="Top">
+        <source>Top</source>
+        <target>primeros</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

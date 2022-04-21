@@ -15,29 +15,37 @@ use Symfony\Component\Routing\Annotation\Route;
 class MailController extends AbstractController
 {
     /**
-     * @Route("/admin/mokhtar", name="Mailing")
+     * @Route("/admin/mokhtar/", name="Mailing")
      */
     public function index(Request $request,\Swift_Mailer $mailer,AbonnementRepository $repab)
     {
+        $m= $contact['email']="mohamedmokhtar.jaafar@esprit.tn";
         $users=$this->getDoctrine()->getRepository(User::class)->findAll();
 
 
         $form = $this->createForm(MailType::class);
+
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $contact = $form->getData();
-//            dd($contact);
+
             $j = $form->get('idJeu')->getData();
+            $contact = $form->getData();
+
+
 
             $test = $repab->abonnementsusers($j);
+
+
             foreach ($test as $t) {
                 $h = $t->getIdUser()->getMail();
 
                 $message = (new \Swift_Message('New Content'))
                     // On attribue l'expéditeur
 
-                    ->setFrom($contact['email'])
+                    ->setFrom($m,'Mokhtar Jaafar')
+
 
                     // On attribue le destinataire
                     ->setTo($h)

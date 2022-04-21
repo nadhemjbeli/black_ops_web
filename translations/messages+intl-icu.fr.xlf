@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="ddCsa3r" resname="Game modified successfully">
+        <source>Game modified successfully</source>
+        <target>Jeu a été modifié avec succès</target>
+      </trans-unit>
+      <trans-unit id="50s7isc" resname="&quot;Type something...&quot;">
+        <source>"Type something..."</source>
+        <target>"Tapez quelque chose..."</target>
+      </trans-unit>
+      <trans-unit id="OOvYIgJ" resname="To download the game click here :">
+        <source>To download the game click here :</source>
+        <target>Pour télécharger le jeu cliquez ici : </target>
+      </trans-unit>
+      <trans-unit id="RcpW0Xn" resname="Related">
+        <source>Related</source>
+        <target>Champions</target>
+      </trans-unit>
+      <trans-unit id=".D5FdsN" resname="Champions">
+        <source>Champions</source>
+        <target>associés à ce jeu</target>
+      </trans-unit>
+      <trans-unit id="tw2_4Tx" resname="Champions skins">
+        <source>Champions skins</source>
+        <target>Les skins des champions</target>
+      </trans-unit>
+      <trans-unit id="K1w9JnI" resname="Contact">
+        <source>Contact</source>
+        <target>Contactez</target>
+      </trans-unit>
+      <trans-unit id="v9Ag9yl" resname="With Us">
+        <source>With Us</source>
+        <target>Nous</target>
+      </trans-unit>
+      <trans-unit id="Yw7wC3x" resname="Side">
+        <source>Side</source>
+        <target>Poste</target>
+      </trans-unit>
+      <trans-unit id="vkQTPtV" resname="Difficulty">
+        <source>Difficulty</source>
+        <target>Difficulté</target>
+      </trans-unit>
+      <trans-unit id="0X60P.T" resname="Champions by role">
+        <source>Champions by role</source>
+        <target>associés par rôle</target>
+      </trans-unit>
+      <trans-unit id="busucys" resname="Champions by difficulty">
+        <source>Champions by difficulty</source>
+        <target>associés par difficulté</target>
+      </trans-unit>
+      <trans-unit id="iBi0t2g" resname="Champion added successfully">
+        <source>Champion added successfully</source>
+        <target>Champion a été ajouté avec succès</target>
+      </trans-unit>
+      <trans-unit id="N7Lpqwb" resname="Champion modified successfully">
+        <source>Champion modified successfully</source>
+        <target>Champion a été modifié avec succès</target>
+      </trans-unit>
+      <trans-unit id="8.g7r6s" resname="Champion deleted successfully">
+        <source>Champion deleted successfully</source>
+        <target>Champion a été supprimé avec succès</target>
+      </trans-unit>
+      <trans-unit id="Mz813UW" resname="Game added successfully">
+        <source>Game added successfully</source>
+        <target>Jeu a été ajouté avec succès</target>
+      </trans-unit>
+      <trans-unit id="RI.7ZQy" resname="Game deleted successfully">
+        <source>Game deleted successfully</source>
+        <target>Champion a été supprimé avec succès</target>
+      </trans-unit>
+      <trans-unit id="MBZPImL" resname="Picture added successfully">
+        <source>Picture added successfully</source>
+        <target>Image a été ajoutée avec succès</target>
+      </trans-unit>
+      <trans-unit id="baQbIuO" resname="Picture modified successfully">
+        <source>Picture modified successfully</source>
+        <target>Image a été modifiée avec succès</target>
+      </trans-unit>
+      <trans-unit id="P0Hrk1f" resname="picture deleted successfully">
+        <source>picture deleted successfully</source>
+        <target>Image a été supprimée avec succès</target>
+      </trans-unit>
+      <trans-unit id="xJv2lF1" resname="Skin added successfully">
+        <source>Skin added successfully</source>
+        <target>Skin a été ajouté avec succès</target>
+      </trans-unit>
+      <trans-unit id="HUHrcuQ" resname="Skin modified successfully">
+        <source>Skin modified successfully</source>
+        <target>Skin a été modifié avec succès</target>
+      </trans-unit>
+      <trans-unit id="Ljrv0Rc" resname="Skin deleted successfully">
+        <source>Skin deleted successfully</source>
+        <target>Skin a été supprimé avec succès</target>
+      </trans-unit>
+      <trans-unit id="8.6Ze40" resname="We">
+        <source>We</source>
+        <target>Nous </target>
+      </trans-unit>
+      <trans-unit id="Oyb4DKr" resname="Are Social">
+        <source>Are Social</source>
+        <target>sommes Sociaux</target>
+      </trans-unit>
+      <trans-unit id="hzDTwgI" resname="Latest">
+        <source>Latest</source>
+        <target>dernière</target>
+      </trans-unit>
+      <trans-unit id="1TS_gp4" resname="Video">
+        <source>Video</source>
+        <target>Vidéo</target>
+      </trans-unit>
+      <trans-unit id="aQ2_ncC" resname="Recent">
+        <source>Recent</source>
+        <target>Récent</target>
+      </trans-unit>
+      <trans-unit id="bfAWhss" resname="recent skins">
+        <source>recent skins</source>
+        <target>skins récents</target>
+      </trans-unit>
+      <trans-unit id="nWCEHgp" resname="Check">
+        <source>Check</source>
+        <target>Voir</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/admin/skin")
@@ -35,7 +36,7 @@ class AdminSkinController extends AbstractController
     /**
      * @Route("/new", name="app_admin_skin_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager,SkinRepository $repskin,FlashyNotifier $flashy): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,SkinRepository $repskin,FlashyNotifier $flashy, TranslatorInterface $translate): Response
     {
         $skin = new Skin();
         $form = $this->createForm(SkinType::class, $skin);
@@ -60,7 +61,9 @@ class AdminSkinController extends AbstractController
             $skin->setImageSkin($fichier);
             $entityManager->persist($skin);
             $entityManager->flush();
-            $flashy->success('Skin a été ajouté avec succès', 'http://your-awesome-link.com');
+            $message=$translate->trans('Skin added successfully');
+
+            $flashy->success($message, 'http://your-awesome-link.com');
 
             return $this->redirectToRoute('app_admin_skin_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -84,12 +87,12 @@ class AdminSkinController extends AbstractController
     /**
      * @Route("/{idSkin}/edit", name="app_admin_skin_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Skin $skin, EntityManagerInterface $entityManager,SkinRepository $repskin,FlashyNotifier $flashy): Response
+    public function edit(Request $request, Skin $skin, EntityManagerInterface $entityManager,SkinRepository $repskin,FlashyNotifier $flashy, TranslatorInterface $translate): Response
     {
         $form = $this->createForm(SkinType::class, $skin);
         $form->handleRequest($request);
         $file=$skin->getImageSkin();
-        $idskinmax=$repskin->maxidskin2();
+        $idskinmax=$skin->getIdSkin();
         if ($form->isSubmitted() && $form->isValid()) {
             $fichier = $idskinmax.'.'.$file->guessExtension();
 
@@ -103,7 +106,9 @@ class AdminSkinController extends AbstractController
             $entityManager=$this->getDoctrine()->getManager();
             $skin->setImageSkin($fichier);
             $entityManager->flush();
-            $flashy->success('Skin a été modifié avec succès', 'http://your-awesome-link.com');
+            $message=$translate->trans('Skin modified successfully');
+
+            $flashy->success($message, 'http://your-awesome-link.com');
 
             return $this->redirectToRoute('app_admin_skin_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -117,14 +122,16 @@ class AdminSkinController extends AbstractController
     /**
      * @Route("/{idSkin}", name="app_admin_skin_delete", methods={"POST"})
      */
-    public function delete(Request $request, Skin $skin, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
+    public function delete(Request $request, Skin $skin, EntityManagerInterface $entityManager,FlashyNotifier $flashy, TranslatorInterface $translate): Response
     {
         if ($this->isCsrfTokenValid('delete'.$skin->getIdSkin(), $request->request->get('_token'))) {
             $file=$skin->getImageSkin();
             unlink($this->getParameter('images_directory3').'/'.$file);
             $entityManager->remove($skin);
             $entityManager->flush();
-            $flashy->success('Skin a été supprimé avec succès', 'http://your-awesome-link.com');
+            $message=$translate->trans('Skin deleted successfully');
+
+            $flashy->success($message, 'http://your-awesome-link.com');
 
         }
 

@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/admin/jeu")
@@ -34,7 +35,7 @@ class AdminJeuController extends AbstractController
     /**
      * @Route("/new", name="app_admin_jeu_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FlashyNotifier $flashy, TranslatorInterface $translate): Response
     {
         $jeu = new Jeu();
         $form = $this->createForm(JeuType::class, $jeu);
@@ -43,7 +44,9 @@ class AdminJeuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($jeu);
             $entityManager->flush();
-            $flashy->success('Jeu a été ajouté avec succès', 'http://your-awesome-link.com');
+            $message=$translate->trans('Game added successfully');
+
+            $flashy->success($message, 'http://your-awesome-link.com');
             return $this->redirectToRoute('app_admin_jeu_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -66,14 +69,15 @@ class AdminJeuController extends AbstractController
     /**
      * @Route("/{idJeu}/edit", name="app_admin_jeu_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Jeu $jeu, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
+    public function edit(Request $request, Jeu $jeu, EntityManagerInterface $entityManager, FlashyNotifier $flashy, TranslatorInterface $translate): Response
     {
         $form = $this->createForm(JeuType::class, $jeu);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            $flashy->success('Jeu a été modifié avec succès', 'http://your-awesome-link.com');
+            $message=$translate->trans('Game modified successfully');
+            $flashy->success($message, 'http://your-awesome-link.com');
             return $this->redirectToRoute('app_admin_jeu_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -86,12 +90,14 @@ class AdminJeuController extends AbstractController
     /**
      * @Route("/{idJeu}", name="app_admin_jeu_delete", methods={"POST"})
      */
-    public function delete(Request $request, Jeu $jeu, EntityManagerInterface $entityManager, FlashyNotifier $flashy): Response
+    public function delete(Request $request, Jeu $jeu, EntityManagerInterface $entityManager, FlashyNotifier $flashy, TranslatorInterface $translate): Response
     {
         if ($this->isCsrfTokenValid('delete' . $jeu->getIdJeu(), $request->request->get('_token'))) {
             $entityManager->remove($jeu);
             $entityManager->flush();
-            $flashy->success('Jeu a été supprimé avec succès', 'http://your-awesome-link.com');
+            $message=$translate->trans('Game deleted successfully');
+
+            $flashy->success($message, 'http://your-awesome-link.com');
 
         }
 
@@ -115,5 +121,8 @@ class AdminJeuController extends AbstractController
        ]);
 
 }
+
+
+
 
 }
