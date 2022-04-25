@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Equipe
@@ -51,7 +52,7 @@ class Equipe
 
     /**
      * @var \Jeu
-     *
+     *@Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="Jeu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="JeuV", referencedColumnName="Id_Jeu")
@@ -112,5 +113,23 @@ class Equipe
         return $this;
     }
 
+    public function __toString() : String
+    {
+        return $this->getNomEquipe();
+    }
+
+
+
+    public function getJeuV(): ?Jeu
+    {
+        return $this->JeuV;
+    }
+
+    public function setJeuV(?Jeu $JeuV): self
+    {
+        $this->JeuV = $JeuV;
+
+        return $this;
+    }
 
 }

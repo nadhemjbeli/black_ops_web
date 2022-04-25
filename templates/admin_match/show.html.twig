@@ -1,0 +1,46 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}DetailsDefi{% endblock %}
+
+{% block content %}
+    <h1>DetailsDefi</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdStatistique</th>
+                <td>{{ details_defi.idStatistique }}</td>
+            </tr>
+            <tr>
+                <th>Imgscore</th>
+                <td> <img src="{{ asset('uploads/match/')~details_defi.imgscore }}"></td>
+            </tr>
+            <tr>
+                <th>ScoreFinale</th>
+                <td>{{ details_defi.scoreFinale }}</td>
+            </tr>
+            <tr>
+                <th>Equipe A</th>
+                <td>{{ details_defi.equipea }}</td>
+            </tr>
+            <tr>
+                <th>Equipe B</th>
+                <td>{{ details_defi.equipeb }}</td>
+            </tr>
+            <tr>
+                <th>Defi</th>
+                <td>{{ details_defi.idDefi }}</td>
+            </tr>
+            <tr>
+                <th>date</th>
+                <td>{{ details_defi.date|date('d-m-Y H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_match_index') }}" class="btn btn-outline-success">back to list</a>
+
+    <a href="{{ path('app_admin_match_edit', {'idStatistique': details_defi.idStatistique}) }}" class="btn btn-outline-dark">edit</a>
+
+    {{ include('admin_match/_delete_form.html.twig') }}
+{% endblock %}

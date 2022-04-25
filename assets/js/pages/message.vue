@@ -54,7 +54,7 @@ export default {
             return this.current.username === this.message.idCl.username;
         },
         asideClass() {
-            console.log(this.message);
+            // console.log(this.message);
             return this.current.username === this.message.idCl.username ? 'chat-message-right pb-4' : 'chat-message-left pb-4';
         },
         toHour() {

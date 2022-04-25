@@ -1,0 +1,13 @@
+{{ form_start(form , {
+    attr:{
+        'novalidate':'novalidate'
+    }
+}) }}
+    {{ form_row(form.imgscore) }}
+    {{ form_row(form.scoreFinale) }}
+    {{ form_row(form.equipeb) }}
+    {{ form_row(form.equipea) }}
+    {{ form_row(form.idDefi) }}
+    {{ form_row(form.date) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

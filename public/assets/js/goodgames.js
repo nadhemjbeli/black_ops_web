@@ -3375,7 +3375,7 @@ function initPluginFlickity() {
     }
 
     // prevent click event fire when drag carousel
-    function noClickEventOnDrag($carousel) {
+        function noClickEventOnDrag($carousel) {
         $carousel.on('dragStart.flickity', function () {
             (0, _utility.$)(this).find('.flickity-viewport').addClass('is-dragging');
         });
@@ -3750,6 +3750,7 @@ function initPluginCountdown() {
     (0, _utility.$)('.nk-countdown').each(function () {
         var tz = (0, _utility.$)(this).attr('data-timezone');
         var end = (0, _utility.$)(this).attr('data-end');
+
         end = moment.tz(end, tz).toDate();
 
         (0, _utility.$)(this).countdown(end, function (event) {

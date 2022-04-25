@@ -54,32 +54,9 @@ class ClientMessageController extends AbstractController
             'controller_name' => 'ClientMessageController',
         ]);
     }
-    /**
-     * @Route("/api_messages", name="api_message", methods={"GET"})
-     * @IsGranted("ROLE_USER")
-     */
-    public function getMessages(Request $request){
-        $messages = $this->messageRepository->getMessagesByUsers();
-        return $this->json($messages);
-    }
-    /**
-     * @Route("/get_form", name="get_form")
-     */
-    public function getForm(Request $request){
-//        $message = json_decode($request->getContent(), true)['data']['message'];
-        $form = $this->createForm(MessageClientType::class);
-        $view = $this->renderView('client_message/_form.html.twig', [
-            'form'=>$form->createView(),
-        ]);
-        return $this->json([
-            'form'=>$view,
-            'title'=>'new Message'
-        ]);
 
-    }
     /**
      * @Route("/postMessage", name="add_message")
-     * @IsGranted("ROLE_USER")
      */
     public function post(Request $request){
 //        $message = json_decode($request->getContent(), true)['data']['message'];
@@ -105,4 +82,29 @@ class ClientMessageController extends AbstractController
         ]);
 
     }
+
+    /**
+     * @Route("/api_messages", name="api_message", methods={"GET"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function getMessages(Request $request){
+        $messages = $this->messageRepository->getMessagesByUsers();
+        return $this->json($messages);
+    }
+    /**
+     * @Route("/get_form", name="get_form")
+     */
+    public function getForm(Request $request){
+//        $message = json_decode($request->getContent(), true)['data']['message'];
+        $form = $this->createForm(MessageClientType::class);
+        $view = $this->renderView('client_message/_form.html.twig', [
+            'form'=>$form->createView(),
+        ]);
+        return $this->json([
+            'form'=>$view,
+            'title'=>'new Message'
+        ]);
+
+    }
+
 }

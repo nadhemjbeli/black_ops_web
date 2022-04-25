@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Defi
@@ -23,28 +25,28 @@ class Defi
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="nom_Defi", type="string", length=75, nullable=false)
      */
     private $nomDefi;
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank
      * @ORM\Column(name="Description_Defi", type="string", length=255, nullable=false)
      */
     private $descriptionDefi;
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank
      * @ORM\Column(name="img_Defi", type="text", length=0, nullable=false)
      */
     private $imgDefi;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="prix_Defi", type="integer", nullable=false)
      */
     private $prixDefi;
@@ -52,40 +54,42 @@ class Defi
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_Defi", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="date_Defi", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $dateDefi = 'CURRENT_TIMESTAMP';
+    private $dateDefi ;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="nbr_equipe_Defi", type="integer", nullable=false)
      */
     private $nbrEquipeDefi;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="RÃ©gle_Defi", type="string", length=1000, nullable=false)
+     * @Assert\NotBlank
+     * @ORM\Column(name="Regle_Defi", type="string", length=1000, nullable=false)
      */
-    private $rã©gleDefi;
+    private $regleDefi;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="Recompense_Defi", type="string", length=255, nullable=false)
      */
     private $recompenseDefi;
 
     /**
      * @var \Jeu
-     *
+     *@Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="Jeu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="jeu_Defi", referencedColumnName="Id_Jeu")
      * })
      */
     private $jeuDefi;
+
+    private $file;
 
     public function getIdDefi(): ?int
     {
@@ -116,12 +120,12 @@ class Defi
         return $this;
     }
 
-    public function getImgDefi(): ?string
+    public function getImgDefi()
     {
         return $this->imgDefi;
     }
 
-    public function setImgDefi(string $imgDefi): self
+    public function setImgDefi( $imgDefi)
     {
         $this->imgDefi = $imgDefi;
 
@@ -145,12 +149,12 @@ class Defi
         return $this->dateDefi;
     }
 
-    public function setDateDefi(\DateTimeInterface $dateDefi): self
-    {
-        $this->dateDefi = $dateDefi;
-
-        return $this;
-    }
+//    public function setDateDefi(\DateTimeInterface $dateDefi): self
+//    {
+//        $this->dateDefi = $dateDefi;
+//
+//        return $this;
+//    }
 
     public function getNbrEquipeDefi(): ?int
     {
@@ -164,14 +168,14 @@ class Defi
         return $this;
     }
 
-    public function getRã©gleDefi(): ?string
+    public function getRegleDefi(): ?string
     {
-        return $this->rã©gleDefi;
+        return $this->regleDefi;
     }
 
-    public function setRã©gleDefi(string $rã©gleDefi): self
+    public function setRegleDefi(string $regleDefi): self
     {
-        $this->rã©gleDefi = $rã©gleDefi;
+        $this->regleDefi = $regleDefi;
 
         return $this;
     }
@@ -198,6 +202,23 @@ class Defi
         $this->jeuDefi = $jeuDefi;
 
         return $this;
+    }
+
+    public function __toString() : String
+    {
+        return $this->getNomDefi();
+    }
+
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+
+    public function setFile($file): void
+    {
+        $this->file = $file;
     }
 
 
