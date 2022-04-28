@@ -4,10 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    defi_directory: '%kernel.project_dir%/public/uploads/defi'
-    equipe_directory: '%kernel.project_dir%/public/uploads/equipe'
-    match_directory: '%kernel.project_dir%/public/uploads/match'
-    video_uploade_directory: '%kernel.project_dir%/public/uploads/video_uploads'
+
 services:
     # default configuration for services in *this* file
     _defaults:
