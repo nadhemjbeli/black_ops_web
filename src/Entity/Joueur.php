@@ -63,6 +63,11 @@ class Joueur
      */
     private $idEquipe;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Tel;
+
     public function getIdJoueur(): ?int
     {
         return $this->idJoueur;
@@ -124,6 +129,18 @@ class Joueur
     public function setIdEquipe(?Equipe $idEquipe): self
     {
         $this->idEquipe = $idEquipe;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->Tel;
+    }
+
+    public function setTel(?string $Tel): self
+    {
+        $this->Tel = $Tel;
 
         return $this;
     }

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Joueur;
 use App\Entity\User;
 use App\Form\JoueurType;
@@ -15,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Twilio\Rest\Client;
 class ClientJoueurController extends AbstractController
 {
     /**
@@ -32,6 +31,8 @@ class ClientJoueurController extends AbstractController
      */
     public function new(Request $request, EntityManagerInterface $entityManager,UserRepository $rep,JoueurRepository $res): Response
     {
+        $account_sid = 'AC05bff866418daf2f594de475cdd43ee8';
+        $auth_token = '87e10d3329e3e895db98826290377bf5';
 
         $username=$this->getUser()->getUsername();
 
@@ -53,12 +54,21 @@ class ClientJoueurController extends AbstractController
         $joueur = new Joueur();
         $form = $this->createForm(JoueurType::class, $joueur);
         $form->handleRequest($request);
-
+        $twilio_number = '+18623977436';
+        $client = new Client($account_sid, $auth_token);
         if ($form->isSubmitted() && $form->isValid()) {
+
             $joueur->setIdUser($user);
             $entityManager->persist($joueur);
             $entityManager->flush();
-
+            $client->messages->create(
+            // Where to send a text message (your cell phone?)
+                '+216'.$joueur->getTel(),
+                array(
+                    'from' => $twilio_number,
+                    'body' => 'Welcome '.$joueur->getNomJoueur().' Enjoy your games with  '.$joueur->getIdEquipe()->getNomEquipe()
+                )
+            );
             return $this->redirectToRoute('app_client_equipe', [], Response::HTTP_SEE_OTHER);
         }
 

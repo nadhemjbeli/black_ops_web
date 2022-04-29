@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\Equipe;
 use App\Form\EquipeType;
 use Doctrine\ORM\EntityManagerInterface;
+use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 
 /**
  * @Route("/admin/equipe")
@@ -19,16 +21,22 @@ class AdminEquipeController extends AbstractController
     /**
      * @Route("/", name="app_admin_equipe_index", methods={"GET"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
-    {
-        $equipes = $entityManager
-            ->getRepository(Equipe::class)
-            ->findAll();
-
-        return $this->render('admin_equipe/index.html.twig', [
-            'equipes' => $equipes,
-        ]);
-    }
+    public function index(EntityManagerInterface $entityManager,CacheInterface $cache): Response
+        {
+                $equipes = $entityManager
+                    ->getRepository(Equipe::class)
+                    ->findAll();
+                $serializer = SerializerBuilder::create()->build();
+                $jsonContent =$serializer->serialize($equipes, 'json');
+        
+                $username = $this->getUser()->getUsername();
+                $text = $cache->get($username,function ()  {
+                         return 'hello';
+                     });
+                return $this->render('admin_equipe/index.html.twig', [
+                    'equipes' => $equipes,
+                ]);
+        }
 
     /**
      * @Route("/new", name="app_admin_equipe_new", methods={"GET", "POST"})
@@ -53,7 +61,10 @@ class AdminEquipeController extends AbstractController
             $equipe ->setLogoEquipe($fileName);
             $entityManager->persist($equipe);
             $entityManager->flush();
-
+            $serializer = SerializerBuilder::create()->build();
+            $jsonContent = $serializer->serialize($equipe, 'json');
+            //JMSSerializerBundle
+            //dd($jsonContent);
             return $this->redirectToRoute('app_admin_equipe_index', [], Response::HTTP_SEE_OTHER);
         }
 
