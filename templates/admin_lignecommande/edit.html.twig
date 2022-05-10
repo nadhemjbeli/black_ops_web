@@ -1,0 +1,13 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}Edit Lignecommande{% endblock %}
+
+{% block content %}
+    <h1>Edit Lignecommande</h1>
+
+    {{ include('admin_lignecommande/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_admin_lignecommande_index') }}">back to list</a>
+
+    {{ include('admin_lignecommande/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        var c = confirm('do you want to inform the users?');
+        if(c) {
+            $('#form_confirmed').val(true);
+            $('form')[0].submit();
+
+        }
+    });
+</script>
+{% endblock %}

@@ -28,6 +28,7 @@ class ClientDefiController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager, DefiRepository $rep): Response
     {
+
         $defis = $entityManager
             ->getRepository(Defi::class)
             ->findAll();
@@ -180,8 +181,8 @@ class ClientDefiController extends AbstractController
            if (intval($totalRev)!=0) {
                $moy = intval($rev) / intval($totalRev);
                return new Response(intval($moy));
-               
-               
+
+
            }else{
                $moy = 0 ;
                return new Response(0);

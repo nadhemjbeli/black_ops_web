@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ReplayStream
@@ -25,6 +26,10 @@ class ReplayStream
      * @var string
      *
      * @ORM\Column(name="nom_Replay", type="string", length=150, nullable=false)
+     * @Assert\Type("string")
+     * @Assert\NotBlank
+     * @Assert\Length(min=4,max=150, minMessage = "le nom doit être au moins {{ min }} characters long",
+     *      maxMessage = "la nom ne pêut pas depasser {{ max }} characters")
      */
     private $nomReplay;
 
@@ -32,6 +37,8 @@ class ReplayStream
      * @var string
      *
      * @ORM\Column(name="URL_video", type="string", length=255, nullable=false)
+     * @Assert\Type("string")
+     * @Assert\Length(max=255,  maxMessage = "la nom ne pêut pas depasser {{ max }} characters")
      */
     private $urlVideo;
 
@@ -42,10 +49,17 @@ class ReplayStream
      */
     private $date = 'CURRENT_TIMESTAMP';
 
+    function __construct() {
+        $this->date = new \DateTime();
+    }
     /**
      * @var string
      *
      * @ORM\Column(name="Description_Replay", type="string", length=300, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
+     * @Assert\Length(min=10,max=300, minMessage = "le champs doit être au moins {{ min }} characters long",
+     *      maxMessage = "le champs ne pêut pas depasser {{ max }} characters")
      */
     private $descriptionReplay;
 
@@ -57,9 +71,13 @@ class ReplayStream
     private $vuesReplay = '0';
 
     /**
-     * @var int
+     * @var \SousCategorie
      *
-     * @ORM\Column(name="id_souscat", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="SousCategorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_souscat", referencedColumnName="id_SousCat")
+     * })
+     * @Assert\NotNull
      */
     private $idSouscat;
 
@@ -128,12 +146,12 @@ class ReplayStream
         return $this;
     }
 
-    public function getIdSouscat(): ?int
+    public function getIdSouscat(): ?SousCategorie
     {
         return $this->idSouscat;
     }
 
-    public function setIdSouscat(int $idSouscat): self
+    public function setIdSouscat(?SousCategorie $idSouscat): self
     {
         $this->idSouscat = $idSouscat;
 

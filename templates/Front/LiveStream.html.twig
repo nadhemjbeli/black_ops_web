@@ -1,0 +1,126 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Live Stream{% endblock %}
+
+{% block body %}
+<style>
+    .imageloader{
+
+        display: none;
+    }
+</style>
+
+    <div class="container">
+
+        <h2 class="text-center mt-5"> Live Stream</h2>
+
+
+
+        <div class="row mt-5">
+
+            {% set countLive = 0 %}
+            {% for livecount in lives %}
+            {% for deficount in defis %}
+                {% if (deficount == livecount.idDefi) and (livecount.visibiliteLivestream =="En cours") %}
+                {% set countLive = countLive + 1 %}
+                {% endif %}
+            {% endfor %}
+            {% endfor %}
+            <h5 class="mt-3"> Nombre De Live : {{  countLive  }}</h5>
+            {% for live in lives %}
+            {% for defi in defis %}
+{% if (defi == live.idDefi) and (live.visibiliteLivestream =="En cours") %}
+
+                    <div  class="col-lg-4 col-md-6 col-10  mt-5 ">
+                     {#       <input hidden  type="datetime" id="datedefi" class="datedefi"  value="{{ defi.dateDefi|date('Y-m-dTH:i')}}"/>
+
+                     {% if defi.dateDefi <= date() %}
+                            <h6 style=" font-weight: bold" class="text-danger text-center" style=" font-weight: bold">Live</h6>
+{% else %}
+    <h6 class="text-center Compte" id="Compte"></h6>
+                        {% endif %}#}
+                        <h6 style=" font-weight: bold" class="text-danger text-center" style=" font-weight: bold">Live</h6>
+
+                        <a  href="{{ path('app_front_live_stream_voir', {ID : live.idLivestream}) }}" ><img id="live" src="{{ asset ('uploads/defi/' ~ defi.imgDefi ) }}" class="img-fluid" /></a>
+                        <h6 class="text-center mt-3 mb-4"> {{ live.nomLivestream }}</h6>
+                        <p> {{ defi.descriptionDefi }}</p>
+                    </div>
+
+{% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="row mt-5">
+            {% set countAff = 0 %}
+            {% for livecount2 in lives %}
+                {% for deficount2 in defis %}
+                    {% if (deficount2 == livecount2.idDefi) and (livecount2.visibiliteLivestream =="Afficher") %}
+                        {% set countAff = countAff + 1 %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            <h5 class="mt-3"> Nombre De Live Dans quelques instants : {{  countAff  }}</h5>
+            {% for liveAff in lives %}
+            {% for defiAff in defis %}
+{% if (defiAff == liveAff.idDefi) and (liveAff.visibiliteLivestream =="Afficher")   %}
+
+
+    <div  class="col-lg-4 col-md-6 col-10 mt-5 ">
+        <input hidden  type="datetime" id="datedefi" class="datedefi"  value="{{ defiAff.dateDefi|date('Y-m-dTH:i')}}"/>
+    {% if defiAff.dateDefi > date() %}
+        <h6 class="text-center Compte" style="color: #09a195; font-weight: bold" id="Compte"></h6>
+        {% else %}
+        <h6 class="text-center"style="color: #09a195; font-weight: bold">Dans quelques instants</h6>
+    {% endif %}
+        <img src="{{ asset ('uploads/defi/' ~ defiAff.imgDefi ) }}" class="img-fluid" />
+        <h6 style=" font-weight: bold" class="text-center mt-3 mb-4"> {{ liveAff.nomLivestream }}</h6>
+        <p> {{ defiAff.descriptionDefi }}</p>
+    </div>
+{% endif %}
+            {% endfor %}
+            {% endfor %}
+                </div>
+
+
+
+
+
+
+    </div>
+
+
+
+    <script type="text/javascript">
+        var Affiche=document.getElementsByClassName("Compte");
+        var dateinput = document.getElementsByClassName("datedefi");
+
+
+        function Rebour() {
+
+                var date1 = new Date();
+            var tRebour;
+            for (var i = 0; i < Affiche.length; i++) {
+                for (var k = 0; k < dateinput.length; k++) {
+                    var date2 = new Date(dateinput[k].value);
+
+                    var sec = (date2 - date1) / 1000;
+                    var n = 24 * 3600;
+
+                    if (sec > 0) {
+                        j = Math.floor(sec / n);
+                        h = Math.floor((sec - (j * n)) / 3600);
+                        mn = Math.floor((sec - ((j * n + h * 3600))) / 60);
+                        sec = Math.floor(sec - ((j * n + h * 3600 + mn * 60)));
+
+                        Affiche[i, k].innerHTML = "Le Live sera disponible: " + j + " j " + h + " h " + mn + " min " + sec + " s";
+                        window.status = "Temps restant : " + j + " j " + h + " h " + mn + " min " + sec + " s ";
+                    }
+
+                }
+            }
+            tRebour = setTimeout("Rebour();", 1000);
+
+        }
+        Rebour();
+    </script>
+{% endblock %}

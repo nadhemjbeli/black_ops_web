@@ -1,0 +1,37 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}Jeu{% endblock %}
+
+{% block content %}
+
+    <h1>Jeu</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdJeu</th>
+                <td>{{ jeu.idJeu }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ jeu.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ jeu.description }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ jeu.url }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_jeu_index') }}"class="btn btn-outline-info">back to list</a>
+
+    <a href="{{ path('app_admin_jeu_edit', {'idJeu': jeu.idJeu}) }}" class="btn btn-outline-dark">edit</a>
+
+    {{ include('admin_jeu/_delete_form.html.twig') }}
+
+
+{% endblock %}

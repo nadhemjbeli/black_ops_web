@@ -1,0 +1,26 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Information Streaming!{% endblock %}
+
+{% block body %}
+    <style>
+        Label{
+            margin: 5px;
+        }
+
+        textarea {
+            height: 150px;
+
+        }
+
+    </style>
+    <div class="container">
+
+        <h3 class="text-center mt-5" style="font-family: 'Gordita Black'">Ajouter Information Stream</h3>
+        <a href="javascript:history.back()" class="text-decoration-none "  onclick="return confirm('êtes vous sur de vouloir retourner  ?')" style="font-family:Orkney; color: black" ><i style="color: #09a195" class="fa-solid fa-arrow-left mx-1 mt-3"></i>Retour</a>
+
+        {{ include('Back/_Form.twig.html',{button: 'Ajouter'}) }}
+
+    </div>
+
+{% endblock %}

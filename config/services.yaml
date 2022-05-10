@@ -8,6 +8,11 @@ parameters:
     equipe_directory: '%kernel.project_dir%/public/uploads/equipe'
     match_directory: '%kernel.project_dir%/public/uploads/match'
     video_uploade_directory: '%kernel.project_dir%/public/uploads/video_uploads'
+    images_directory: '%kernel.project_dir%/public/uploads/jeux'
+    images_directory2: '%kernel.project_dir%/public/uploads/champions'
+    images_directory3: '%kernel.project_dir%/public/uploads/skins'
+    app.locales: [ en, fr, es ]
+    locale: en
 services:
     # default configuration for services in *this* file
     _defaults:

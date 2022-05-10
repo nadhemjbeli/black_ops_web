@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+    <link rel ="stylesheet" href="Css/StyleFront.css"/>
+<style>
+
+
+    #modalReclam {
+        position: absolute;
+        top:190px;
+        right: 10px;
+
+
+        background-color: #09a195;
+        border-color: #09a195;
+    }
+    #btnmodal{
+
+        background-color: #09a195;
+        border-color: #09a195;
+        color: white;
+    }
+
+
+    label{
+        color: black;
+        font-weight: bold;
+    }
+    #textreclam{
+        display:none;
+        position: absolute;
+        top:145px;
+        right: 55px;
+
+        z-index: 99999999999999999999;
+    }
+
+    #reclamation:hover .showreclam{
+
+        display: block;
+        transition: all ease 0.3s;
+    }
+
+</style>
+    {% block stylesheets %}
+        {#{{ encore_entry_link_tags('app') }}#}
+    {% endblock %}
+
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</head>
+
+<body>
+<div id="haut"></div>
+<nav class="navbar navbar-expand-lg navbar-light "  onmouseleave="mouseOut()">
+
+    <div class="container" >
+        <a class="navbar-brand" href="/"><img id="logo" width="150px" src=" {{ asset  ('MediaStream/Logo.png') }}"/></a>
+        <a class="navbar-brand" href="/"><img id="logowhite"  width="150px" src=" {{ asset  ('MediaStream/Logo_Blanc.png') }}"/></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Acceuil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientjeu">Jeux Video</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown {% if current_menu is defined and current_menu == "details" %} active {% endif %}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Stream
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/information_stream">Information</a></li>
+                        <li><a class="dropdown-item" href="/replay_streaming">Replay</a></li>
+                        <li><a class="dropdown-item" href="/live_streaming">Live</a></li>
+
+                        <!--<li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                    </ul>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Compétition
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/client/defi">Tournaments</a></li>
+                        <li><a class="dropdown-item" href="/client/match">Match</a></li>
+                        <li><a class="dropdown-item" href="/client/equipe">Teams</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Communauté
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/client/message/">Chat</a></li>
+                        <li><a class="dropdown-item" href="/client/video_uploade">Videos</a></li>
+
+                    </ul>
+                </li>
+                {% if app.user.username is defined %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/client/reclamation/">Réclamation</a>
+                </li>
+                {% endif %}
+            </ul>
+            <form class="d-flex" METHOD="GET" action="/recherche" >
+                <input style="display:none"  name="recherche" id="Rech" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" required>
+                <button style="display:none" id="BtnRech" class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <a  href=""  id="iconrech" onmouseover="mouseOver()" class="nav-link fa fa-search"></a>
+            <a id="navpanier" href="panier.php" class="nav-link fa fa-shopping-cart" src="nb.png"><button id="darkk" class="btn btn-dark btn-circle"
+        >0</button></a>
+            <li class="nav-item dropdown links list-unstyled">
+                <a class="nav-link fa fa fa-user dropdown" id="userr" href="#" data-bs-toggle="dropdown"
+                   id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                </a>
+
+                <div class="dropdown-menu mt-2" id="menuuser" aria-labelledby="navbarDropdown" style="right: 0;left: auto">
+
+                    <a class="dropdown-item " id="inscripition"  href="/user/register">Inscription</a>
+                    <a class="dropdown-item " id="connexion"  href="/user/login">Connexion</a>
+                <!--    <span class="ml-4"><strong>Salut </strong><?= $rowclient[0] ?>	</span>
+                    <a  id="modifier" class="dropdown-item mt-2 text-dark" href="modifier.php">Modifier </a>
+                    <a  id="fav" class="dropdown-item mt-2 text-dark" href="favoris.php">Favoris </a>
+
+                    <a  id="Mesg" class="dropdown-item mt-2 text-dark" href="messagerie.php">Messagerie </a>
+                    <a  id="Commande" class="dropdown-item mt-2 text-dark" href="commande_client.php">Commande</a>
+                    <div class="dropdown-divider"></div>
+                    -->
+                        {% if app.user.username is defined %}
+                    <a  id="logout" class="dropdown-item text-dark" href="{{ path('app_logout') }}">Deconnexion</a>
+{% endif %}
+                </div>
+            </li>
+        </div>
+    </div>
+</nav>
+
+<section id="reclamation">
+    <button id="modalReclam" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="fas fa-receipt text-dark"></i>
+    </button> <p id="textreclam" class="showreclam">Réclamation</p>
+</section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;color: #09a195">Réclamation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ path('app_client_reclamation_new') }}">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="titre" class="form-label">Titre</label>
+                        <input type="text" class="form-control" name="Titre_Reclam" placeholder="Titre Réclamation" style="border-color:lightslategray; border-radius: 5px" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" name="Desc_Reclam" maxlength="7000" placeholder="Description Réclamation" style="border-color:lightslategray; border-radius: 5px" rows="3" required></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="btnmodal" class="btn btn-success">Envoyer</button>
+                </div>
+            </form>>
+        </div>
+    </div>
+</div>
+<button id="dark" class="btn btn-success " type="button" style="border-radius:7px;display:none;z-index:1;position:fixed;top:140px;right:7px;"
+        onclick="themeToggle()">
+    <i class="fas fa-moon text-dark"></i></button>
+
+<button id="moon" class="btn btn-success " type="button" style="border-radius:7px;display:none;z-index:1;position:fixed;top:140px;right:7px;"
+        onclick="themeToggle()">
+    <i class="far fa-moon text-white"></i></button>
+<a id="toppage" href="#haut" class="btn btn-success"><i id="topicon" class="fas fa-angle-up"></i></a>
+<div id="imageloader" class="text-center imageloader" >
+   <img src="{{ asset ('MediaStream/GAMING.jpg') }}" />
+</div>
+{% block body %}{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+<script src="Js/JsFront.js" type="text/javascript"></script>
+<script src="Js/Chat.js"></script>
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+</body>
+
+<script>
+    setTimeout(function() {
+        $('.imageloader').hide()
+    }, 3000);
+
+    $("#dark").show();
+
+    (function() {
+        let onpageLoad = localStorage.getItem("theme") || "light";
+        let element = document.body;
+
+        element.classList.add(onpageLoad);
+        document.getElementById("theme").textContent =
+            localStorage.getItem("theme") || "light";
+
+    })();
+
+    function themeToggle() {
+        let element = document.body;
+        element.classList.toggle("dark-mode");
+        let theme = localStorage.getItem("theme");
+        if (theme && theme === "dark-mode") {
+            $("#moon").hide();
+            $("#dark").show();
+
+
+            localStorage.setItem("theme", "");
+
+        } else {
+            localStorage.setItem("theme", "dark-mode");
+            $("#moon").show();
+            $("#dark").hide();
+
+        }
+
+        document.getElementById("theme").textContent = localStorage.getItem("theme");
+    }
+
+
+
+
+</script>
+<footer class="mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col mt-5">
+                <h3> A Propos</h3>
+                <P>Black Ops un  espace gaming cross plateforme qui regroupe les jeux vidéos , le stream , organise des tournois des jeux en ligne et la vente des billets pour créer une communauté forte entre les joueurs e-sport et regrouper tous les besoins des gamers</P>
+            </div>
+            <div class="col text-center mt-5">
+                <h6>Jeu Video</h6>
+                <h6>Info Stream</h6>
+                <h6>Competition</h6>
+
+
+            </div>
+            <div class="col text-center mt-5">
+                <h6>Compte</h6>
+                <h6>Commande</h6>
+                <h6>Mention</h6>
+
+            </div>
+
+
+        </div>
+        {% for message in app.flashes('successNewsletter') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong> {{ message }} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('erreurNewsletter') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong> {{ message }} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        <div class="row mt-4">
+            <div class="col-lg-6 col-md-8 col-12 text-left mt-2">
+                <a href="https://twitter.com/BlackOps" style="color: #09a195"class="fab fa-twitter mx-2 mt-2 "></a>
+
+                <a href="https://instagram.com/BlackOps" style="color: #09a195" class="fab fa-instagram mx-2 mt-2 "></a>
+                <a href="https://facebook.com/BlackOps" style="color: #09a195" class="fab fa-facebook-f mx-2 mt-2 "></a>
+                <a href="#" style="color: #09a195" class="fab fa-google-plus-g   mx-2 mt-2 "></a>
+
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-12 text-left mt-2">
+
+                <form method="POST" name="myForm" action="{{ path ('app_front_newsletter') }}">
+                    <span  style="font-size:19px;font-family:orkney; font-weight:normal">Newlestter </span>
+                    <input id="newlestter" style="border: hidden; border: 0;  outline: none;border-radius:4px;width:250px;height: 45px;
+border-bottom: 1px solid silver;"
+                           class="mx-1" type="email" placeholder="Adresse E-mail" size="" name="email" rows="5" required />
+
+                    <button type="submit" style="font-family:'orkney'" onclick="return isEmpty()" class="btn btn-success mt-1">S'Abonner</button>
+                </form>
+
+
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-lg-6">
+                <p>Tout le contenu, les titres de jeux, les noms commerciaux et/ou les marques de fabrique, les marques de commerce, les illustrations et les images associées sont des marques de commerce et/ou des œuvres protégées des propriétaires respectifs.</p>
+            </div>
+            <div class="col-lg-3 text-center">
+                <img src="{{ asset("MediaStream/secure.png") }}" width="150px" class="img-fluid"/>
+            </div>
+            <div class="col-lg-3 text-center">
+                <img src="{{ asset("MediaStream/payment-modes.png") }}" width="350px" class="img-fluid"/>
+            </div>
+        </div>
+        <div class="row text-center mt-3">
+
+            <h6>Copyright 2021-2022</h6>
+        </div>
+
+    </div>
+
+</footer>
+</html>

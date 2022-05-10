@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -64,6 +66,16 @@ class User implements UserInterface
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
+//    /**
+//     * @ORM\OneToMany(targetEntity=LikeMessage::class, mappedBy="idCl")
+//     */
+//    private $likeMessages;
+
+//    public function __construct()
+//    {
+//        $this->likeMessages = new ArrayCollection();
+//    }
 
     public function getIdUser(): ?int
     {
@@ -173,4 +185,14 @@ class User implements UserInterface
     public function __toString():string {
         return $this->getUsername();
     }
+
+//    /**
+//     * @return Collection<int, LikeMessage>
+//     */
+//    public function getLikeMessages(): Collection
+//    {
+//        return $this->likeMessages;
+//    }
+
+
 }

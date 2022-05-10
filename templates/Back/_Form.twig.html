@@ -1,0 +1,33 @@
+{{ form_start(form) }}
+{{form_errors(form)}}
+
+<div class="row mt-5">
+
+    <div class="col-lg-5 col-md-5 col-10">     {{ form_row(form.nomStream)  }}</div>
+    <div class="col-lg-2 col-md-2 col-2">    </div>
+    <div class="col-lg-5 col-md-5">     {{ form_row(form.image_Stream ,{ 'attr' : {'accept' : 'image/jpeg,image/png'} }) }} {% if si.imageStream != '' %} <img width="100px" src="{{ asset ("MediaStream/#{si.imageStream}") }}" /> {% endif %} </div>
+
+
+
+</div>
+<div class="row mt-5">
+
+    <div class="col-5">     {{ form_row(form.descriptionStream) }}</div>
+    <div class="col-2">    </div>
+    <div class="col-5"> {{ form_label(form.idSouscat)=="Sous Categorie" }}
+        {{ form_row(form.idSouscat) }} </div>
+
+
+
+</div>
+{{ form_rest(form) }}
+{{ form_row(form.captchaCode) }}
+<div class="row mt-5">
+    <div class="col text-end">
+        <a href="javascript:history.back()" onclick="return confirm('êtes vous sur de vouloir Annuler  ?')" class="btn btn-secondary" >Annuler </a>
+        <button class="btn btn-success">{{ button|default ('Enregister') }}</button>
+
+    </div>
+
+</div>
+{{ form_end(form) }}

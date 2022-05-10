@@ -1,0 +1,23 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+{{ app.request.server.get("SERVER_NAME") }}
+    {% set products = [ ] %}
+    <table>
+        {%for product in products %}
+            <tr>
+                <td>{{product.title|upper}}</td>
+            </tr>
+        {%endfor%}
+    </table>
+</div>
+{% endblock %}

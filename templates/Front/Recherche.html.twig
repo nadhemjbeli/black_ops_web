@@ -1,0 +1,61 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Recherche Streaming {% endblock %}
+
+{% block body %}
+
+<style>
+
+    .imageloader{
+
+        display: none;
+    }
+</style>
+    <div class="container">
+        <h2 class="text-center mt-5"> Recherche</h2>
+        {% set count = 0 %}
+        {% for nc in replays %}
+            {% set count = count + 1 %}
+        {% endfor %}
+        <h5> Votre Résultat pour : {{ rech }}</h5>
+        <h6 class="mt-4"> Nombre de Resultat Replay Stream : {{ count }}</h6>
+
+        <div class="row mt-5">
+
+            {% if replays != null %}
+            {% for replay in replays %}
+                <div class="col-lg-4 col-md-6   mt-4" id="replay">
+
+                    <h6 class="text-center"> {{  replay.nomReplay }}</h6>
+
+
+                    <a href="{{path ('app_front_replay_stream_voir', {id: replay.IdReplay}) }}"> <video id="VideoReplay" autoplay muted="muted" src="{{ asset ("MediaStream/#{replay.urlVideo}") }}" class="mt-2"></video></a>
+                    <p> {{ replay.vuesReplay  }} Vues <i class="fa-solid fa-eye"></i> </p>
+                    <p class="text-center"> {{ replay.descriptionReplay }}</p>
+                </div>
+
+            {% endfor %}
+            {% endif %}
+        </div>
+        {% set count2 = 0 %}
+        {% for nc in infos %}
+            {% set count2 = count2 + 1 %}
+        {% endfor %}
+        <h6 class="mt-4"> Nombre de Resultat Info Stream: {{ count2 }}</h6>
+            <div class="row mt-5">
+
+            {% if infos != null %}
+            {% for info in infos  %}
+                <div class="col-lg-4 col-md-6  text-center mt-4" id="replay">
+
+                    <h6 class="text-center"> {{ info.nomStream }}</h6>
+                    <img src="{{ asset ("MediaStream/#{info.imageStream}") }}" class="img-fluid" width="238px"/>
+                    <p class="mt-5">{{ info.descriptionStream }}</p>
+                </div>
+
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

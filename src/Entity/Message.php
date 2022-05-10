@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -62,6 +64,16 @@ class Message
      */
     private $idSouscat;
 
+//    /**
+//     * @ORM\OneToMany(targetEntity=LikeMessage::class, mappedBy="idMessage")
+//     */
+//    private $likeMessages;
+
+//    public function __construct()
+//    {
+//        $this->likeMessages = new ArrayCollection();
+//    }
+
     public function getIdMessage(): ?int
     {
         return $this->idMessage;
@@ -75,7 +87,7 @@ class Message
     public function setDateMessage(): self
     {
         $current = new \DateTime();
-        $current->modify('- 1 Hour');
+        $current->modify('+ 1 Hour');
         $this->dateMessage = $current;
 
         return $this;
@@ -116,6 +128,36 @@ class Message
 
         return $this;
     }
+
+//    /**
+//     * @return Collection<int, LikeMessage>
+//     */
+//    public function getLikeMessages(): Collection
+//    {
+//        return $this->likeMessages;
+//    }
+
+//    public function addLikeMessage(LikeMessage $likeMessage): self
+//    {
+//        if (!$this->likeMessages->contains($likeMessage)) {
+//            $this->likeMessages[] = $likeMessage;
+//            $likeMessage->setIdMessage($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeLikeMessage(LikeMessage $likeMessage): self
+//    {
+//        if ($this->likeMessages->removeElement($likeMessage)) {
+//            // set the owning side to null (unless already changed)
+//            if ($likeMessage->getIdMessage() === $this) {
+//                $likeMessage->setIdMessage(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
 
 }

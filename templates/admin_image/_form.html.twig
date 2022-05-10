@@ -1,0 +1,15 @@
+{{ form_start(form , {
+    attr:{
+        'novalidate':'novalidate'
+    }
+}) }}
+
+    {{ form_row(form.urlImage ,{
+        attr:{
+            'maxlength':'255'
+        }
+    }) }}
+    {{ form_row(form.idJeu) }}
+
+    <button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

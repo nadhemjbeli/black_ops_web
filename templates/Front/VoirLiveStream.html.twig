@@ -1,0 +1,56 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Live Streaming {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <a  id="retour" href="{{ path ('app_front_live_stream') }}" class="text-decoration-none "  onclick="return confirm('êtes vous sur de vouloir retourner  ?')" style="font-family:Orkney" ><i style="color: #09a195" class="fa-solid fa-arrow-left mx-1 mt-3"></i>Retour</a>
+
+
+        <div class="row mt-5">
+
+
+            <div class="col-lg-8 col-md-8 col-sm-12  mt-4" id="replay">
+                <h6 class="text-center">{{ live.nomLivestream }}</h6>
+                <iframe src="https://www.youtube.com/embed/{{ live.pathLivestream }}?autoplay=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+<div class="col-lg-4 col-md-4 col-sm-12 ">
+<h6 class="mt-4 text-center" style="font-weight: bold">Commentaire Chat</h6>
+    <div  class="wrapper">
+ <div class="form">
+
+            <div class="bot-inbox inbox">
+
+                <div class="msg-header"style="font-family:Orkney">
+                    <p id="ecrire_comm" class="text-capitalize text-muted">écrivez un commentaire ...</p>
+                </div>
+            </div>
+        </div>
+<div id="erreur" style="display: none">
+    <p class="text-danger"><strong>Erreur :</strong> Il faut pas dire de gros mots</p>
+</div>
+        <div class="typing-field">
+            <div class="mt-3 input-data">
+                <input hidden id="idlivestream" value="{{id}}"/>
+                <input  id="data" type="text" placeholder="Ex : gg, good play , nope..." required>
+                <button id="send-btn" class="btn btn-success">Envoyer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+
+        <div  style="display: none" id="badwords"class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong> il faut pas dire de gros mots </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+
+    </div>
+
+
+
+
+{% endblock %}

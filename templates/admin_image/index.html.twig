@@ -1,0 +1,49 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}Image index{% endblock %}
+{% block top %}
+    {% include 'skeleton/admin_search.html.twig' %}
+{% endblock %}
+{% block content %}
+    <h1>Image index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdImage</th>
+                <th>UrlImage</th>
+                <th>idJeu</th>
+                <th>actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr>
+                <td>{{ image.idImage }}</td>
+                <td><img class="show-img" src="{{ asset(image.imagePath) }}" alt="" width="300" height="200">
+                    <style>
+                        show-img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    </style>
+                </td>
+                <td>   {{ image.idJeu }}</td>
+                <td>
+                     <a href="{{ path('app_admin_image_show', {'idImage': image.idImage}) }}"class="btn btn-outline-info">show</a>
+                    <a href="{{ path('app_admin_image_edit', {'idImage': image.idImage}) }}" class="btn btn-outline-dark">edit</a>
+
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_image_new') }}"class="btn btn-outline-success">Create new</a>
+{% endblock %}

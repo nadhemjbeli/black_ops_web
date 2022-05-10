@@ -1,0 +1,37 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title %}Lignecommande index{% endblock %}
+
+{% block content %}
+    <h1>Lignecommande index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdLignecommande</th>
+                <th>QuantiteBillet</th>
+                <th>PrixBillet</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lignecommande in lignecommandes %}
+            <tr>
+                <td>{{ lignecommande.idLignecommande }}</td>
+                <td>{{ lignecommande.quantiteBillet }}</td>
+                <td>{{ lignecommande.prixBillet }}</td>
+                <td>
+                    <a href="{{ path('app_admin_lignecommande_show', {'idLignecommande': lignecommande.idLignecommande}) }}">show</a>
+                    <a href="{{ path('app_admin_lignecommande_edit', {'idLignecommande': lignecommande.idLignecommande}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_lignecommande_new') }}">Create new</a>
+{% endblock %}

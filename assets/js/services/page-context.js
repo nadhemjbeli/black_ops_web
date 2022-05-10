@@ -6,3 +6,7 @@
 export function getCurrentUser() {
     return window.user;
 }
+
+export function checkiconClicked() {
+    return 'fa fa-heart';
+}

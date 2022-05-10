@@ -1,0 +1,40 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Replay Streaming {% endblock %}
+
+{% block body %}
+
+<style>
+    .imageloader{
+
+        display: none;
+    }
+
+</style>
+<div class="Container">
+    <h2 class="text-center mt-5"> Replay Stream</h2>
+
+    <div class="row mt-5">
+
+        {% for replay in replays %}
+            <div class="col-lg-1 col-md-1 col-sm-1 col-1">
+
+            </div>
+        <div class="col-lg-4 col-md-10 col-sm-10 col-10  mt-4" id="replay">
+
+            <h6 class="text-center"> {{  replay.nomReplay }}</h6>
+
+
+           <a href="{{path ('app_front_replay_stream_voir', {id: replay.IdReplay}) }}"> <video id="VideoReplay" autoplay muted="muted" src="{{ asset ("MediaStream/#{replay.urlVideo}") }}" class="mt-2"></video></a>
+            <p class="mt-2"> {{ replay.vuesReplay  }} Vues <i class="fa-solid fa-eye"></i>              <span style="margin-left: 170px"><strong>Date Publication</strong> : {{  replay.date.format('d/m/Y') }}</span>
+            </p>
+            <p class="text-center"> {{ replay.descriptionReplay }}</p>
+        </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-1">
+
+            </div>
+{% endfor %}
+    </div>
+
+</div>
+{% endblock %}

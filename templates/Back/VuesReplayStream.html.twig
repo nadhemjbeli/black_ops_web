@@ -1,0 +1,53 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Replay Streaming!{% endblock %}
+
+{% block body %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<div class="container">
+    <h3 style="font-family: 'Gordita Black'" class="text-center mt-5">Replay Statistique</h3>
+    <a href="javascript:history.back()" class="text-decoration-none" style="font-family:Orkney; color: black" ><i style="color: #09a195" class="fa-solid fa-arrow-left mx-1 mt-3"></i>Retour</a>
+
+    <div class="row mt-5">
+<div class="col-lg-8 offset-lg-2 col-md-10">
+   <canvas id="myChart" ></canvas>
+
+   {#  {{ render_chart(chart) }}#}
+</div>
+</div>
+</div>
+
+<script>
+
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+            labels: [{%  for vue in query %}'{{ vue.nomReplay }}', {% endfor %}],
+            datasets: [{
+                label: 'Vues Par Video',
+                data: [{%  for vue in query %}{{ vue.vuesReplay }},{% endfor %}],
+
+                backgroundColor: [
+                  'rgb(9,161,149)'
+                ],
+                borderColor: [
+                   'rgb(9,161,149)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+</script>
+
+{% endblock %}

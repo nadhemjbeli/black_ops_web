@@ -17,6 +17,7 @@ class JoueurType extends AbstractType
             ->add('pseaudoJoueur')
             ->add('idUser')
             ->add('idEquipe')
+            ->add('tel')
         ;
     }
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Skin
@@ -23,15 +25,18 @@ class Skin
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="image_skin", type="string", length=255, nullable=false)
      */
     private $imageSkin;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="Id_champ", type="integer", nullable=false)
+     * @var \Champion
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="Champion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Champ", referencedColumnName="Id_Champ")
+     * })
      */
     private $idChamp;
 
@@ -40,29 +45,32 @@ class Skin
         return $this->idSkin;
     }
 
-    public function getImageSkin(): ?string
+    public function getImageSkin()
     {
         return $this->imageSkin;
     }
 
-    public function setImageSkin(string $imageSkin): self
+    public function setImageSkin($imageSkin)
     {
         $this->imageSkin = $imageSkin;
 
         return $this;
     }
 
-    public function getIdChamp(): ?int
+    public function getIdChamp(): ?Champion
     {
         return $this->idChamp;
     }
 
-    public function setIdChamp(int $idChamp): self
+    public function setIdChamp(Champion $idChamp): self
     {
         $this->idChamp = $idChamp;
 
         return $this;
     }
-
+    public function getImagePath(): string
+    {
+        return 'uploads/skins/'.$this->getImageSkin();
+    }
 
 }

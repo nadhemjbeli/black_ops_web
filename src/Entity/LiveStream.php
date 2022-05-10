@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * LiveStream
@@ -25,6 +26,9 @@ class LiveStream
      * @var string
      *
      * @ORM\Column(name="Nom_LiveStream", type="string", length=100, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(min=5,max=100, minMessage = "le nom doit être au moins {{ min }} characters long",
+     *      maxMessage = "la nom ne pêut pas depasser {{ max }} characters")
      */
     private $nomLivestream;
 
@@ -32,6 +36,9 @@ class LiveStream
      * @var string
      *
      * @ORM\Column(name="Path_LiveStream", type="string", length=500, nullable=false)
+     * @Assert\Length(min=7,max=500, minMessage = "le nom doit être au moins {{ min }} characters long",
+     *      maxMessage = "la nom ne pêut pas depasser {{ max }} characters")
+     * @Assert\NotBlank
      */
     private $pathLivestream;
 
@@ -39,13 +46,19 @@ class LiveStream
      * @var string
      *
      * @ORM\Column(name="Visibilite_LiveStream", type="string", length=150, nullable=false)
+     * @Assert\NotBlank
      */
     private $visibiliteLivestream;
 
     /**
-     * @var int
+     * @var \Defi
      *
-     * @ORM\Column(name="id_defi", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Defi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_defi", referencedColumnName="id_Defi")
+     * })
+     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $idDefi;
 
@@ -90,12 +103,12 @@ class LiveStream
         return $this;
     }
 
-    public function getIdDefi(): ?int
+    public function getIdDefi(): ?Defi
     {
         return $this->idDefi;
     }
 
-    public function setIdDefi(int $idDefi): self
+    public function setIdDefi(?Defi $idDefi): self
     {
         $this->idDefi = $idDefi;
 

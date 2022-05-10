@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientReclamationController!{% endblock %}
+
+{% block content %}
+<div class="container">
+    <br>
+    <h3>
+        Mes Reclamations
+    </h3>
+    {% for rec in reclamations %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ rec.titre }}</h5>
+                {{ rec.description }}
+            </div>
+        </div>
+        <br>
+        {% else %}
+        <h2>pas de reclamations</h2>
+            <br>
+    {% endfor %}
+</div>
+{% endblock %}

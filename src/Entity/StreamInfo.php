@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Captcha\Bundle\CaptchaBundle\Validator\Constraints as CaptchaAssert;
 
 /**
  * StreamInfo
@@ -12,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class StreamInfo
 {
+
     /**
      * @var int
      *
@@ -25,12 +28,14 @@ class StreamInfo
      * @var string
      *
      * @ORM\Column(name="nom_Stream", type="string", length=75, nullable=false)
+     * @Assert\Length(min=5,max=75, minMessage = "le nom doit être au moins {{ min }} characters long",
+     *      maxMessage = "la nom ne pêut pas depasser {{ max }} characters")
+     * @Assert\NotBlank
      */
     private $nomStream;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="image_Stream", type="string", length=255, nullable=false)
      */
     private $imageStream;
@@ -38,16 +43,39 @@ class StreamInfo
     /**
      * @var string
      *
-     * @ORM\Column(name="description_Stream", type="text", length=0, nullable=false)
+     * @ORM\Column(name="description_Stream", type="text", length=7000, nullable=false)
+     * @Assert\Length(min=15,max=7000, minMessage = "le nom doit être au moins {{ limit }} characters long",
+     *      maxMessage = "la nom ne pêut pas depasser {{ max }} characters")
      */
     private $descriptionStream;
 
     /**
-     * @var int
+     * @var \SousCategorie
      *
-     * @ORM\Column(name="id_souscat", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="SousCategorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_souscat", referencedColumnName="id_SousCat")
+     * })
+     * @Assert\NotNull
      */
     private $idSouscat;
+
+    /**
+     * @CaptchaAssert\ValidCaptcha(
+     *      message = "CAPTCHA validation failed, try again."
+     * )
+     */
+    protected $captchaCode;
+
+    public function getCaptchaCode()
+    {
+        return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+        $this->captchaCode = $captchaCode;
+    }
 
     public function getIdStream(): ?int
     {
@@ -90,12 +118,12 @@ class StreamInfo
         return $this;
     }
 
-    public function getIdSouscat(): ?int
+    public function getIdSouscat(): ?SousCategorie
     {
         return $this->idSouscat;
     }
 
-    public function setIdSouscat(int $idSouscat): self
+    public function setIdSouscat(?SousCategorie $idSouscat): self
     {
         $this->idSouscat = $idSouscat;
 

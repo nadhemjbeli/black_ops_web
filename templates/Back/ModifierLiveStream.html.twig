@@ -1,0 +1,24 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Live Streaming!{% endblock %}
+
+{% block body %}
+    <style>
+        Label{
+            margin: 5px;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+    </style>
+    <div class="container">
+
+        <h3 style="font-family: 'Gordita Black'" class="text-center mt-5">Modifier Replay Stream</h3>
+        <a href="javascript:history.back()" class="text-decoration-none" style="font-family:Orkney; color: black" ><i style="color: #09a195" class="fa-solid fa-arrow-left mx-1 mt-3"></i>Retour</a>
+
+        {{ include('Back/__FormLive.twig.html',{button: 'Modifier'}) }}
+    </div>
+
+{% endblock %}

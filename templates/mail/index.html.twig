@@ -1,0 +1,13 @@
+{% extends 'Admin_base.html.twig' %}
+
+{% block title  %} Contact {% endblock %}
+{% block content %}
+{% for message in app.flashes('message') %}
+<div class="alert alert-success" role="alert"
+     {{ message }}
+</div>
+
+    {% endfor %}
+<h1> Mailing users</h1>
+{{ form(mailform) }}
+{% endblock %}

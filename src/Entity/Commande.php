@@ -26,7 +26,7 @@ class Commande
      *
      * @ORM\Column(name="date_commande", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $dateCommande = 'CURRENT_TIMESTAMP';
+    private $dateCommande;
 
     /**
      * @var string
@@ -55,8 +55,10 @@ class Commande
         return $this->dateCommande;
     }
 
-    public function setDateCommande(\DateTimeInterface $dateCommande): self
+    public function setDateCommande(): self
     {
+        $dateCommande = new \DateTime();
+        $dateCommande->modify('+ 1 Hour');
         $this->dateCommande = $dateCommande;
 
         return $this;
@@ -84,6 +86,11 @@ class Commande
         $this->idCl = $idCl;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->idCommande.' | '.$this->etatCommande;
     }
 
 

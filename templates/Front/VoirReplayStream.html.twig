@@ -1,0 +1,68 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Replay Streaming {% endblock %}
+
+{% block body %}
+
+        <div class="container">
+    <a id="retour" href="{{ path ('app_front_replay_stream') }}" class="text-decoration-none "  onclick="return confirm('êtes vous sur de vouloir retourner  ?')" style="font-family:Orkney" ><i style="color: #09a195" class="fa-solid fa-arrow-left mx-1 mt-3"></i>Retour</a>
+
+                <div class="row mt-5">
+
+
+                        <div class="col-lg-7   mt-4" id="replay">
+
+                            <h6 class="text-center"> {{  rs.nomReplay }}</h6>
+
+
+                        <video controls autoplay muted="muted" src="{{ asset ("MediaStream/#{rs.urlVideo}") }}" class="mt-2"></video>
+                            <p> {{ rs.vuesReplay  }} Vues <i class="fa-solid fa-eye"></i>                             <span style="margin-left: 420px" class="text-end"><strong>Date Publication</strong> : {{  rs.date.format('d/m/Y') }}</span>
+                            </p>
+                            <p class="text-center"> {{ rs.descriptionReplay }}</p>
+                        </div>
+
+                    <div class="col-lg-4 offset-lg-1 mt-4" id="replay">
+<h6 class="">Suggestions</h6>
+                        {% set i = 1 %}
+                        {% for sug in sugs %}
+
+<div class="row mt-3">
+    <div class="col"onmouseleave="mouseOutVid{{ i }}()">
+
+        <a href="{{path ('app_front_replay_stream_voir', {id: sug.IdReplay}) }}">  <video id="myvideo{{ i }}" poster="MediaStream\image{{ i }}.jpg" onmouseover="mouseOverVid{{ i }}()" muted="muted"  >
+                <source src="{{ asset ("MediaStream/#{sug.urlVideo}") }}" type="video/mp4">
+            </video></a>
+{% set i=i+1 %}
+
+
+    </div>
+<div class="col">
+    <h6 class="text-center"> {{  sug.nomReplay }}</h6>
+    <p class="text-center"> {{sug.descriptionReplay }}</p>
+</div>
+</div>
+                        {% endfor %}
+
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+    </div>
+<script>
+
+
+   /* video.addEventListener("canplay", function() {
+        setTimeout(function() {
+            video.pause();
+        }, 5000);
+    });*/
+
+</script>
+
+{% endblock %}

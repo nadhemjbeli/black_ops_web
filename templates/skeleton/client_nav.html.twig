@@ -27,7 +27,7 @@
     <div class="container-fluid">
         <div class="nk-nav-table">
 
-            <a href="{{ path('app_home') }}" class="nk-nav-logo">
+            <a href="/" class="nk-nav-logo">
                 <img src="{{ asset('img/Logo.png') }}" alt="GoodGames" width="199">
             </a>
             {% if app.user.username is defined %}
@@ -117,50 +117,36 @@
 {#                        </li>#}
                     </ul>
                 </li>
+                <li >
+                    <a href="/clientjeu">
+                       Jeux Video
+
+                    </a></li>
                 <li class=" nk-drop-item">
                     <a href="blog-list.html">
-                        Blog
+                     Stream
 
                     </a><ul class="dropdown" style="background-color: #e0e4e7;">
 
                         <li>
-                            <a href="news.html">
-                                News
-
-                            </a>
-                        </li>
-                        <li class=" nk-drop-item">
-                            <a href="blog-grid.html">
-                                Blog With Sidebar
-
-                            </a><ul class="dropdown" style="background-color: #e0e4e7;">
-
-                                <li>
-                                    <a href="blog-grid.html">
-                                        Blog Grid
-
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="blog-list.html">
-                                        Blog List
-
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="blog-fullwidth.html">
-                                Blog Fullwidth
+                            <a href="/information_stream">
+                              Info Stream
 
                             </a>
                         </li>
                         <li>
-                            <a href="blog-article.html">
-                                Blog Article
+                            <a href="/replay_streaming">
+                               Replay Stream
 
                             </a>
                         </li>
+                        <li>
+                            <a href="/live_streaming">
+                             Live Stream
+
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class=" nk-drop-item">
@@ -186,13 +172,13 @@
 
                             </a>
                         </li>
-                        <li>
-                            <a href="tournaments-teammate.html">
-                                Teammate
 
-                            </a>
-                        </li>
                     </ul>
+
+                </li>
+
+                <li class=" nk-drop-item">
+                    <a class="nav-link" href="/client/reclamation/">Réclamation</a>
                 </li>
 {#                <li class=" nk-drop-item">#}
 {#                    <a href="store.html">#}
@@ -314,7 +300,7 @@ Additional Classes:
 <div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
     <div class="nano">
         <div class="nano-content">
-            <a href="{{ path('app_home') }}" class="nk-nav-logo">
+            <a href="/" class="nk-nav-logo">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="" width="120">
             </a>
             <div class="nk-navbar-mobile-content">

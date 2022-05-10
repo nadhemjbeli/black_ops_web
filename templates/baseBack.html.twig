@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+
+        {% endblock %}
+
+        {% block javascripts %}
+        {# {{ encore_entry_script_tags('app') }}  #}
+
+        {% endblock %}
+    </head>
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #e0e0e0;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+        #logo {
+
+            position: absolute;
+            top: 0;
+            left: 0px;
+            margin-left: 30px;
+
+        }
+        .sidebar a:hover {
+            color: #09a195;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #09a195;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+        .btn{
+
+            background-color: #09a195;
+            color: white;
+        }
+
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+            .sidebar {padding-top: 15px;}
+            .sidebar a {font-size: 18px;}
+        }
+    </style>
+    <body>
+    <div id="mySidebar" class="sidebar">
+        <img id="logo" src=" {{ asset  ('MediaStream/Logo.png') }}" class="mt-3" width="140px" />
+        <a style="margin-top:150px" href="#">Dashboard</a>
+        <a href="/infostream">Stream</a>
+        <a href="{{ path("app_admin_categorie_index") }}">Catégorie</a>
+        <a href="{{ path("app_admin_jeu_index") }}">Jeux Vidéo</a>
+        <a href="{{ path("app_admin_defi_index") }}">Defi</a>
+
+
+        <a href="#">reclamation</a>
+
+
+
+    </div>
+
+    <div id="main">
+
+        <div class="row">
+            <div class="col-lg-8 col-md-5 col-5">
+                <button style="display:block" id="show" class="openbtn" onclick="openNav()">☰</button>
+                <button style="display:none"id="close" class="openbtn" onclick="closeNav()">☰</button>
+            </div>
+
+            <div class="col-lg-3 col-md-5 col-5 text-end">
+
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </form>
+
+
+            </div>
+            <div class="col-lg-1 col-md-2 col-2 text-end mt-1">
+                <li class="nav-item dropdown links list-unstyled">
+                    <a class="nav-link fa fa fa-user text-dark mx-4 dropdown" id="userr" href="#" data-bs-toggle="dropdown"
+                       id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    </a>
+
+                    <div id="toggle" class="dropdown-menu mt-2" aria-labelledby="navbarDropdown" style="right: 0;left: auto">
+                        {% if app.user.username is defined %}
+                        <a class="dropdown-item text-dark"   href="{{ path("app_logout") }}">LogOut</a>
+{% endif %}
+
+                    </div>
+                </li>
+
+            </div>
+
+        </div>
+
+        {% block body %}{% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+
+        <script type="text/javascript" src="Js/recherche.js"></script>
+
+    </body>
+    <script>
+        var open = document.getElementById("show");
+        var close = document.getElementById("close");
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            open.style.display = "none";
+            close.style.display = "block";
+
+
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+            open.style.display = "block";
+            close.style.display = "none";
+        }
+
+
+
+    </script>
+
+
+    <script>
+        $(function(){
+        $("a[title ~= 'BotDetect']").removeAttr("style");
+        $("a[title ~= 'BotDetect']").removeAttr("href");
+        $("a[title ~= 'BotDetect']").css('visibility', 'hidden');
+    });
+
+</script>
+</html>

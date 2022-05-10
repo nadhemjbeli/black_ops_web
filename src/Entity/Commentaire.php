@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vangrg\ProfanityBundle\Validator\Constraints as ProfanityAssert;
 
 /**
  * Commentaire
@@ -25,6 +26,7 @@ class Commentaire
      * @var string
      *
      * @ORM\Column(name="contenu_commentaire", type="string", length=250, nullable=false)
+     * @ProfanityAssert\ProfanityCheck
      */
     private $contenuCommentaire;
 
@@ -35,6 +37,10 @@ class Commentaire
      */
     private $dateCommentaire = 'CURRENT_TIMESTAMP';
 
+    function __construct(){
+        $this -> dateCommentaire = new \DateTime();
+
+    }
     /**
      * @var \LiveStream
      *

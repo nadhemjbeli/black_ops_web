@@ -1,0 +1,362 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Black Ops {% endblock %}
+
+{% block body %}
+
+   {#  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="fas fa-receipt"></i>
+    </button>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>#}
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/Css/3daccueil.css"/>
+
+    <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 mt-5">
+                    <h2 class="mt-5" style="font-family: 'Gordita Black';margin-top: 10px">Les jeux sont notre destin,</h2>
+                    <h2 style="font-family: 'Gordita Black'"class="mt-4"> Que les jeux commencent</h2>
+            <p class="text-justify mt-5"style="line-height:3rem">Commencer une compétition et ne pas vouloir la gagner, c'est être un compétiteur malhonnête.{#  En compétition, il y a toujours un premier et un dernier, mais l'important est de ne pas être le second de soi-même.”
+                “Un athlète ne peut arriver en compétition très motivé s'il n'a jamais été mis à l'épreuve.”#}</p>
+
+
+
+                    <a style="background-color: #09a195; color: white" class="btn btn-success mt-3" href="#">Participer</a>
+
+                </div>
+                <div class="col-lg-7 col-md-12 mt-4">
+
+            <img id="gaming" src="{{ asset('MediaStream/Header22.png')  }}" class="img-fluid" />
+                </div>
+
+            </div>
+
+
+        <div class="row mt-5 reveal">
+            <div class="row">
+                <div class="col-lg-4 offset-lg-4 col-md-8 col-9  text-center">
+                    <h1 style="font-family: 'Gordita Black'"class ="mt-5 mb-5 text-center"> Défi</h1>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-3">
+                    <img src="{{ asset("MediaStream/jeuxdefi.png") }}"  class="img-fluid"/>
+                </div>
+
+            </div>
+          {#   <p class="text-center">Sélectionnez un jeu puis choisissez la manière dont vous voulez jouer.</p> #}
+            {% set index = 1 %}
+            {% for def in defi %}
+{% if index == 1 %}
+    <div class="col-lg-6 text-center">
+                <img src="{{ asset("uploads/defi/#{def.imgDefi}") }}" style="box-shadow: 30px 15px 2px #09a195" class="img-fluid"/>
+    <h6 class="text-center mt-4"><strong>{{ def.nomDefi }}</strong></h6>
+    <h5 class="text-center mt-4">Prix : {{ def.prixDefi }} Dt<span style="margin-left: 130px">Win : <strong >{{ def.recompenseDefi |slice(0, 3) }} Dt</strong></span></h5>
+    <p class="mt-4 mb-2">Date : {{ def.dateDefi.format('d/m/Y') }} <span style="margin-left: 100px">Nbr Equipe : {{ def.nbrEquipeDefi }}</span></p>
+    <p></p>
+    {#  <h4>Gagner <strong> {{ def.recompenseDefi |slice(0, 3) }} Dt</strong></h4>#}
+    <button class="btn btn-success mt-4">Voir Plus</button>
+{% elseif index == 2 %}
+            <div class="row mt-5 ">
+
+                    <div class="col text-center">
+                        <img src="{{ asset("uploads/defi/#{def.imgDefi}") }}" style="box-shadow: 30px 15px 2px #09a195" class="img-fluid"/>
+                        <h6 class="text-center mt-4"><strong>{{ def.nomDefi }}</strong></h6>
+                        <h5 class="text-center mt-4">Prix : {{ def.prixDefi }} Dt<span style="margin-left: 130px">Win : <strong >{{ def.recompenseDefi |slice(0, 3) }} Dt</strong></span></h5>
+                        <p class="mt-4 mb-2">Date : {{ def.dateDefi.format('d/m/Y') }} <span style="margin-left: 100px">Nbr Equipe : {{ def.nbrEquipeDefi }}</span></p>
+                        <p></p>
+                        {#  <h4>Gagner <strong> {{ def.recompenseDefi |slice(0, 3) }} Dt</strong></h4>#}
+                        <button class="btn btn-success mt-4">Voir Plus</button>
+                    </div>
+
+            </div>
+
+    </div>
+    {% else %}
+        <div class="col-lg-6 mt-5 text-center">
+
+
+            <img src="{{ asset("uploads/defi/#{def.imgDefi}") }}" style="box-shadow: 30px 15px 2px #09a195" class="img-fluid"/>
+            <h6 class="text-center mt-4"><strong>{{ def.nomDefi }}</strong></h6>
+
+            <h5 class="text-center mt-4">Prix : {{ def.prixDefi }} Dt<span style="margin-left: 130px">Win : <strong >{{ def.recompenseDefi |slice(0, 3) }} Dt</strong></span></h5>
+            <p class="mt-4 mb-2">Date : {{ def.dateDefi|date('d/m/Y') }} <span style="margin-left: 100px">Nbr Equipe : {{ def.nbrEquipeDefi }}</span></p>
+            <p></p>
+            {#  <h4>Gagner <strong> {{ def.recompenseDefi |slice(0, 3) }} Dt</strong></h4>#}
+            <button class="btn btn-success mt-4">Voir Plus</button>
+            <div class="row">
+                <div class="col">
+                   {#  <img src="{{ asset('MediaStream/Cover-Gallery.png') }}" class="img-fluid"/>
+                   #}
+                    <img id="imagedefitest" src="{{ asset('MediaStream/testdefi.png') }}"  class="img-fluid"/>
+                </div>
+
+            </div>
+        </div>
+{% endif %}
+
+                    {% set index = index +1 %}
+
+
+
+{% endfor %}
+
+        </div>
+
+        <div class="row mt-5 reveal">
+            <div class="row">
+                <div class="col-lg-2 col-3">
+                    <img src="{{ asset("MediaStream/jeuxvide.png") }}"  class="img-fluid"/>
+                </div>
+                <div class="col-lg-4 offset-lg-2 col-md-6 col-9 text-center">
+                    <h1 style="font-family: 'Gordita Black'"class ="mt-5 mb-5 text-center"> Jeux Video</h1>
+
+                </div>
+            </div>
+                    <div id="imageJeux" class="col-lg-3  mt-4 text-center ">
+
+<div class="card" style="box-shadow: 2px 2px 10px #818181">
+                   <img  src="{{ asset("MediaStream/lol.jpg") }}" class="img-fluid"/>
+                        <div class="detailsgame">
+                    <h6  class="text-capitalize mt-3"> league of legends </h6>
+                        <button class="btn btn-success mt-2 mb-2">Voir Plus</button>
+                        </div>
+                    </div>
+                    </div>
+                <div id="imageJeux" class="col-lg-3 mt-4 text-center">
+                    <div class="card" style="box-shadow: 2px 2px 10px #818181">
+
+                    <img  src="{{ asset("MediaStream/csgo.jpg") }}" class="img-fluid"/>
+                    <div class="detailsgame">
+                    <h6  class="text-capitalize mt-3"> counter strike global offensive </h6>
+                    <button class="btn btn-success mt-2 mb-2">Voir Plus</button>
+                    </div>
+                </div>
+                </div>
+                <div id="imageJeux" class="col-lg-3  mt-4 text-center">
+                    <div class="card" style="box-shadow: 2px 2px 10px #818181">
+
+                    <img  src="{{ asset("MediaStream/wow.jpg") }}" class="img-fluid"/>
+                    <div class="detailsgame">
+                    <h6  class="text-capitalize mt-3"> world of warcraft </h6>
+                    <button class="btn btn-success mt-2 mb-2">Voir Plus</button>
+                    </div>
+                </div>
+                </div>
+                <div id="imageJeux" class="col-lg-3  mt-4 text-center ">
+                    <div class="card" style="box-shadow: 2px 2px 10px #818181">
+
+                    <img  src="{{ asset("MediaStream/valo.jpg") }}" class="img-fluid"/>
+                    <div class="detailsgame">
+                    <h6 class="text-capitalize mt-3"> Valorant </h6>
+                    <button class="btn btn-success mt-2 mb-2">Voir Plus</button>
+                    </div>
+                    </div>
+                </div>
+        </div>
+
+
+        <div class="row mt-5">
+            <div class="col-lg-4">
+                <img src="{{ asset("MediaStream/imgacc.png") }}" class="img-fluid"/>
+
+
+            </div>
+            <div class="col-lg-4">
+
+<p class="mt-5" style=" text-align: justify; line-height:2rem">Le jeu d'action-aventure est un genre de jeu vidéo qui combine les éléments du jeu d'aventure avec certains éléments du jeu d'action. Ce sont des jeux dont le gameplay tend vers un équilibre entre d'une part des éléments d'exploration (environnement ouvert), d'investigation (collecte d'objets, d'indices) et/ou de résolution de problèmes et d'autre part, des éléments d'action en temps réel.</p>
+            </div>
+            <div class="col-lg-4">
+
+                <img src="{{ asset("MediaStream/imgacc2.png") }}" class="img-fluid"/>
+
+            </div>
+
+
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-5">
+                <h4 class="mt-5" style="font-family: 'Gordita Black'">Rejoindre la plus grande communauté e Gaming  avec la croissance la plus rapide.</h4>
+
+
+                <p class="mt-5" style="line-height: 2rem">Les jeux, c’est mieux quand ça va par deux ou plus ! Faites main basse sur le meilleur contenu VR avec nos packs Oculus Duo. </p>
+<a href="#" class="btn btn-success mt-5"> Rejoindre</a>
+            </div>
+            <div class="col-lg-7">
+                <img src="{{ asset("MediaStream/header2.png") }}" class="img-fluid"/>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+<div class="row mt-5 mb-5 reveal">
+            <div class="col-lg-4">
+            <img src="{{ asset("MediaStream/imnot.png") }}" class="img-fluid"/>
+                <div class="row mt-4">
+                    <div class="col">
+                        <img src="{{ asset("MediaStream/imgcrime (1).png") }}" width="200px" class="img-fluid"/>
+
+                    </div>
+                    <div class="col">
+                        <img src="{{ asset("MediaStream/imgcrime (2).png") }}" width="200px" class="img-fluid"/>
+
+                    </div>
+                </div>
+            </div>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-6 mt-4">
+        <h1 class="mt-4" style="font-family: 'Gordita Black'">Je suis un GAMER.</h1><h2  class="mt-3"> Pas parce que je n'ai pas de vie,</h2>  <h2  class="mt-2"> mais parce que j'ai choisi d'en avoir plusieurs</h2>
+        <p class="mt-5" style="text-align: justify ; line-height: 2.5rem">D'après diverses études, jouer aux jeux vidéo améliore la dextérité, les chirurgiens joueurs ont moins de risque de faire des erreurs. De plus, cela permet une meilleure mémorisation, améliore le Q.I des gens et peuvent améliorer la vue et les réflexes.</p>
+        {# <img src="{{ asset("MediaStream/imgcrime.png") }}" width="200px" class="img-fluid"/> #}
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-md-8 col-8">
+    <h1 style="font-family: 'Gordita Black'"class ="mt-5 mb-5 text-center"> Replay Stream</h1>
+        </div>
+        <div class="col-lg-2 col-md-4 col-4">
+
+            <img src="{{ asset("MediaStream/jeuxstream.png") }}"  class="img-fluid"/>
+        </div>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+{% for rep in replay %}
+            <div class="swiper-slide">
+                <div class="mx-3 my-4 avis "style="color:#000">
+                 <a href="{{path ('app_front_replay_stream_voir', {id: rep.IdReplay}) }}">  <video id="vidaccueil" class="font-weight-light" autoplay muted="muted" src="{{ asset ("MediaStream/#{rep.urlVideo}") }}" ></video></a>
+                    <div class="mt-1 text-justify">
+                        {{ rep.descriptionReplay }}
+                    </div>
+                    <div class="date">
+
+                        <p class="mt-2 text-muted text-right" style="font-family:Modern Sans"><span>Le </span>: {{  rep.date.format('d/m/Y') }}</p>
+
+                    </div>
+                </div>
+
+            </div>
+
+{% endfor %}
+
+
+
+        </div>
+    </div>
+
+
+</div>
+    <div class="row mt-5 mb-5 reveal">
+
+       {#  <img src="{{ asset("MediaStream/accueil2.png") }}" class="img-fluid"/>#}
+
+        <div class="col-lg-3 col-md-6 text-center mt-4 ">
+           {#  <img id="gamezone"src="{{ asset("MediaStream/gamezone.png") }}" class="img-fluid"/> #}
+            <img src="MediaStream/mario1.png" class="img-fluid"/>
+            <div class="card" style="box-shadow: 2px 2px 10px #818181" >
+                <div class="text-center mt-3">
+<img src="MediaStream/game.png"  width="150px" class="img-fluid" />
+                    <h6 class="mt-3 " style="font-weight: bold">1500</h6>
+                    <p class="text-uppercase">Jeux Vidéo</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center mt-4 ">
+            <img src="MediaStream/mario2.png" class="img-fluid"/>
+            {#  <img id="gamezone"src="{{ asset("MediaStream/gamezone.png") }}" class="img-fluid"/> #}
+            <div class="card" style="box-shadow: 2px 2px 10px #818181" >
+                <div class="text-center mt-3">
+                    <img src="MediaStream/match.png"  width="150px" class="img-fluid" />
+                    <h6 class="mt-3 " style="font-weight: bold">1500</h6>
+                    <p class="text-uppercase">Tournois</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center mt-4 ">
+            <img src="MediaStream/mario3.png" class="img-fluid"/>
+            {#  <img id="gamezone"src="{{ asset("MediaStream/gamezone.png") }}" class="img-fluid"/> #}
+            <div class="card" style="box-shadow: 2px 2px 10px #818181" >
+                <div class="text-center mt-3">
+                    <img src="MediaStream/win.png"  width="150px" class="img-fluid" />
+                    <h6 class="mt-3 " style="font-weight: bold">1500</h6>
+                    <p>GAINS PAYÉS</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center mt-2">
+            <img src="MediaStream/mario4.png" class="img-fluid"/>
+            {#  <img id="gamezone"src="{{ asset("MediaStream/gamezone.png") }}" class="img-fluid"/> #}
+            <div class="card" style="box-shadow: 2px 2px 10px #818181" >
+                <div class="text-center mt-3">
+                    <img src="MediaStream/live.png"  width="150px" class="img-fluid" />
+                    <h6 class="mt-3">1500</h6>
+                    <p class="text-uppercase">live</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            loop:false,
+        });
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+    </script>
+{% endblock %}

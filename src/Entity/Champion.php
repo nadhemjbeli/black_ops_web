@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Champion
  *
@@ -23,42 +23,58 @@ class Champion
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un nom au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="Nom_Champ", type="string", length=75, nullable=false)
      */
     private $nomChamp;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un description du champion au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="description_Champ", type="text", length=0, nullable=false)
      */
     private $descriptionChamp;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un role au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="Role_Champ", type="string", length=75, nullable=false)
      */
     private $roleChamp;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length (
+     * min="3",
+     * minMessage="Entrer un niveau de difficulte au minimum de 3 caractères"
+     * )
      * @ORM\Column(name="Difficulte_Champ", type="string", length=25, nullable=false)
      */
     private $difficulteChamp;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="Image_Champ", type="text", length=0, nullable=false)
      */
     private $imageChamp;
 
     /**
      * @var \Jeu
-     *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Jeu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Id_jeu", referencedColumnName="Id_Jeu")
@@ -119,12 +135,12 @@ class Champion
         return $this;
     }
 
-    public function getImageChamp(): ?string
+    public function getImageChamp()
     {
         return $this->imageChamp;
     }
 
-    public function setImageChamp(string $imageChamp): self
+    public function setImageChamp($imageChamp)
     {
         $this->imageChamp = $imageChamp;
 
@@ -143,5 +159,12 @@ class Champion
         return $this;
     }
 
-
+    public function __toString():string
+    {
+        return $this->getNomChamp();
+    }
+    public function getImagePath(): string
+    {
+        return 'uploads/champions/'.$this->getImageChamp();
+    }
 }

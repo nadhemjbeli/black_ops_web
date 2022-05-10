@@ -1,0 +1,31 @@
+{{ form_start(form) }}
+<div class="row mt-5">
+
+    <div class="col-5">     {{ form_row(form.nomLivestream)  }}</div>
+    <div class="col-2">    </div>
+    <div class="col-5">     {{ form_row(form.pathLivestream ) }}  </div>
+
+
+
+</div>
+<div class="row mt-5">
+
+    <div class="col-5">     {{ form_row(form.visibiliteLivestream) }}</div>
+    <div class="col-2">    </div>
+    <div class="col-5">
+        {{ form_row(form.idDefi) }} </div>
+
+
+
+</div>
+{{ form_rest(form) }}
+
+<div class="row mt-5">
+    <div class="col text-end">
+        <a href="javascript:history.back()" onclick="return confirm('êtes vous sur de vouloir Annuler  ?')" class="btn btn-secondary" >Annuler </a>
+        <button class="btn btn-success">{{ button|default ('Enregister') }}</button>
+
+    </div>
+
+</div>
+{{ form_end(form) }}

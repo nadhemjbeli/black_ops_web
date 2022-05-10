@@ -3,7 +3,7 @@
 		<div class="col-md-3 left_col">
 			<div class="left_col scroll-view">
 				<div class="navbar nav_title" style="border: 0;">
-					<a href="index.html" class="site_title">
+					<a href="" class="site_title">
 						<i class="fa fa-paw"></i>
 						<span>Black ops!</span>
 					</a>
@@ -14,11 +14,11 @@
 				<!-- menu profile quick info -->
 				<div class="profile clearfix">
 					<div class="profile_pic">
-						<img src="{{ asset('AdminAssets/images/img.jpg') }}" alt="..." class="img-circle profile_img">
+						<img src="{{ asset('uploads/user_image/'~ app.user.image) }}" alt="..." class="img-circle profile_img">
 					</div>
 					<div class="profile_info">
 						<span>Welcome,</span>
-						<h2>John Doe</h2>
+						<h2>{{ app.user.username }}</h2>
 					</div>
 				</div>
 				<!-- /menu profile quick info -->
@@ -116,10 +116,13 @@
 								</a>
 								<ul class="nav child_menu">
 									<li>
-										<a href="chartjs.html">Gestion Live_Stream</a>
+										<a href="{{ path('app_info_stream') }}">Info Stream</a>
 									</li>
 									<li>
-										<a href="chartjs2.html">Stream Info</a>
+										<a href="{{ path('app_replay_stream') }}">Replay Stream</a>
+									</li>
+									<li>
+										<a href="{{ path('app_live_stream') }}">Live Stream</a>
 									</li>
 
 								</ul>
@@ -131,10 +134,10 @@
 								</a>
 								<ul class="nav child_menu">
 									<li>
-										<a href="fixed_sidebar.html">Gestion Ligne Commande</a>
+										<a href="{{ path('app_admin_lignecommande_index') }}">Gestion Ligne Commande</a>
 									</li>
 									<li>
-										<a href="fixed_footer.html">Gestion Commande</a>
+										<a href="{{ path('app_admin_commande_index') }}">Gestion Commande</a>
 									</li>
 								</ul>
 							</li>
@@ -284,7 +287,7 @@
 					<ul class=" navbar-right">
 						<li class="nav-item dropdown open" style="padding-left: 15px;">
 							<a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-								<img src="{{ asset('AdminAssets/images/img.jpg') }}" alt="">John Doe
+								<img src="{{ asset('uploads/user_image/'~ app.user.image) }}" alt="">{{ app.user.username }}
 							</a>
 							<div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="javascript:;">

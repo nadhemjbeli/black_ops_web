@@ -1,0 +1,104 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Information Stream{% endblock %}
+
+{% block body %}
+
+<style>
+.imageloader{
+
+    display: none;
+}
+.pagination{
+    justify-content:center;
+}
+.page-item.active .page-link {
+    border-color: #09a195;
+    background-color: #09a195;
+
+}
+.page-link {
+    color: #09a195;
+}
+.page-link:hover {
+    color: #198754;
+}
+
+
+</style>
+<div class="container">
+
+<h2 class="text-center mt-5"> Information Stream</h2>
+    <div class="row mt-5">
+        <div class="col-lg-6 col-12">
+
+            <img src="{{ asset ("MediaStream/info2.png") }}" class="img-fluid"/>
+
+
+        </div>
+<div class="col-lg-6 " id="headerinfo">
+
+    <h4 class="mt-5">Setup gaming de streamer</h4>
+
+    <p class="mt-4 lh-lg"> Que ce soit pour réaliser un stream Twitch de qualité ou faire des lives gaming sur portable, Xbox ou Playstation… il y aura toujours besoin d’un setup gaming en particulier. Micro, fond vert, live gamer portable, stream deck, carte graphique, on partage ici notre avis, ainsi qu’un comparatif de tous les matos de gaming pour réaliser des lives Twitch au top.</p>
+
+</div>
+
+
+    </div>
+
+    <h4 class="mt-4 text-center" id="logstream">Logiciels streaming</h4>
+{%  set index = 1 %}
+    <div class="row mt-5">
+
+        {% for info in infos %}
+
+            {% if index == 1 %}
+
+        <div id="info" class="col-lg-3 offset-lg-2 col-md-6 col-10 mt-3 ">
+
+            <h6 class="text-center mt-5 mb-4"> {{ info.nomStream }}</h6>
+            <!--style="box-shadow: 70px 30px 1px #09a195"-->
+<img  src="{{ asset ("MediaStream/#{info.imageStream}") }}" class="img-fluid" height="250px"/>
+            <p class="mt-5 " >{{ info.descriptionStream }}</p>
+
+        </div>
+
+            {%  elseif index == 2 %}
+            <div id="info" class="col-lg-3 offset-lg-2 col-md-6 col-10  mt-3 ">
+
+                <h6 class="text-center mt-5 mb-4"> {{ info.nomStream }}</h6>
+                <img  src="{{ asset ("MediaStream/#{info.imageStream}") }}" class="img-fluid" height="250px"/>
+                <p class="mt-5 ">{{ info.descriptionStream }}</p>
+
+            </div>
+                {% elseif index == 3 %}
+            <div id="info" class="col-lg-4 offset-lg-4 col-10  mt-3 ">
+
+                <h6 class="text-center mt-5 mb-4"> {{ info.nomStream }}</h6>
+                <img src="{{ asset ("MediaStream/#{info.imageStream}") }}" class="img-fluid" height="250px"/>
+                <p class="mt-5">{{ info.descriptionStream }}</p>
+
+            </div>
+
+                    {% endif %}
+                    {% set index = index + 1 %}
+
+            {% if index == 4 %}
+{% set index =1 %}
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+    <div class="mt-5 mb-5">
+        {{ knp_pagination_render(infos) }}
+    </div>
+
+</div>
+<script>
+ // var imageloading = document.getElementsByClassName('imageloader');
+ //    imageloading.stye
+
+</script>
+{% endblock %}
