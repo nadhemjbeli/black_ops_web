@@ -3,17 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\Defi;
+use App\Entity\Jeu;
 use App\Entity\Review;
 use App\Form\DefiType;
 use App\Repository\DefiRepository;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 
@@ -23,6 +29,20 @@ use Symfony\UX\Chartjs\Model\Chart;
 class AdminDefiController extends AbstractController
 {
     /**
+     * @Route("/all", name="app_admin_defi_mobile_index", methods={"GET"})
+     * @throws ExceptionInterface
+     */
+    public function Mobile_Index(EntityManagerInterface $entityManager,NormalizerInterface $Normalizer): JsonResponse
+    {
+        $Defis = $entityManager
+            ->getRepository(Defi::class)
+            ->findAll();
+
+        $s=new Serializer([new ObjectNormalizer()]);
+        $formatted=$s->normalize($Defis);
+        return new JsonResponse($formatted);
+    }
+    /**
      * @Route("/", name="app_admin_defi_index", methods={"GET"})
      */
     public function index(EntityManagerInterface $entityManager): Response
@@ -30,6 +50,8 @@ class AdminDefiController extends AbstractController
         $defis = $entityManager
             ->getRepository(Defi::class)
             ->findAll();
+        $serializer = SerializerBuilder::create()->build();
+        $jsonContent =$serializer->serialize($defis, 'json');
 
         return $this->render('admin_defi/index.html.twig', [
             'defis' => $defis,
@@ -44,6 +66,7 @@ class AdminDefiController extends AbstractController
         $defi = new Defi();
         $form = $this->createForm(DefiType::class, $defi);
         $form->handleRequest($request);
+        $serializer = SerializerBuilder::create()->build();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $file =$defi->getImgDefi();
@@ -59,6 +82,7 @@ class AdminDefiController extends AbstractController
             $defi ->setImgDefi($fileName);
             $entityManager->persist($defi);
             $entityManager->flush();
+            $jsonContent =$serializer->serialize($defi, 'json');
 
             return $this->redirectToRoute('app_admin_defi_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -151,19 +175,19 @@ class AdminDefiController extends AbstractController
             $label [] = $defi->getNomDefi();
             $datasets[] = $rev->SelectReview($defi);
         }
-            $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
-            $chart->setData([
-                'labels' => $label,
-                'datasets' => [
-                    [
-                        'label' => 'Note Total  Par defi ',
-                        'backgroundColor' => 'rgb(9, 161, 149)',
-                        'borderColor' => 'rgb(255, 99, 132)',
+        $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $chart->setData([
+            'labels' => $label,
+            'datasets' => [
+                [
+                    'label' => 'Note Total  Par defi ',
+                    'backgroundColor' => 'rgb(9, 161, 149)',
+                    'borderColor' => 'rgb(255, 99, 132)',
 
-                        'data' => $datasets ,
-                    ],
+                    'data' => $datasets ,
                 ],
-            ]);
+            ],
+        ]);
 
 
 
@@ -182,6 +206,39 @@ class AdminDefiController extends AbstractController
             'defi' => $defi,
         ]);
     }
+    /**
+     * @Route("/new/addDefi", name="new_defi_mobile" )
+     */
+    public function addDefi(Request $request,NormalizerInterface $normalizer): JsonResponse
+    {
+        $em=$this->getDoctrine()->getManager();
+        $defi=new Defi();
+
+
+        $defi->setNomDefi($request->get('nomDefi'));
+        $defi->setDescriptionDefi($request->get('descriptionDefi'));
+        $defi->setImgDefi($request->get('imgDefi'));
+        $defi->setPrixDefi($request->get('prixDefi'));
+        $defi->setNbrEquipeDefi($request->get('nbrEquipeDefi'));
+        $defi->setRegleDefi($request->get('regleDefi'));
+        $defi->setRecompenseDefi($request->get('recompenseDefi'));
+
+        $id_jeux = $request->get('jeuDefi');
+
+        $j=$this->getDoctrine()->getRepository(Jeu::class)->findOneBy(['idJeu'=>$id_jeux]);
+
+        $defi->setJeuDefi($j);
+        $em->persist($defi);
+        $em->flush();
+//    $jsoncontent=$normalizer->normalize($jeux,'json',['groups'=>'post:read']);
+//    return new Response(json_encode($jsoncontent));
+        $s=new Serializer([new ObjectNormalizer()]);
+        $formatted=$s->normalize($defi);
+        return new JsonResponse($formatted);
+
+
+    }
+
 
 
 

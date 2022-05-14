@@ -141,6 +141,8 @@ class ClientMessageController extends AbstractController
         ], 200, []);
     }
 
+
+
     /**
      * @Route ("/add_like/{idMessage}", name="post_like", methods={"GET","POST"})
      */
@@ -234,6 +236,26 @@ class ClientMessageController extends AbstractController
         $message->setIdSouscat($sc);
         $message->setDateMessage();
         $em->persist($message);
+        $em->flush();
+        $jsonContent = $normalizer->normalize($message, 'json');
+//        dd($jsonContent);
+        return new Response(json_encode($jsonContent));
+    }
+
+    /**
+     * @Route("/deleteMessageMobile", name="deleteMessageMobile"  )
+     */
+    public function deleteMessageMobile(NormalizerInterface $normalizer, Request $request, MessageRepository $messageRepository){
+//        $messages = $messageRepository->findAll();
+//        $sc = $sousCategorieRepository->findOneBy(['idSouscat'=>5]);
+//        $user = $this->userRepository->findOneBy(['username'=>'nadhem5']);
+//        dd($user);
+        $id = (int) $request->get('id');
+//        dd($id);
+        $message = $messageRepository->findOneBy(['idMessage'=>$id]);
+//        dd($message);
+        $em = $this->entityManager;
+        $em->remove($message);
         $em->flush();
         $jsonContent = $normalizer->normalize($message, 'json');
 //        dd($jsonContent);
